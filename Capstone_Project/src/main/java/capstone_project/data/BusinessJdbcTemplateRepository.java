@@ -40,7 +40,7 @@ public class BusinessJdbcTemplateRepository implements BusinessRepository{
     @Override
     public Business add(Business business){
         final String sql = "insert into business (name, description, rating, locationId, personId) "
-                + "values (?,?,?,?,?,?);";
+                + "values (?,?,?,?,?);";
 
         KeyHolder keyHolder =  new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
@@ -72,7 +72,8 @@ public class BusinessJdbcTemplateRepository implements BusinessRepository{
                 business.getDescription(),
                 business.getRating(),
                 business.getLocationId(),
-                business.getPersonId()) > 0;
+                business.getPersonId(),
+                business.getBusinessId()) > 0;
     }
     @Override
     public boolean deleteById(int businessId){

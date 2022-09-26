@@ -55,7 +55,7 @@ public class ReviewJdbcTemplateRepository implements ReviewRepository{
     }
     @Override
     public boolean update(Review review){
-        final String sql = "update review set"
+        final String sql = "update review set "
                 +"content = ?, "
                 +"timeDate = ?, "
                 +"rating = ?, "
@@ -67,7 +67,8 @@ public class ReviewJdbcTemplateRepository implements ReviewRepository{
                 review.getTimeDate(),
                 review.getRating(),
                 review.getPersonId(),
-                review.getBusinessId()) > 0;
+                review.getBusinessId(),
+                review.getReviewId()) > 0;
     }
     @Override
     public boolean deleteById(int reviewId){
