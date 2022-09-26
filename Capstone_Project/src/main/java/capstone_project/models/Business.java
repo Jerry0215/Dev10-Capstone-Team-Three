@@ -17,6 +17,9 @@ public class Business {
         this.locationId = locationId;
         this.personId = personId;
     }
+    public Business(){
+
+    }
 
     public int getBusinessId() {
         return businessId;
