@@ -45,7 +45,10 @@ create table person (
 	firstName varchar(25) not null,
     middleName varchar(25) null,
 	lastName varchar(25) not null,
+<<<<<<< HEAD
     suffix varchar(10) null,
+=======
+>>>>>>> 0fb6555 (added photo blob to sql)
     photo blob null,
 	phone varchar(20) not null,
     locationId int not null,
