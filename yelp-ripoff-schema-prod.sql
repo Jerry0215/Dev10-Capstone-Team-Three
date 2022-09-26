@@ -44,12 +44,18 @@ create table person (
 	personId int primary key auto_increment,
 	firstName varchar(25) not null,
 <<<<<<< HEAD
+<<<<<<< HEAD
     middleName varchar(25) null,
 	lastName varchar(25) not null,
 <<<<<<< HEAD
     suffix varchar(10) null,
 =======
 >>>>>>> 0fb6555 (added photo blob to sql)
+=======
+    middleName varchar(25) null,
+	lastName varchar(25) not null,
+    suffix varchar(10) null,
+>>>>>>> fc5407b (added middle name and suffix to person)
     photo blob null,
 =======
 	lastName varchar(25) not null,

@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 drop database if exists yelpRipoffTest;
 create database yelpRipoffTest;
 use yelpRipoffTest;
+=======
+drop database if exists yelpRipoff;
+create database yelpRipoff;
+use yelpRipoff;
+>>>>>>> fc5407b (added middle name and suffix to person)
 
 drop table if exists appUserRole;
 drop table if exists appRole;
@@ -117,6 +123,7 @@ constraint fk_review_business_id
 	references business(businessId)
 );
 
+<<<<<<< HEAD
 insert into appUser
     values
     (1,'admin@admin.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0),
@@ -126,12 +133,23 @@ insert into appRole
 	values
     (1,'USER'),
     (2,'ADMIN');
+=======
+insert into appUser (username, passwordHash, disabled)
+    values
+    ('admin@admin.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0),
+    ('user@user.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0);
+    
+insert into appRole (`name`) values
+    ('USER'),
+    ('ADMIN');
+>>>>>>> fc5407b (added middle name and suffix to person)
     
 insert into appUserRole
     values
     (1, 2),
     (2, 1);
     
+<<<<<<< HEAD
 insert into location 
 	values
     (1,'Test Address','Test City','VA','23219','Test Address Type');
@@ -155,3 +173,8 @@ insert into business (`name`, `description`, rating, locationId, personId)
 */
    
 select * from business;
+=======
+insert into location (address, city, state, zipCode, addressType)
+	values
+    ()
+>>>>>>> fc5407b (added middle name and suffix to person)
