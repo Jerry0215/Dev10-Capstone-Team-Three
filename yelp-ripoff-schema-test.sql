@@ -116,3 +116,21 @@ constraint fk_review_business_id
 	foreign key (businessId)
 	references business(businessId)
 );
+
+insert into appUser (username, passwordHash, disabled)
+    values
+    ('admin@admin.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0),
+    ('user@user.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0);
+    
+insert into appRole (`name`) values
+    ('USER'),
+    ('ADMIN');
+    
+insert into appUserRole
+    values
+    (1, 2),
+    (2, 1);
+    
+insert into location (address, city, state, zipCode, addressType)
+	values
+    ()

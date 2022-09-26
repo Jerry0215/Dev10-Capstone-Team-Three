@@ -16,7 +16,7 @@ public class LocationMapper implements RowMapper<Location> {
         location.setAddress(resultSet.getString("address"));
         location.setCity(resultSet.getString("city"));
         location.setState(resultSet.getString("state"));
-        location.setZipcode(resultSet.getString("zipcode"));
+        location.setZipCode(resultSet.getString("zipCode"));
         location.setAddressType(resultSet.getString("addressType"));
         return location;
     }
