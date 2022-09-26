@@ -18,7 +18,6 @@ public class Event {
     private int businessId;
 
 
-
     public int getEventId() {
         return eventId;
     }
