@@ -43,23 +43,10 @@ create table location (
 create table person (
 	personId int primary key auto_increment,
 	firstName varchar(25) not null,
-<<<<<<< HEAD
-<<<<<<< HEAD
-    middleName varchar(25) null,
-	lastName varchar(25) not null,
-<<<<<<< HEAD
-    suffix varchar(10) null,
-=======
->>>>>>> 0fb6555 (added photo blob to sql)
-=======
     middleName varchar(25) null,
 	lastName varchar(25) not null,
     suffix varchar(10) null,
->>>>>>> fc5407b (added middle name and suffix to person)
     photo blob null,
-=======
-	lastName varchar(25) not null,
->>>>>>> e8f7b6f (repo and service for location and event)
 	phone varchar(20) not null,
     locationId int not null,
     appUserId int not null,
@@ -88,10 +75,7 @@ create table business (
 businessId int primary key auto_increment,
 `name` varchar(50) not null,
  `description` varchar(100) not null,
-<<<<<<< HEAD
  photo blob null,
-=======
->>>>>>> e8f7b6f (repo and service for location and event)
  rating int not null,
  locationId int not null,
  personId int not null,
