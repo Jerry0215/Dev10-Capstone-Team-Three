@@ -1,7 +1,9 @@
 package capstone_project.data;
 
 import capstone_project.data.mappers.EventMapper;
+import capstone_project.data.mappers.LocationMapper;
 import capstone_project.models.Event;
+import capstone_project.models.Location;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Repository
 public class EventJdbcTemplateRepository implements EventRepository {
@@ -18,6 +21,12 @@ public class EventJdbcTemplateRepository implements EventRepository {
 
     public EventJdbcTemplateRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @Override
+    public List<Event> findAll() {
+        final String sql = "select eventId, name, description, timeDate, locationId, businessId from event limit 1000;";
+        return jdbcTemplate.query(sql, new EventMapper());
     }
 
     @Override

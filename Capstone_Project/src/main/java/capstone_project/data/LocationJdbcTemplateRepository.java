@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.List;
 
 @Repository
 public class LocationJdbcTemplateRepository implements LocationRepository {
@@ -18,6 +19,12 @@ public class LocationJdbcTemplateRepository implements LocationRepository {
 
     public LocationJdbcTemplateRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @Override
+    public List<Location> findAll() {
+        final String sql = "select locationId, address, city, state, zipCode, addressType from location limit 1000;";
+        return jdbcTemplate.query(sql, new LocationMapper());
     }
 
     @Override
