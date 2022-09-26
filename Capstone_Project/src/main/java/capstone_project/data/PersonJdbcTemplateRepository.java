@@ -34,7 +34,7 @@ public class PersonJdbcTemplateRepository {
         return person;
     }
 
-    public Person add(Person person) {
-        final String sql = "insert into person ("
-    }
+//    public Person add(Person person) {
+//        final String sql = "insert into person ("
+//    }
 }
