@@ -22,7 +22,7 @@ public class LocationJdbcTemplateRepository implements LocationRepository {
 
     @Override
     public Location findById(int locationId) {
-        final String sql = "select locationId, address, city, state, zipcode, addressType "
+        final String sql = "select locationId, address, city, state, zipCode, addressType "
                 + "from location "
                 + "where locationId = ?;";
 
@@ -33,7 +33,7 @@ public class LocationJdbcTemplateRepository implements LocationRepository {
 
     @Override
     public Location add(Location location) {
-        final String sql = "insert into location (address, city, state, zipcode, addressType)"
+        final String sql = "insert into location (address, city, state, zipCode, addressType)"
                 + "values (?,?,?,?,?);";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -42,7 +42,7 @@ public class LocationJdbcTemplateRepository implements LocationRepository {
             ps.setString(1, location.getAddress());
             ps.setString(2, location.getCity());
             ps.setString(3, location.getState());
-            ps.setString(4, location.getZipcode());
+            ps.setString(4, location.getZipCode());
             ps.setString(5, location.getAddressType());
             return ps;
         }, keyHolder);
@@ -62,7 +62,7 @@ public class LocationJdbcTemplateRepository implements LocationRepository {
                 + "address = ?, "
                 + "city = ?, "
                 + "state = ?, "
-                + "zipcode = ?, "
+                + "zipCode = ?, "
                 + "addressType = ? "
                 + "where locationId = ?;";
 
@@ -70,7 +70,7 @@ public class LocationJdbcTemplateRepository implements LocationRepository {
                 location.getAddress(),
                 location.getCity(),
                 location.getState(),
-                location.getZipcode(),
+                location.getZipCode(),
                 location.getAddressType(),
                 location.getLocationId()) > 0;
     }

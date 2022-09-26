@@ -1,6 +1,12 @@
+<<<<<<< HEAD
+drop database if exists yelpRipoffTest;
+create database yelpRipoffTest;
+use yelpRipoffTest;
+=======
 drop database if exists yelpRipoff;
 create database yelpRipoff;
 use yelpRipoff;
+>>>>>>> fc5407b (added middle name and suffix to person)
 
 drop table if exists appUserRole;
 drop table if exists appRole;
@@ -43,23 +49,10 @@ create table location (
 create table person (
 	personId int primary key auto_increment,
 	firstName varchar(25) not null,
-<<<<<<< HEAD
-<<<<<<< HEAD
-    middleName varchar(25) null,
-	lastName varchar(25) not null,
-<<<<<<< HEAD
-    suffix varchar(10) null,
-=======
->>>>>>> 0fb6555 (added photo blob to sql)
-=======
     middleName varchar(25) null,
 	lastName varchar(25) not null,
     suffix varchar(10) null,
->>>>>>> fc5407b (added middle name and suffix to person)
     photo blob null,
-=======
-	lastName varchar(25) not null,
->>>>>>> e8f7b6f (repo and service for location and event)
 	phone varchar(20) not null,
     locationId int not null,
     appUserId int not null,
@@ -88,10 +81,7 @@ create table business (
 businessId int primary key auto_increment,
 `name` varchar(50) not null,
  `description` varchar(100) not null,
-<<<<<<< HEAD
  photo blob null,
-=======
->>>>>>> e8f7b6f (repo and service for location and event)
  rating int not null,
  locationId int not null,
  personId int not null,
@@ -132,3 +122,59 @@ constraint fk_review_business_id
 	foreign key (businessId)
 	references business(businessId)
 );
+
+<<<<<<< HEAD
+insert into appUser
+    values
+    (1,'admin@admin.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0),
+    (2,'user@user.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0);
+    
+insert into appRole
+	values
+    (1,'USER'),
+    (2,'ADMIN');
+=======
+insert into appUser (username, passwordHash, disabled)
+    values
+    ('admin@admin.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0),
+    ('user@user.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0);
+    
+insert into appRole (`name`) values
+    ('USER'),
+    ('ADMIN');
+>>>>>>> fc5407b (added middle name and suffix to person)
+    
+insert into appUserRole
+    values
+    (1, 2),
+    (2, 1);
+    
+<<<<<<< HEAD
+insert into location 
+	values
+    (1,'Test Address','Test City','VA','23219','Test Address Type');
+    
+insert into person (firstName, middleName, lastName, suffix, phone, locationId, appUserId)
+	values
+	('Test First Name','Test Middle Name','Test Last Name', 'Sr.', 'Test Phone', 1, 1);
+     
+insert into business (`name`, `description`, rating, locationId, personId)
+	values
+    ('Test Business Name','Test Business Description',5,1,1);
+     
+/* insert into event (`name`,`description`,locationId,businessId)
+	 values
+     ('Test Event Name', 'Test Event Description', 1, 1); 
+*/
+
+/* insert into review (content, rating, personId, businessId)
+	values
+    ('Test Content',5,1,1);
+*/
+   
+select * from business;
+=======
+insert into location (address, city, state, zipCode, addressType)
+	values
+    ()
+>>>>>>> fc5407b (added middle name and suffix to person)
