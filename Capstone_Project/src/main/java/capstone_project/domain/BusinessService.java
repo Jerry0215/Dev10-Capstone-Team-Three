@@ -26,7 +26,7 @@ public class BusinessService {
         return repository.deleteById(businessId);
     }
 
-    private Result<Business> add(Business business){
+    public Result<Business> add(Business business){
         Result<Business> result = validate(business);
         if (!result.isSuccess()){
             return result;
@@ -38,7 +38,7 @@ public class BusinessService {
         result.setPayload(business);
         return result;
     }
-    private Result<Business> update(Business business){
+    public Result<Business> update(Business business){
         Result<Business> result = validate(business);
         if (!result.isSuccess()){
             return result;
