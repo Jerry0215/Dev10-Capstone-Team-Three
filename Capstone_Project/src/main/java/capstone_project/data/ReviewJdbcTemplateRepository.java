@@ -35,7 +35,7 @@ public class ReviewJdbcTemplateRepository implements ReviewRepository{
     }
     @Override
     public Review add(Review review){
-        final String sql = "insert into review (content, timeDate, rating, personId, businessId)"
+        final String sql = "insert into review (content, timeDate, rating, personId, businessId) "
                 +"values (?,?,?,?,?);";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
