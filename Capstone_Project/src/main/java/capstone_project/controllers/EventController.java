@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:5500", "http://localhost:3000"})
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("/api/event")
 public class EventController {
 }
