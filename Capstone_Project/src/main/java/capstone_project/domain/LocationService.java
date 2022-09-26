@@ -4,6 +4,8 @@ import capstone_project.data.LocationRepository;
 import capstone_project.models.Location;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LocationService {
 
@@ -11,6 +13,10 @@ public class LocationService {
 
     public LocationService(LocationRepository repository) {
         this.repository = repository;
+    }
+
+    public List<Location> findAll() {
+        return repository.findAll();
     }
 
     public Location findById(int locationId) {

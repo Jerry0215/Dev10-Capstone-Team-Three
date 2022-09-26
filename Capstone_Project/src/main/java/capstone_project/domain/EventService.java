@@ -2,11 +2,13 @@ package capstone_project.domain;
 
 import capstone_project.data.EventRepository;
 import capstone_project.models.Event;
+import capstone_project.models.Location;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class EventService {
@@ -15,6 +17,10 @@ public class EventService {
 
     public EventService(EventRepository repository) {
         this.repository = repository;
+    }
+
+    public List<Event> findAll() {
+        return repository.findAll();
     }
 
     public Event findById(int eventId) {

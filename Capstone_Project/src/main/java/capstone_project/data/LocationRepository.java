@@ -1,9 +1,13 @@
 package capstone_project.data;
 
+import capstone_project.models.Business;
 import capstone_project.models.Location;
+
+import java.util.List;
 
 public interface LocationRepository {
 
+    List<Location> findAll();
     Location findById(int locationId);
 
     Location add(Location location);
