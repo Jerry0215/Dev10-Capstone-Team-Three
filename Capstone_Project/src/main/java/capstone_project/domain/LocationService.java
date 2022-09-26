@@ -77,7 +77,7 @@ public class LocationService {
             result.addMessage("state is required", ResultType.INVALID);
         }
 
-        if (Validations.isNullOrBlank(location.getZipcode())) {
+        if (Validations.isNullOrBlank(location.getZipCode())) {
             result.addMessage("zipcode is required", ResultType.INVALID);
         }
 
