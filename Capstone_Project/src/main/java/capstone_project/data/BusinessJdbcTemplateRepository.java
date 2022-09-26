@@ -39,18 +39,17 @@ public class BusinessJdbcTemplateRepository implements BusinessRepository{
     }
     @Override
     public Business add(Business business){
-        final String sql = "insert into business (businessId, name, description, rating, locationId, personId) "
+        final String sql = "insert into business (name, description, rating, locationId, personId) "
                 + "values (?,?,?,?,?,?);";
 
         KeyHolder keyHolder =  new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1,business.getBusinessId());
-            ps.setString(2,business.getName());
-            ps.setString(3,business.getDescription());
-            ps.setInt(4,business.getRating());
-            ps.setInt(5,business.getLocationId());
-            ps.setInt(6,business.getPersonId());
+            ps.setString(1,business.getName());
+            ps.setString(2,business.getDescription());
+            ps.setInt(3,business.getRating());
+            ps.setInt(4,business.getLocationId());
+            ps.setInt(5,business.getPersonId());
             return ps;
         }, keyHolder);
         if (rowsAffected<= 0){
@@ -78,6 +77,6 @@ public class BusinessJdbcTemplateRepository implements BusinessRepository{
     @Override
     public boolean deleteById(int businessId){
         return jdbcTemplate.update(
-                "delete from business where businessId = ?", businessId)>0;
+                "delete from business where businessId = ?;", businessId)>0;
     }
 }
