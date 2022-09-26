@@ -39,7 +39,7 @@ public class BusinessController {
 
     @PutMapping("/{businessId}")
     public ResponseEntity<Object> update(@PathVariable int businessId, @RequestBody Business business){
-        System.out.println(business.getBusinessId());
+
         if (businessId != business.getBusinessId()){
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
