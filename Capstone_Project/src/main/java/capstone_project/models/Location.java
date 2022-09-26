@@ -49,6 +49,7 @@ public class Location {
         this.zipCode = zipCode;
     }
 
+
     public String getAddressType() {
         return addressType;
     }
