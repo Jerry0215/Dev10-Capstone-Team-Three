@@ -22,6 +22,11 @@ public class EventController {
         this.service = service;
     }
 
+    @GetMapping("/business/{businessId}")
+    public List<Event> findAllByBusiness(@PathVariable int businessId) {
+        return service.findAllByBusiness(businessId);
+    }
+
     @GetMapping
     public List<Event> findAll() {
         return service.findAll();
