@@ -1,15 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-// import UserContext from '../UserContext';
-
 import Event from './Event';
 
 function Events() {
     const [events, setEvents] = useState([]);
 
     const history = useHistory();
-
-    // const authManager = useContext(UserContext);
 
     useEffect(() => {
         fetch('http://localhost:8080/api/event')
@@ -20,7 +16,7 @@ function Events() {
           return Promise.reject('Something has gone wrong in fetching the Event data.');
         })
         .then(data => {
-            setLocations(data);
+            setEvents(data);
         })
         .catch(err => history.push('/error', {errorMessage: err}));
       },[])
@@ -30,7 +26,6 @@ function Events() {
       return (
         <>
           <h2>Events</h2>
-          {authManager.user &&  <button type="button" className="btn btn-primary mb-3" onClick={handleAddEvent}>Add Event</button>}
           <table className="table table-striped">
             <thead>
               <tr>
