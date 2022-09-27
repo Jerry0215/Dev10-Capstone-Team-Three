@@ -2,7 +2,6 @@ package capstone_project.models;
 
 import javax.swing.ImageIcon;
 
-import org.springframework.security.core.userdetails.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,18 +14,27 @@ public class Person {
     private String lastName;
 
     private String suffix;
-    ImageIcon photo;
+
+
+    private String photoDir;
 
     private String phone;
+
+    public String getPhotoDir() {
+        return photoDir;
+    }
+
+    public void setPhotoDir(String photoDir) {
+        this.photoDir = photoDir;
+    }
+
     private List<Location> locations = new ArrayList<>();
-    private AppUser user;
+
 
     private int locationId;
     private int userId;
 
-    public ImageIcon getPhoto() {
-        return photo;
-    }
+
 
     public int getLocationId() {
         return locationId;
@@ -44,9 +52,6 @@ public class Person {
         this.userId = userId;
     }
 
-    public void setPhoto(ImageIcon photo) {
-        this.photo = photo;
-    }
 
     public String getMiddleName() {
         return middleName;
@@ -107,11 +112,5 @@ public class Person {
         this.locations = locations;
     }
 
-    public AppUser getUser() {
-        return user;
-    }
 
-    public void setUser(AppUser user) {
-        this.user = user;
-    }
 }
