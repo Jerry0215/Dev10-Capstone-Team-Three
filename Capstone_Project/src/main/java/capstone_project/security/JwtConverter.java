@@ -15,7 +15,7 @@
 //import java.util.stream.Collectors;
 //
 //
-////@Component
+//@Component
 //public class JwtConverter {
 //    private final String ISSUER = "fake-yelp-app";
 //    private final String AUTHORITIES = "authorities";

@@ -8,7 +8,7 @@
 //import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 //import org.springframework.security.config.http.SessionCreationPolicy;
 //
-////@EnableWebSecurity
+//@EnableWebSecurity
 //public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //
 //
@@ -27,10 +27,10 @@
 //        http.authorizeRequests()
 //                // what are we going to set up each endpoint to be
 //                .antMatchers(HttpMethod.POST, "/authenticate", "/create_account").permitAll()
-//                .antMatchers(HttpMethod.GET,"/**").permitAll()
+//
 //
 //                // last resort
-//                // .antMatchers("/**").denyAll()
+//                .antMatchers("/**").denyAll()
 //
 //                .and()
 //                .addFilter(new JwtRequestFilter(authenticationManager(), converter))
