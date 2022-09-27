@@ -21,13 +21,11 @@ public class ReviewJdbcTemplateRepository implements ReviewRepository{
         this.jdbcTemplate = jdbcTemplate;
     }
     @Override
-    public Review findById(int reviewId){
+    public List<Review> findById(int businessId){
         final String sql = "select * "
                 +"from review "
-                +"where reviewId = ?;";
-        return jdbcTemplate.query(sql,new ReviewMapper(), reviewId).stream()
-                .findFirst()
-                .orElse(null);
+                +"where businessId = ?;";
+        return jdbcTemplate.query(sql,new ReviewMapper(), businessId);
     }
     @Override
     public List<Review> findAll(){

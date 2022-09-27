@@ -17,8 +17,8 @@ public class ReviewService {
     public List<Review> findAll(){
         return repository.findAll();
     }
-    public Review findById(int reviewId){
-        return repository.findById(reviewId);
+    public List<Review> findById(int businessId){
+        return repository.findById(businessId);
     }
     public boolean delete(int reviewId){
         return repository.deleteById(reviewId);

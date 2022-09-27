@@ -27,9 +27,9 @@ public class ReviewController {
         return service.findAll();
     }
 
-    @GetMapping("/{reviewId}")
-    public Review findById(@PathVariable int reviewId){
-        return service.findById(reviewId);
+    @GetMapping("/{businessId}")
+    public List<Review> findById(@PathVariable int businessId){
+        return service.findById(businessId);
     }
 
     @PostMapping
