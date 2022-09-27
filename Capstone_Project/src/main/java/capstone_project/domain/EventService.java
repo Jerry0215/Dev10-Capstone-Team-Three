@@ -19,6 +19,10 @@ public class EventService {
         this.repository = repository;
     }
 
+    public List<Event> findAllByBusiness(int businessId) {
+        return repository.findAllByBusiness(businessId);
+    }
+
     public List<Event> findAll() {
         return repository.findAll();
     }

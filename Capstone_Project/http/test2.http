@@ -36,6 +36,10 @@ DELETE {{url}}/api/location/5 HTTP/1.1
 
 ###
 
+GET {{url}}/api/event/business/2 HTTP/1.1
+
+###
+
 GET {{url}}/api/event/2 HTTP/1.1
 
 ###
