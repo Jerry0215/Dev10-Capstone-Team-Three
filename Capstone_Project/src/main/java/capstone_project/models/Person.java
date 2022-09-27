@@ -19,7 +19,9 @@ public class Person {
 
     private String phone;
     private List<Location> locations = new ArrayList<>();
+
 //    private AppUser user;
+
 
     private int locationId;
     private int userId;

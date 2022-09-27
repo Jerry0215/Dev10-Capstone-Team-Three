@@ -116,3 +116,44 @@ constraint fk_review_business_id
 	foreign key (businessId)
 	references business(businessId)
 );
+
+insert into appUser
+    values
+    (1,'admin@admin.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0),
+    (2,'user@user.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0);
+    
+insert into appRole
+	values
+    (1,'USER'),
+    (2,'ADMIN');
+
+insert into appUserRole
+    values
+    (1, 2),
+    (2, 1);
+    
+insert into location 
+	values
+    (1,'Test Address','Test City','VA','23219','Test Address Type 1'),
+    (2,'Test Address 2','Test City 2','CA','90210','Test Address Type 2');
+    
+insert into person (firstName, middleName, lastName, suffix, phone, locationId, appUserId)
+	values
+	('Test First Name','Test Middle Name','Test Last Name', 'Sr.', 'Test Phone', 1, 1),
+    ('Test First Name 2','Test Middle Name 2','Test Last Name 2', 'Jr.', 'Test Phone 2', 2, 2);
+     
+insert into business (`name`, `description`, rating, locationId, personId)
+	values
+    ('Test Business Name','Test Business Description',5,1,1),
+    ('Test Business Name 2','Test Business Description 2',3,1,1);
+     
+insert into `event` (`name`,`description`,timeDate, locationId,businessId)
+	 values
+     ('Test Event Name', 'Test Event Description', '2020-01-01 00:01:00', 1, 1),
+     ('Test Event Name 2', 'Test Event Description 2', '2020-01-01 00:01:00', 2, 2); 
+
+ insert into review (content, timeDate, rating, personId, businessId)
+	values
+    ('Test Content','2020-01-01 00:01:00',5,1,1);
+    
+select eventId, name, description, timeDate, locationId, businessId from event where businessId = 1 limit 1000;
