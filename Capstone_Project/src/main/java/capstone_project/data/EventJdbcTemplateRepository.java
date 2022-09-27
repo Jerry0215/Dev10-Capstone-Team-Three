@@ -24,6 +24,12 @@ public class EventJdbcTemplateRepository implements EventRepository {
     }
 
     @Override
+    public List<Event> findAllByBusiness(int businessId) {
+        final String sql = "select * from event where businessId = ? limit 1000;";
+        return jdbcTemplate.query(sql, new EventMapper(), businessId);
+    }
+
+    @Override
     public List<Event> findAll() {
         final String sql = "select eventId, name, description, timeDate, locationId, businessId from event limit 1000;";
         return jdbcTemplate.query(sql, new EventMapper());

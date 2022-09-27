@@ -2,6 +2,8 @@ package capstone_project.models;
 
 
 
+//import org.springframework.security.core.userdetails.User;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,9 +41,11 @@ public class Person {
     private List<Location> locations = new ArrayList<>();
 
 
+//    private AppUser user;
+
+
     private int locationId;
     private int userId;
-
 
 
     public int getLocationId() {
@@ -76,7 +80,6 @@ public class Person {
     public void setSuffix(String suffix) {
         this.suffix = suffix;
     }
-
 
 
     public int getId() {
@@ -119,6 +122,15 @@ public class Person {
     public void setLocations(List<Location> locations) {
         this.locations = locations;
     }
+
+
+//    public AppUser getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(AppUser user) {
+//        this.user = user;
+//    }
 
 
 }
