@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -39,6 +40,29 @@ public class PersonController {
             return new ResponseEntity<>(result.getPayload(), HttpStatus.CREATED);
         }
         return ErrorResponse.build(result);
+    }
+
+    @PutMapping("/{personId}")
+    public ResponseEntity<Object> update(@PathVariable int personId, @RequestBody Person person) throws IOException {
+        if (personId != person.getId()) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+
+        Result<Person> result = service.update(person);
+        if (result.isSuccess()) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+
+        return ErrorResponse.build(result);
+    }
+
+
+    @DeleteMapping("/{personId}")
+    public ResponseEntity<Void> deleteById(@PathVariable int personId) {
+        if (service.deleteById(personId)) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 
