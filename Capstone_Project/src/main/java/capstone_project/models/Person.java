@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Person {
 
-    private int id;
+    private int personId;
     private String firstName;
     private String middleName;
     private String lastName;
@@ -82,12 +82,12 @@ public class Person {
     }
 
 
-    public int getId() {
-        return id;
+    public int getPersonId() {
+        return personId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPersonId(int personId) {
+        this.personId = personId;
     }
 
     public String getFirstName() {
