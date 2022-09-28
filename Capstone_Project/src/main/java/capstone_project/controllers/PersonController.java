@@ -25,7 +25,7 @@ public class PersonController {
 
 
     @GetMapping
-    public List<Person> findAll() {return service.findAll();}
+    public List<Person> findAll() { return service.findAll(); }
 
 
     @GetMapping("/{personId}")
@@ -44,7 +44,7 @@ public class PersonController {
 
     @PutMapping("/{personId}")
     public ResponseEntity<Object> update(@PathVariable int personId, @RequestBody Person person) throws IOException {
-        if (personId != person.getId()) {
+        if (personId != person.getPersonId()) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 

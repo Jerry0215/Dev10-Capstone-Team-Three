@@ -5,6 +5,7 @@ import Locations from "./Components/Locations";
 import Events from "./Components/Events";
 import Home from "./Components/Home";
 import Map from "./Components/Map";
+
 import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -15,6 +16,9 @@ function App() {
         <div className='container'>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/person">
+          <Persons/>
         </Route>
         <Route exact path="/business">
           <Businesses/> 

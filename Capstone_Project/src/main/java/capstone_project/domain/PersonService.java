@@ -2,12 +2,10 @@ package capstone_project.domain;
 
 
 import capstone_project.data.PersonRepository;
-import capstone_project.models.Location;
 import capstone_project.models.Person;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -33,7 +31,7 @@ public class PersonService {
             return result;
         }
 
-        if (person.getId() != 0) {
+        if (person.getPersonId() != 0) {
             result.addMessage("personId cannot be set for `add` operation", ResultType.INVALID);
             return result;
         }
@@ -49,13 +47,13 @@ public class PersonService {
             return result;
         }
 
-        if (person.getId() <= 0) {
+        if (person.getPersonId() <= 0) {
             result.addMessage("personId must be set for `update` operation", ResultType.INVALID);
             return result;
         }
 
         if (!repository.update(person)) {
-            String msg = String.format("personId: %s, not found", person.getId());
+            String msg = String.format("personId: %s, not found", person.getPersonId());
             result.addMessage(msg, ResultType.NOT_FOUND);
         }
 
