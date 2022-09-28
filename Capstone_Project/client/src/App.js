@@ -1,10 +1,11 @@
 
-import Businesses from "./components/Businesses";
-import Reviews from "./components/Reviews"; 
-import Locations from "./components/Locations";
-import Events from "./components/Events";
-import Persons from "./components/Persons";
-import Home from "./components/Home";
+import Businesses from "./Components/Businesses";
+import Reviews from "./Components/Reviews"; 
+import Locations from "./Components/Locations";
+import Events from "./Components/Events";
+import Home from "./Components/Home";
+import Map from "./Components/Map";
+
 import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -28,6 +29,9 @@ function App() {
         </Route>
         <Route exact path="/event">
           <Events/>
+        </Route>
+        <Route exact path="/map">
+          <Map address="15 Capri Court" state="New York"></Map>
         </Route>
         </div>
       </Router>
