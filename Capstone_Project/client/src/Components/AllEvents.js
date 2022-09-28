@@ -2,15 +2,13 @@ import { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Event from './Event';
 
-function Events({businessId}) {
+function AllEvents() {
     const [events, setEvents] = useState([]);
 
     const history = useHistory();
-    const init = {
-      method: 'GET'
-    };
+    
     useEffect(() => {
-        fetch(`http://localhost:8080/api/event/business/${businessId}`,init)
+        fetch("http://localhost:8080/api/event/")
         .then(resp => {
           if (resp.status === 200) {
             return resp.json();
@@ -48,4 +46,4 @@ function Events({businessId}) {
 
 }
 
-export default Events;
+export default AllEvents;
