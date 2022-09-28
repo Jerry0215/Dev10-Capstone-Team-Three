@@ -8,4 +8,4 @@ function Error({ errors }) {
      
    }
    
-   export default Error
+   export default Error;
