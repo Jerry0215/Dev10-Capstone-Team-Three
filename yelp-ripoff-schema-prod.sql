@@ -46,7 +46,8 @@ create table person (
     middleName varchar(25) null,
 	lastName varchar(25) not null,
     suffix varchar(10) null,
-    photo blob null,
+    photo longblob null,
+    photoName varchar(150) null,
 	phone varchar(20) not null,
     locationId int not null,
     appUserId int not null,
@@ -76,6 +77,7 @@ businessId int primary key auto_increment,
 `name` varchar(50) not null,
  `description` varchar(100) not null,
  photo blob null,
+ photoName varchar(150) null,
  rating int not null,
  locationId int not null,
  personId int not null,
@@ -134,26 +136,25 @@ insert into appUserRole
     
 insert into location 
 	values
-    (1,'Test Address','Test City','VA','23219','Test Address Type 1'),
-    (2,'Test Address 2','Test City 2','CA','90210','Test Address Type 2');
+    (1,'Test Address','Test City','VA','23219','Test Address Type');
     
-insert into person (firstName, middleName, lastName, suffix, phone, locationId, appUserId)
+insert into person (firstName, middleName, lastName, suffix, photo, photoName, phone, locationId, appUserId)
 	values
-	('Test First Name','Test Middle Name','Test Last Name', 'Sr.', 'Test Phone', 1, 1),
-    ('Test First Name 2','Test Middle Name 2','Test Last Name 2', 'Jr.', 'Test Phone 2', 2, 2);
-     
+	('Test First Name','Test Middle Name','Test Last Name', 'Sr.', LOAD_FILE('C:\\Users\\Owner\\Downloads\\jiinx.jpg'), 'Test Picture.jpg', 'Test Phone', 1, 1);
+select * from person;
 insert into business (`name`, `description`, rating, locationId, personId)
 	values
-    ('Test Business Name','Test Business Description',5,1,1),
-    ('Test Business Name 2','Test Business Description 2',3,1,1);
+    ('Test Business Name','Test Business Description',5,1,1);
      
 insert into `event` (`name`,`description`,timeDate, locationId,businessId)
 	 values
-     ('Test Event Name', 'Test Event Description', '2020-01-01 00:01:00', 1, 1),
-     ('Test Event Name 2', 'Test Event Description 2', '2020-01-01 00:01:00', 2, 2); 
+     ('Test Event Name', 'Test Event Description', '2020-01-01 00:01:00', 1, 1); 
 
  insert into review (content, timeDate, rating, personId, businessId)
 	values
     ('Test Content','2020-01-01 00:01:00',5,1,1);
     
-select eventId, name, description, timeDate, locationId, businessId from event where businessId = 1 limit 1000;
+    
+
+
+select * from business;

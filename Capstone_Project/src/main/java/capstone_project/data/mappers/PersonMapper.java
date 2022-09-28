@@ -4,9 +4,7 @@ package capstone_project.data.mappers;
 import capstone_project.models.Person;
 import org.springframework.jdbc.core.RowMapper;
 
-import javax.swing.*;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Blob;
