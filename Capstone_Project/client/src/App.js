@@ -37,7 +37,7 @@ function App() {
           <Map address="15 Capri Court" city="Dix Hills" state="New York"></Map>
         </Route>
         <Route exact path="/businessPage">
-          <BusinessPage businessId={2}/>
+          <BusinessPage businessId={1}/>
         </Route>
         </div>
       </Router>
