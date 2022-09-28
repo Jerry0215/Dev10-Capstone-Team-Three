@@ -13,7 +13,7 @@ public class Event {
 
     private Timestamp timeDate;
 
-    private int locationId;
+     private int locationId;
 
     private int businessId;
 
