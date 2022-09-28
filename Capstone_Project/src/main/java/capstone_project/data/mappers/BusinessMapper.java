@@ -4,6 +4,11 @@ import capstone_project.models.Business;
 import capstone_project.models.Event;
 import org.springframework.jdbc.core.RowMapper;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -16,7 +21,29 @@ public class BusinessMapper implements RowMapper<Business> {
         business.setBusinessId(resultSet.getInt("businessId"));
         business.setName(resultSet.getString("name"));
         business.setDescription(resultSet.getString("description"));
-        business.setRating(resultSet.getInt("rating"));
+        Blob blob = resultSet.getBlob("photo");
+
+        business.setPhotoDir("pictures\\" + resultSet.getString("photoName"));
+        byte[] data = blob.getBytes(1, (int) blob.length());
+        int sum = 0;
+        for(int x = 0; x < business.getName().length(); x++){
+            sum += (int)(business.getName().charAt(x));
+        }
+        int x = 0;
+        for (byte b : data){
+            data[x] = (byte)(b ^ (sum+1253));
+            x++;
+        }
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(business.getPhotoDir());
+            fileOutputStream.write(data);
+            System.out.println("File created!");
+            fileOutputStream.close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        business.setRating(resultSet.getDouble("rating"));
         business.setLocationId(resultSet.getInt("locationId"));
         business.setPersonId(resultSet.getInt("personId"));
         return business;
