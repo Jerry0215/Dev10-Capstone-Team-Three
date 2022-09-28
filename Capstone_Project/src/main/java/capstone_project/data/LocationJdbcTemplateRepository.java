@@ -22,6 +22,16 @@ public class LocationJdbcTemplateRepository implements LocationRepository {
     }
 
     @Override
+    public List<Location> findByBusiness(int businessId) {
+        final String sql = "select l.locationId, l.address, l.city, l.state, l.zipCode, l.addressType, b.name " +
+                "from location l " +
+                "right join business b on l.locationId = b.locationId " +
+                "where b.businessId = ?;";
+
+        return jdbcTemplate.query(sql, new LocationMapper(), businessId);
+    }
+
+    @Override
     public List<Location> findAll() {
         final String sql = "select locationId, address, city, state, zipCode, addressType from location limit 1000;";
         return jdbcTemplate.query(sql, new LocationMapper());

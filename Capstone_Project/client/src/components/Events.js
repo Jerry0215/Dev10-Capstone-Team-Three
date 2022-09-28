@@ -6,6 +6,7 @@ function Events({businessId}) {
     const [events, setEvents] = useState([]);
 
     const history = useHistory();
+
     const init = {
       method: 'GET'
     };

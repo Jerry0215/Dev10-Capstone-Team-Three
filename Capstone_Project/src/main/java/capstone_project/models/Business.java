@@ -4,12 +4,23 @@ public class Business {
     private int businessId;
     private String name;
     private String description;
-    private int rating;
+
+    private String photoDir;
+    private Double rating;
+
+
+
     private int locationId;
     private int personId;
+    public String getPhotoDir() {
+        return photoDir;
+    }
 
+    public void setPhotoDir(String photoDir) {
+        this.photoDir = photoDir;
+    }
 
-    public Business(int businessId, String name, String description, int rating, int locationId, int personId) {
+    public Business(int businessId, String name, String description, Double rating, int locationId, int personId) {
         this.businessId = businessId;
         this.name = name;
         this.description = description;
@@ -45,11 +56,11 @@ public class Business {
         this.description = description;
     }
 
-    public int getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 

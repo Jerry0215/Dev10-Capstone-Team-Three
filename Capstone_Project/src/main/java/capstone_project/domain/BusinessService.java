@@ -1,8 +1,9 @@
 package capstone_project.domain;
 
-import capstone_project.data.BusinessJdbcTemplateRepository;
 import capstone_project.data.BusinessRepository;
+import capstone_project.data.ReviewRepository;
 import capstone_project.models.Business;
+import capstone_project.models.Review;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +14,13 @@ public class BusinessService {
 
     private final BusinessRepository repository;
 
-    public BusinessService(BusinessRepository businessRepository) {
+    private final ReviewRepository reviewRepository;
+
+
+
+    public BusinessService(BusinessRepository businessRepository, ReviewRepository reviewRepository) {
         this.repository= businessRepository;
+        this.reviewRepository = reviewRepository;
     }
     public List<Business> findAll() {
         return repository.findAll();
@@ -34,10 +40,14 @@ public class BusinessService {
         if (business.getBusinessId()!=0){
             result.addMessage("businessId cannot be set", ResultType.INVALID);
         }
+
         business = repository.add(business);
         result.setPayload(business);
         return result;
     }
+
+
+
     public Result<Business> update(Business business){
         Result<Business> result = validate(business);
         if (!result.isSuccess()){
@@ -51,6 +61,8 @@ public class BusinessService {
         }
         return result;
     }
+
+
     private Result<Business> validate(Business business){
         Result<Business> result = new Result<>();
         if (business == null){
