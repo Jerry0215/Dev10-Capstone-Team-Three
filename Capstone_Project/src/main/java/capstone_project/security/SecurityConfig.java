@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
                 // last resort
-                .antMatchers("/**").denyAll()
+                .antMatchers("/**").permitAll()
 
                 .and()
                 .addFilter(new JwtRequestFilter(authenticationManager(), converter))

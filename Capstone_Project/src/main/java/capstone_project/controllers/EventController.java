@@ -23,8 +23,12 @@ public class EventController {
     }
 
     @GetMapping("/business/{businessId}")
-    public List<Event> findAllByBusiness(@PathVariable int businessId) {
-        return service.findAllByBusiness(businessId);
+    public ResponseEntity<Object> findAllByBusiness(@PathVariable int businessId) {
+        List <Event> events = service.findAllByBusiness(businessId);
+        if(events == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(events);
     }
 
     @GetMapping

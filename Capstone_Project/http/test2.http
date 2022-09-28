@@ -99,3 +99,8 @@ Content-Type: application/json
 }
 
 //   "jwt_token": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmYWtlLXllbHAtYXBwIiwic3ViIjoibmV3YWRtaW5AYWRtaW4uY29tIiwiYXV0aG9yaXRpZXMiOiJST0xFX1VTRVIiLCJhcHBVc2VySWQiOjMsImV4cCI6MTY2NDM4OTYxMX0.ih9Bn3IBTg-KNhBZnSr3gLdaKW_MXU5e_vJ3FYt-lhc"
+
+
+###
+
+GET {{url}}/api/location/business/2 HTTP/1.1

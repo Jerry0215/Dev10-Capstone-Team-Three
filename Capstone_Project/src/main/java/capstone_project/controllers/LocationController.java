@@ -24,6 +24,15 @@ public class LocationController {
         this.converter = converter;
     }
 
+    @GetMapping("/business/{businessId}")
+    public ResponseEntity<Object> findByBusiness(@PathVariable int businessId) {
+        List<Location> locations = service.findByBusiness(businessId);
+        if(locations == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(locations);
+    }
+
     @GetMapping
     public List<Location> findAll() {
         return service.findAll();

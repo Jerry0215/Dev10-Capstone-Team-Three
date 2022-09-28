@@ -15,6 +15,10 @@ public class LocationService {
         this.repository = repository;
     }
 
+    public List<Location> findByBusiness(int businessId) {
+        return repository.findByBusiness(businessId);
+    }
+
     public List<Location> findAll() {
         return repository.findAll();
     }
