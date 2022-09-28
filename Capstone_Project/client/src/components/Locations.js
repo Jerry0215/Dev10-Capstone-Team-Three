@@ -3,11 +3,14 @@ import { useHistory } from 'react-router-dom';
 
 import Location from './Location';
 
-function Locations() {
+function Locations({businessId}) {
     const [locations, setLocations] = useState([]);
 
+    const init = {
+      method:'GET'
+    };
     useEffect(() => {
-        fetch('http://localhost:8080/api/location')
+        fetch(`http://localhost:8080/api/location/{$businessId}`, init)
         .then(resp => {
           if (resp.status === 200) {
             return resp.json();

@@ -3,6 +3,7 @@ package capstone_project.controllers;
 import capstone_project.domain.LocationService;
 import capstone_project.domain.Result;
 import capstone_project.models.Location;
+import capstone_project.security.JwtConverter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,20 @@ public class LocationController {
 
     private final LocationService service;
 
-    public LocationController(LocationService service) {
+    private final JwtConverter converter;
+
+    public LocationController(LocationService service, JwtConverter converter) {
         this.service = service;
+        this.converter = converter;
+    }
+
+    @GetMapping("/business/{businessId}")
+    public ResponseEntity<Object> findByBusiness(@PathVariable int businessId) {
+        List<Location> locations = service.findByBusiness(businessId);
+        if(locations == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(locations);
     }
 
     @GetMapping

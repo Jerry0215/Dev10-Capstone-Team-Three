@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface LocationRepository {
 
+    List<Location> findByBusiness(int businessId);
+
     List<Location> findAll();
     Location findById(int locationId);
 
