@@ -1,6 +1,5 @@
 package capstone_project.data;
 
-
 import capstone_project.data.mappers.PersonMapper;
 import capstone_project.models.Person;
 import org.springframework.jdbc.core.JdbcTemplate;
