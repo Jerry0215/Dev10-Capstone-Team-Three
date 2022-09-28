@@ -4,9 +4,6 @@ package capstone_project.data.mappers;
 import capstone_project.models.Person;
 import org.springframework.jdbc.core.RowMapper;
 
-import javax.swing.*;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Blob;
@@ -21,7 +18,7 @@ public class PersonMapper implements RowMapper<Person> {
 
 
         Person person = new Person();
-        person.setId(resultSet.getInt("personId"));
+        person.setPersonId(resultSet.getInt("personId"));
         person.setFirstName(resultSet.getString("firstName"));
         person.setMiddleName(resultSet.getString("middleName"));
         person.setLastName(resultSet.getString("lastName"));

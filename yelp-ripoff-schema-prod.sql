@@ -156,4 +156,5 @@ insert into `event` (`name`,`description`,timeDate, locationId,businessId)
 	values
     ('Test Content','2020-01-01 00:01:00',5,1,1);
     
-select eventId, name, description, timeDate, locationId, businessId from event where businessId = 1 limit 1000;
+    select *
+    from person;
