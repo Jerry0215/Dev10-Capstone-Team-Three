@@ -93,7 +93,7 @@ public class PersonJdbcTemplateRepository implements PersonRepository {
            return null;
         }
 
-        person.setId(keyHolder.getKey().intValue());
+        person.setPersonId(keyHolder.getKey().intValue());
         return person;
    }
 
@@ -123,7 +123,7 @@ public class PersonJdbcTemplateRepository implements PersonRepository {
                 person.getPhotoName(),
                 person.getPhone(),
                 person.getLocationId(),
-                person.getId());
+                person.getPersonId());
 
         return rowCount > 0;
     }
