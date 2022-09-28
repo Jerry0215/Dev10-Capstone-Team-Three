@@ -1,0 +1,7 @@
+@KEY = lWLoL7Z2lxnnCEzvJCizqW3BjjUb92nH
+GET https://www.mapquestapi.com/staticmap/v5/map?key={{KEY}}&center=15-Capri-Court,Dix-Hills,NY|marker-lg-24135E-000000&zoom=15&size=1100,500@2x
+
+
+
+###
+https://www.mapquestapi.com/staticmap/v5/map?locations=15-Capri-Court,New-York&size=@2x&key={{KEY}}
