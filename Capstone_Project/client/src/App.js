@@ -7,6 +7,7 @@ import Home from "./Components/Home";
 import Map from "./Components/Map";
 import Persons from "./Components/Persons";
 import Login from "./Components/Login";
+import Nav from "./Components/Nav";
 
 import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom';
 import { useState } from 'react';
@@ -22,7 +23,8 @@ function App() {
     <div className="App" >
       
       <Router>
-        <div className='container' >
+        <Nav/>
+        <div className='container'>
         <Route exact path="/">
           <Home />
         </Route>
@@ -38,7 +40,6 @@ function App() {
         </Route>
         <Route exact path="/business">
           <Businesses/> 
-          <Reviews businessId={1} />
         </Route>
         <Route exact path="/location">
           <Locations businessId={1}/>
@@ -49,8 +50,8 @@ function App() {
         <Route exact path="/map">
           <Map address="15 Capri Court" city="Dix Hills" state="New York"></Map>
         </Route>
-        <Route exact path="/businessPage">
-          <BusinessPage businessId={1}/>
+        <Route exact path="/businessPage/:businessId" component={BusinessPage}>
+  
         </Route>
         <Route exact path="/login" >
           <Login ></Login>
