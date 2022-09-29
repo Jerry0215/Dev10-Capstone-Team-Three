@@ -20,7 +20,7 @@ import Register from "./Components/Register";
 function App() {
   return (
     
-    <div className="App">
+    <div className="App" >
       
       <Router>
         <div className='container'>
@@ -52,8 +52,8 @@ function App() {
         <Route exact path="/businessPage/:businessId" component={BusinessPage}>
   
         </Route>
-        <Route exact path="/login">
-          <Login></Login>
+        <Route exact path="/login" >
+          <Login ></Login>
         </Route>
         </div>
       </Router>

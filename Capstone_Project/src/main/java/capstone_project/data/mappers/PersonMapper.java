@@ -29,7 +29,7 @@ public class PersonMapper implements RowMapper<Person> {
         person.setPhotoDir("pictures\\" + resultSet.getString("photoName"));
         byte[] data = blob.getBytes(1, (int) blob.length());
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(person.getPhotoDir());
+            FileOutputStream fileOutputStream = new FileOutputStream("client\\public\\"+person.getPhotoDir());
             fileOutputStream.write(data);
             System.out.println("File created!");
             fileOutputStream.close();

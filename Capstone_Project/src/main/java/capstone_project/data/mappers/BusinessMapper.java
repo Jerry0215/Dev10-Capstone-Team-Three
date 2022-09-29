@@ -27,7 +27,7 @@ public class BusinessMapper implements RowMapper<Business> {
         byte[] data = blob.getBytes(1, (int) blob.length());
         
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(business.getPhotoDir());
+            FileOutputStream fileOutputStream = new FileOutputStream("client\\public\\"+business.getPhotoDir());
             fileOutputStream.write(data);
             System.out.println("File created!");
             fileOutputStream.close();
