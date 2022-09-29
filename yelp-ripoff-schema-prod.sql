@@ -94,7 +94,6 @@ create table `event` (
 	`name` varchar(50) not null,
 	`description` varchar(100) not null,
 	timeDate datetime not null,
-	locationId int not null,
 	businessId int not null,
 constraint fk_event_location_id
 	foreign key (locationId)
@@ -137,6 +136,7 @@ insert into appUserRole
 insert into location 
 	values
     (1,'Test Address','Test City','VA','23219','Test Address Type');
+
     
 insert into person (firstName, middleName, lastName, suffix, photo, photoName, phone, locationId, appUserId)
 	values
@@ -148,15 +148,14 @@ insert into business (`name`, `description`, rating, locationId, personId)
      
 insert into `event` (`name`,`description`,timeDate, locationId,businessId)
 	 values
-     ('Test Event Name', 'Test Event Description', '2020-01-01 00:01:00', 1, 1); 
+     ('Test Event Name', 'Test Event Description', '2020-01-01 00:01:00', 1); 
 
  insert into review (content, timeDate, rating, personId, businessId)
 	values
     ('Test Content','2020-01-01 00:01:00',8,1,1),
     ('Test Content','2020-01-01 00:01:00',5,1,1),
     ('Test Content','2020-01-01 00:01:00',7,1,1);
-    
-    
+
 
 
 select  sum(rating)/count(*) from review where businessId = 1;
@@ -164,3 +163,4 @@ select  sum(rating)/count(*) from review where businessId = 1;
 select * from person;
 select * from business;
 select * from location;
+

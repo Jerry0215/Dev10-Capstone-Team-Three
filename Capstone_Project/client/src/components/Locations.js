@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
+import Map from './Map';
 import Location from './Location';
 
 function Locations({businessId}) {
@@ -42,6 +42,7 @@ function Locations({businessId}) {
               {locations.map(location => <Location key={location.locationId} location={location} />)}
             </tbody>
           </table>
+          
         </>
       )
 
