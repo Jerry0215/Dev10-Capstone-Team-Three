@@ -13,8 +13,6 @@ public class Event {
 
     private Timestamp timeDate;
 
-     private int locationId;
-
     private int businessId;
 
     public int getEventId() {
@@ -47,14 +45,6 @@ public class Event {
 
     public void setTimeDate(Timestamp timeDate) {
         this.timeDate = timeDate;
-    }
-
-    public int getLocationId() {
-        return locationId;
-    }
-
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
     }
 
     public int getBusinessId() {
