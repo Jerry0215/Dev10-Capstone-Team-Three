@@ -4,7 +4,7 @@ import Business from './Business';
 
 function Businesses(){
     const [businesses, setBusinesses] = useState([])
-   
+    
     useEffect(() => {
         fetch('http://localhost:8080/api/business')
         .then(resp => {
@@ -31,6 +31,7 @@ function Businesses(){
                     <th scope="col">rating</th>
                     <th scope="col">locationId</th>
                     <th scope="col">personId</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
