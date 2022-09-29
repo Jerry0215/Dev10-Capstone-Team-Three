@@ -7,13 +7,12 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
+import java.sql.*;
 import java.io.*;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
+
 import java.util.List;
 
 @Repository
@@ -60,28 +59,11 @@ public class PersonJdbcTemplateRepository implements PersonRepository {
             ps.setString(2, person.getMiddleName()== null ? null : person.getMiddleName());
             ps.setString(3, person.getLastName());
             ps.setString(4, person.getSuffix() == null ? null : person.getSuffix());
-            File myFile = new File(person.getPhotoDir());
-            FileInputStream fin;
-            byte[] data;
-            int sum = 0;
-            for(int x = 0; x < person.getFirstName().length(); x++){
-                sum += (int)(person.getFirstName().charAt(x));
-            }
             try {
-                fin = new FileInputStream(myFile);
-                data = new byte[fin.available()];
-                fin.read(data);
-                int i = 0;
-                for (byte b : data){
-                    data[i] = (byte)(b ^ (sum+1253));
-                    i++;
-                }
-                fin.close();
-            } catch (IOException e) {
+                ps.setBinaryStream(5, new FileInputStream(person.getPhotoDir()));
+            } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
-
-            ps.setBytes(5,data);
             ps.setString(6, person.getPhotoName());
             ps.setString(7, person.getPhone());
             ps.setInt(8, person.getLocationId());

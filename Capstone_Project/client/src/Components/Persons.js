@@ -24,6 +24,7 @@ function Persons() {
       return (
         <>
           <h2>Persons</h2>
+          
           <table className="table table-striped">
             <thead>
               <tr>
