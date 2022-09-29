@@ -2,7 +2,7 @@ import {useHistory} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Reviews from './Reviews';
 import Events from './Events';
-import Location from './Location';
+import Locations from './Locations';
 function BusinessPage({businessId}){
     const [business,setBusiness] = useState([])
     const init = {
@@ -28,7 +28,7 @@ function BusinessPage({businessId}){
         <h2>{business.name}</h2>
         <Reviews businessId={businessId}></Reviews>
         <Events businessId={businessId}></Events>
-    
+        <Locations businessId={businessId}></Locations>
         </>
       )
 
