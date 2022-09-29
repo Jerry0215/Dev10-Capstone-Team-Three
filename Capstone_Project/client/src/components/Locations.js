@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
+import Map from './Map';
 import Location from './Location';
 
 function Locations({businessId}) {
@@ -10,7 +10,7 @@ function Locations({businessId}) {
       method:'GET'
     };
     useEffect(() => {
-        fetch(`http://localhost:8080/api/location/${businessId}`, init)
+        fetch(`http://localhost:8080/api/location/business/${businessId}`, init)
         .then(resp => {
           if (resp.status === 200) {
             return resp.json();
@@ -42,6 +42,7 @@ function Locations({businessId}) {
               {locations.map(location => <Location key={location.locationId} location={location} />)}
             </tbody>
           </table>
+          
         </>
       )
 
