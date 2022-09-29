@@ -19,10 +19,10 @@ import Register from "./Components/Register";
 function App() {
   return (
     
-    <div className="App">
+    <div className="App" >
       
       <Router>
-        <div className='container'>
+        <div className='container' >
         <Route exact path="/">
           <Home />
         </Route>
@@ -52,8 +52,8 @@ function App() {
         <Route exact path="/businessPage">
           <BusinessPage businessId={1}/>
         </Route>
-        <Route exact path="/login">
-          <Login></Login>
+        <Route exact path="/login" >
+          <Login ></Login>
         </Route>
         </div>
       </Router>
