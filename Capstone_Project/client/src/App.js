@@ -6,12 +6,14 @@ import Events from "./Components/Events";
 import Home from "./Components/Home";
 import Map from "./Components/Map";
 import Persons from "./Components/Persons";
-
+import Login from "./Components/Login";
 
 import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom';
 import { useState } from 'react';
 import BusinessPage from "./Components/BusinessPage";
 import AllEvents from "./Components/AllEvents";
+import Error from "./Components/Error";
+import Register from "./Components/Register";
 
 
 function App() {
@@ -23,6 +25,13 @@ function App() {
         <div className='container'>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/error">
+          <Error>
+          </Error>
+        </Route>
+        <Route exact path ="/register">
+          <Register/>
         </Route>
         <Route exact path="/person">
           <Persons/>
@@ -42,6 +51,9 @@ function App() {
         </Route>
         <Route exact path="/businessPage">
           <BusinessPage businessId={1}/>
+        </Route>
+        <Route exact path="/login">
+          <Login></Login>
         </Route>
         </div>
       </Router>

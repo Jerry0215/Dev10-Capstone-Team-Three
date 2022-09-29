@@ -26,6 +26,7 @@ function BusinessPage({businessId}){
       return (
         <>
         <h2>{business.name}</h2>
+        <img src={business.photo} alt="Everything is on fire"/>
         <Reviews businessId={businessId}></Reviews>
         <Events businessId={businessId}></Events>
         <Locations businessId={businessId}></Locations>
