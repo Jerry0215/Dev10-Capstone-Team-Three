@@ -36,11 +36,11 @@ DELETE {{url}}/api/location/5 HTTP/1.1
 
 ###
 
-GET {{url}}/api/event/business/2 HTTP/1.1
+GET {{url}}/api/event/business/1 HTTP/1.1
 
 ###
 
-GET {{url}}/api/event/1 HTTP/1.1
+GET {{url}}/api/event/2 HTTP/1.1
 
 ###
 
@@ -51,7 +51,6 @@ Content-Type: application/json
   "name": "Test Event Name 3",
   "description": "Test Event Description 3",
   "timeDate": "2024-01-01T05:01:00.000+00:00",
-  "locationId": 1,
   "businessId": 1
 }
 
@@ -65,7 +64,6 @@ Content-Type: application/json
   "name": "Test Event Name 2 New",
   "description": "Test Event Description 2",
   "timeDate": "2024-01-01T05:01:00.000+00:00",
-  "locationId": 1,
   "businessId": 1
 }
 
@@ -134,3 +132,6 @@ Content-Type: application/json
 ###
 
 GET {{url}}/api/person/3 HTTP/1.1
+
+###
+
