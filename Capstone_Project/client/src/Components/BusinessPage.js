@@ -23,10 +23,12 @@ function BusinessPage(){
         //.catch(err => history.push('/error', {errorMessage: err}));
       },[])
 
+      let path = ".\\" + business.photoDir;
 
       return (
         <>
         <h2>{business.name}</h2>
+        <p>{business.description}</p>
         <img src={business.photo} alt="Everything is on fire"/>
         <Reviews businessId={businessId}></Reviews>
         <Events businessId={businessId}></Events>
