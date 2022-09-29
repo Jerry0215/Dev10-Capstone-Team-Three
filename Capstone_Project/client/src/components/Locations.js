@@ -10,7 +10,7 @@ function Locations({businessId}) {
       method:'GET'
     };
     useEffect(() => {
-        fetch(`http://localhost:8080/api/location/${businessId}`, init)
+        fetch(`http://localhost:8080/api/location/business/${businessId}`, init)
         .then(resp => {
           if (resp.status === 200) {
             return resp.json();
