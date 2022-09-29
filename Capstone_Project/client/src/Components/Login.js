@@ -1,8 +1,9 @@
 import { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import Error from "./Error";
 import UserContext from "../UserContext";
+import Register from "./Register";
 
 const DEFAULT_LOGIN = {
   username: '',
@@ -58,9 +59,10 @@ function Login({ onSubmit }) {
   }
 
   return (<>
-    <h2>Login</h2>
+  
+    <h2 >Login</h2>
     {errors.length > 0 ? <Error errors={errors} /> : null}
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} >
       <div className="form-group">
         <label htmlFor="username">Username:</label>
         <input name="username" type="text" className="form-control" id="username" value={login.username} onChange={handleChange} />
@@ -68,11 +70,19 @@ function Login({ onSubmit }) {
       <div className="form-group">
         <label htmlFor="password">Password:</label>
         <input name="password" type="password" className="form-control" id="password" value={login.password} onChange={handleChange} />
+        <div className="show-password fas fa-eye-slash"></div>
       </div>
+
+
+
       <div className="form-group">
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button type="submit" className="btn fas fa-arrow-right"></button>
+        <Link to="/register">Create Account</Link>
       </div>
+
+
     </form>
+    
   </>);
 }
 
