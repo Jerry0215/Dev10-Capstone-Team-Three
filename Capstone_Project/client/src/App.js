@@ -29,7 +29,7 @@ function App() {
         </Route>
         <Route exact path="/business">
           <Businesses/> 
-          <Reviews businessId={2} />
+          <Reviews businessId={1} />
         </Route>
         <Route exact path="/location">
           <Locations/>

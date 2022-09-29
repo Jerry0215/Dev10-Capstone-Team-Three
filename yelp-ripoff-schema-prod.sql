@@ -78,7 +78,7 @@ businessId int primary key auto_increment,
  `description` varchar(100) not null,
  photo blob null,
  photoName varchar(150) null,
- rating int not null,
+ rating Double not null,
  locationId int not null,
  personId int not null,
  constraint fk_business_location_id
@@ -136,20 +136,15 @@ insert into appUserRole
     
 insert into location 
 	values
-
-    (1,'Test Address','Test City','VA','23219','Test Address Type'),
-    (2,'Test Address 2','Test City 2','CA','90210','Test Address Type 2');
+    (1,'Test Address','Test City','VA','23219','Test Address Type');
     
 insert into person (firstName, middleName, lastName, suffix, photo, photoName, phone, locationId, appUserId)
 	values
-	('Test First Name','Test Middle Name','Test Last Name', 'Sr.', LOAD_FILE('C:\\Users\\Owner\\Downloads\\jiinx.jpg'), 'Test Picture.jpg', 'Test Phone', 1, 1),
-    ('Test First Name 2','Test Middle Name 2','Test Last Name 2', 'Sr.', LOAD_FILE('C:\\Users\\Owner\\Downloads\\jiinx.jpg'), 'Test Picture.jpg', 'Test Phone 2', 2, 2);
-    
+	('Test First Name','Test Middle Name','Test Last Name', 'Sr.', LOAD_FILE('C:\\Users\\Owner\\Downloads\\jiinx.jpg'), 'Test Picture.jpg', 'Test Phone', 1, 1);
+select * from person;
 insert into business (`name`, `description`, rating, locationId, personId)
 	values
-    ('Test Business Name','Test Business Description',5,1,1),
-    ('Test Business Name 2','Test Business Description 2',3,2,2);
-
+    ('Test Business Name','Test Business Description',5,1,1);
      
 insert into `event` (`name`,`description`,timeDate, locationId,businessId)
 	 values
@@ -157,7 +152,15 @@ insert into `event` (`name`,`description`,timeDate, locationId,businessId)
 
  insert into review (content, timeDate, rating, personId, businessId)
 	values
-    ('Test Content','2020-01-01 00:01:00',5,1,1);
+    ('Test Content','2020-01-01 00:01:00',8,1,1),
+    ('Test Content','2020-01-01 00:01:00',5,1,1),
+    ('Test Content','2020-01-01 00:01:00',7,1,1);
     
+    
+
+
+select  sum(rating)/count(*) from review where businessId = 1;
+
 select * from person;
 select * from business;
+select * from location;
