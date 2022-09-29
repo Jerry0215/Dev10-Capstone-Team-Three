@@ -7,6 +7,7 @@ import Home from "./Components/Home";
 import Map from "./Components/Map";
 import Persons from "./Components/Persons";
 import Login from "./Components/Login";
+import Nav from "./Components/Nav";
 
 import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom';
 import { useState } from 'react';
@@ -22,6 +23,7 @@ function App() {
     <div className="App">
       
       <Router>
+        <Nav/>
         <div className='container'>
         <Route exact path="/">
           <Home />
