@@ -1,10 +1,11 @@
-import {useHistory} from 'react-router-dom'; 
+import {useHistory, useParams} from 'react-router-dom'; 
 import { useEffect, useState } from 'react';
 import Reviews from './Reviews';
 import Events from './Events';
 import Locations from './Locations';
-function BusinessPage({businessId}){
+function BusinessPage(){
     const [business,setBusiness] = useState([])
+    let { businessId } = useParams();
     const init = {
         method:'GET'
     };
