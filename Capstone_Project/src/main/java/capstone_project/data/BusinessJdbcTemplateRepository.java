@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -67,28 +68,13 @@ public class BusinessJdbcTemplateRepository implements BusinessRepository{
             ps.setString(2,business.getDescription());
             Path pathToAFile = Paths.get(business.getPhotoDir());
 
-            File myFile = new File(business.getPhotoDir());
-            FileInputStream fin;
-            byte[] data;
-            int sum = 0;
-            for(int x = 0; x < business.getName().length(); x++){
-                sum += (int)(business.getName().charAt(x));
-            }
+
             try {
-                fin = new FileInputStream(myFile);
-                data = new byte[fin.available()];
-                fin.read(data);
-                int i = 0;
-                for (byte b : data){
-                    data[i] = (byte)(b ^ (sum+1253));
-                    i++;
-                }
-                fin.close();
-            } catch (IOException e) {
+                ps.setBinaryStream(3,new FileInputStream(business.getPhotoDir()));
+            } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
 
-            ps.setBytes(3,data);
             ps.setString(4,pathToAFile.getFileName().toString());
             ps.setInt(5,0);
             ps.setInt(6,business.getLocationId());
