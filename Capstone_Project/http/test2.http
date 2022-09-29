@@ -135,3 +135,19 @@ GET {{url}}/api/person/3 HTTP/1.1
 
 ###
 
+GET {{url}}/api/business/3 HTTP/1.1
+
+###
+
+POST {{url}}/api/business HTTP/1.1
+Content-Type: application/json
+
+{
+"name": "The Bannered Mare",
+"description": "Tavern in Whiterun",
+"photoDir": "C:\\Users\\MFarooqui\\Pictures\\Saved Pictures\\Discord Reacts\\kittyconfuse.png",
+"rating": 4.5,
+"locationId": 1,
+"personId": 3
+}
+

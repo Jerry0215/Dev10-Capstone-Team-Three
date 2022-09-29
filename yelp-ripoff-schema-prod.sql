@@ -95,9 +95,6 @@ create table `event` (
 	`description` varchar(100) not null,
 	timeDate datetime not null,
 	businessId int not null,
-constraint fk_event_location_id
-	foreign key (locationId)
-	references location(locationId),
 constraint fk_event_business_id
 	foreign key (businessId)
 	references business(businessId)
@@ -149,7 +146,7 @@ insert into business (`name`, `description`, rating, locationId, personId)
     ('Test Business Name 2','Test Business Description 2',3,2,2);
 
      
-insert into `event` (`name`,`description`,timeDate, locationId,businessId)
+insert into `event` (`name`,`description`,timeDate, businessId)
 	 values
      ('Test Event Name', 'Test Event Description', '2020-01-01 00:01:00', 1); 
 
