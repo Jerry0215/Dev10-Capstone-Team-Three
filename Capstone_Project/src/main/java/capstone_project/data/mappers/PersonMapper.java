@@ -28,15 +28,6 @@ public class PersonMapper implements RowMapper<Person> {
         person.setPhotoName(resultSet.getString("photoName"));
         person.setPhotoDir("pictures\\" + resultSet.getString("photoName"));
         byte[] data = blob.getBytes(1, (int) blob.length());
-        int sum = 0;
-        for(int x = 0; x < person.getFirstName().length(); x++){
-            sum += (int)(person.getFirstName().charAt(x));
-        }
-        int x = 0;
-        for (byte b : data){
-            data[x] = (byte)(b ^ (sum+1253));
-            x++;
-        }
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(person.getPhotoDir());
             fileOutputStream.write(data);

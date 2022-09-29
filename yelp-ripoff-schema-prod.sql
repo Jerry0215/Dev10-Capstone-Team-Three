@@ -159,3 +159,5 @@ insert into `event` (`name`,`description`,timeDate, locationId,businessId)
 	values
     ('Test Content','2020-01-01 00:01:00',5,1,1);
     
+select * from person;
+select * from business;
