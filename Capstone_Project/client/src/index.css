@@ -252,8 +252,12 @@
 .sign-btn{
   margin-top: 60px;
   margin-bottom: 20px;
+  width: fit-content;
   background: #27ae60;
   color: #fff;
   border-radius: 44px;
+  cursor: pointer;
+  transition: 0.8s;
+  
 }
 
