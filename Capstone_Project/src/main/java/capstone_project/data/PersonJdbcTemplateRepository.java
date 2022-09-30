@@ -24,6 +24,7 @@ public class PersonJdbcTemplateRepository implements PersonRepository {
         this.template = template;
     }
 
+
     @Override
     public List<Person> findAll(){
         final String sql = "select personId, firstName, middleName, lastName, suffix, photo, photoName, phone, locationId, appUserId "
