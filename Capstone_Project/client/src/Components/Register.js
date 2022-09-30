@@ -70,9 +70,11 @@ function Register() {
   }
 
   return (<>
-    <h2>Create Account</h2>
+  <div className='signup-form'>
+    
     {errors.length > 0 ? <Error errors={errors} /> : null}
     <form onSubmit={handleSubmit}>
+    <h2>Create Account</h2>
       <div className="form-group">
         <label htmlFor="username">Username:</label>
         <input name="username" type="text" className="form-control" id="username" value={register.username} onChange={handleChange} />
@@ -89,6 +91,7 @@ function Register() {
         <button type="submit" className="btn btn-primary">Submit</button>
       </div>
     </form>
+    </div>
   </>);
 }
 
