@@ -22,7 +22,7 @@ function Nav () {
       </li>
 
       <li class="nav-item active">
-        <Link class="nav-link" to="/businessPage">Businesses</Link>
+        <Link class="nav-link" to="/businessPage/1">Businesses</Link>
       </li>
 
       <li class="nav-item active">
