@@ -90,7 +90,7 @@ function Register() {
         <input name="confirmPassword" type="password" className="form-control signB" id="confirmPassword" value={register.confirmPassword} onChange={handleChange} />
       </div>
       <div className="form-group">
-        <button type="submit" className="btn sign-btn">Submit</button>
+        <button type="submit" className="btn sign-btn ">Submit</button>
       </div>
     </form>
     </div>
