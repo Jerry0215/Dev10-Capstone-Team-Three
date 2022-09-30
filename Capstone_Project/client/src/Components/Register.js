@@ -70,25 +70,27 @@ function Register() {
   }
 
   return (<>
+  
+  {errors.length > 0 ? <Error errors={errors} /> : null}
   <div className='signup-form'>
     
-    {errors.length > 0 ? <Error errors={errors} /> : null}
+    
     <form onSubmit={handleSubmit}>
     <h2>Create Account</h2>
       <div className="form-group">
         <label htmlFor="username">Username:</label>
-        <input name="username" type="text" className="form-control" id="username" value={register.username} onChange={handleChange} />
+        <input name="username" type="text" className="form-control signB" id="username" value={register.username} onChange={handleChange} />
       </div>
       <div className="form-group">
         <label htmlFor="password">Password:</label>
-        <input name="password" type="password" className="form-control" id="password" value={register.password} onChange={handleChange} />
+        <input name="password" type="password" className="form-control signB" id="password" value={register.password} onChange={handleChange} />
       </div>
       <div className="form-group">
         <label htmlFor="confirmPassword">Password:</label>
-        <input name="confirmPassword" type="password" className="form-control" id="confirmPassword" value={register.confirmPassword} onChange={handleChange} />
+        <input name="confirmPassword" type="password" className="form-control signB" id="confirmPassword" value={register.confirmPassword} onChange={handleChange} />
       </div>
       <div className="form-group">
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button type="submit" className="btn sign-btn">Submit</button>
       </div>
     </form>
     </div>
