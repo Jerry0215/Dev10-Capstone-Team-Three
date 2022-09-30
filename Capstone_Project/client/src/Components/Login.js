@@ -48,7 +48,6 @@ function Login({ onSubmit }) {
     .then(body => authManager.login(body.jwt_token))
     //.catch(err => history.push('/error', {errorMessage: err}));
     
-    
   }
 
   const handleChange = (evt) => {

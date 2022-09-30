@@ -6,7 +6,9 @@ import capstone_project.models.Person;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonService {
@@ -15,6 +17,19 @@ public class PersonService {
 
     public PersonService(PersonRepository repository) {
         this.repository = repository;
+    }
+
+    public List<Person> findByName(String prefix) {
+
+        List<Person> searchResult = new ArrayList<>();
+
+        searchResult.addAll(repository.findAll().stream().distinct()
+                .filter(person ->
+                        person.getLastName().toLowerCase().startsWith(prefix.toLowerCase()) ||
+                        person.getFirstName().toLowerCase().startsWith(prefix.toLowerCase()) ||
+                        person.getMiddleName().toLowerCase().startsWith(prefix.toLowerCase())).toList());
+
+        return searchResult;
     }
 
     public List<Person> findAll() {

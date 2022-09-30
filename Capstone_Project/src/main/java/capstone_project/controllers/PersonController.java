@@ -23,6 +23,10 @@ public class PersonController {
         this.service = service;
     }
 
+    @GetMapping("/search/{prefix}")
+    public List<Person> findByName(@PathVariable String prefix)
+    { return service.findByName(prefix); }
+
 
     @GetMapping
     public List<Person> findAll() { return service.findAll(); }

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface PersonRepository {
+
     List<Person> findAll();
 
     Person findById(int personId);

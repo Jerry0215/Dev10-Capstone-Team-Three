@@ -3,6 +3,7 @@ package capstone_project.controllers;
 import capstone_project.domain.BusinessService;
 import capstone_project.domain.Result;
 import capstone_project.models.Business;
+import capstone_project.models.Person;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,11 @@ public class BusinessController {
     public BusinessController(BusinessService service) {
         this.service = service;
     }
+
+    @GetMapping("/search/{prefix}")
+    public List<Business> findByName(@PathVariable String prefix)
+    { return service.findByName(prefix); }
+
 
     @GetMapping
     public List<Business> findAll(){

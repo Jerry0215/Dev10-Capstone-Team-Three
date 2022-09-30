@@ -132,7 +132,7 @@ insert into appUserRole
     
 insert into location 
 	values
-    (1,'Test Address','Test City','VA','23219','Test Address Type');
+    (1,'7 N 8th St','Richmond','VA','23219','Home');
 
     
 insert into person (firstName, middleName, lastName, suffix, photo, photoName, phone, locationId, appUserId)
