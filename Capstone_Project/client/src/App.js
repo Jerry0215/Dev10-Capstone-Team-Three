@@ -8,20 +8,63 @@ import Map from "./Components/Map";
 import Persons from "./Components/Persons";
 import Login from "./Components/Login";
 import Nav from "./Components/Nav";
+import UserContext from "./UserContext";
+
 
 import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom';
 import { useState } from 'react';
+import jwt_decode from 'jwt-decode';
 import BusinessPage from "./Components/BusinessPage";
 import AllEvents from "./Components/AllEvents";
 import Error from "./Components/Error";
 import Register from "./Components/Register";
 
+const LOCALSTORAGE_KEY = 'NyelpAppToken';
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  const login = (token) => {
+    const decodedToken = jwt_decode(token);
+
+    localStorage.setItem(LOCALSTORAGE_KEY, token);
+
+    const roles = decodedToken.authorities.split(',');
+
+    const user = {
+      username: decodedToken.sub,
+      roles,
+      token,
+      hasRole: function(role) {
+        return this.roles.includes(role);
+      }
+    }
+
+    setUser(user);
+  }
+
+  const logout = () => {
+    localStorage.removeItem(LOCALSTORAGE_KEY);
+    setUser(null);
+  }
+
+  const authManager = {
+    user: user ? {...user} : null,
+    login,
+    logout
+  }
+
+  useState(() => {
+    const previouslySavedToken = localStorage.getItem(LOCALSTORAGE_KEY);
+    if (previouslySavedToken) {
+      login(previouslySavedToken);
+    }
+  }, [])
+
   return (
     
     <div className="App" >
-      
+     <UserContext.Provider value={authManager} >
       <Router>
       <Nav></Nav>
         <div className='container'>
@@ -58,6 +101,7 @@ function App() {
         </Route>
         </div>
       </Router>
+      </UserContext.Provider> 
     </div>
   );
 }

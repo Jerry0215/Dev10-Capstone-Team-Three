@@ -1,38 +1,45 @@
 import { Link } from "react-router-dom";
+import { useContext } from 'react';
+import UserContext from "../UserContext";
 
 function Nav () {
-
+  const authManager = useContext(UserContext);
     return (
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Nyelp!</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+<nav className="navbar navbar-expand-lg navbar-light bg-light">
+  <a className="navbar-brand" href="#">Nyelp!</a>
+  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span className="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+  <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
 
-      <li class="nav-item active">
-        <Link class="nav-link" to="/">Home<span class="sr-only">(current)</span></Link>
+      <li className="nav-item active">
+        <Link className="nav-link" to="/">Home<span className="sr-only">(current)</span></Link>
       </li>
 
-      <li class="nav-item active">
-        <Link class="nav-link" to="/person">firstName</Link>
+      <li className="nav-item active">
+        <Link className="nav-link" to="/person">firstName</Link>
       </li>
 
-      <li class="nav-item active">
-        <Link class="nav-link" to="/businessPage/1">Businesses</Link>
+      <li className="nav-item active">
+        <Link className="nav-link" to="/business">Businesses</Link>
       </li>
 
-      <li class="nav-item active">
-        <Link class="nav-link" to="/login">Sign In</Link>
+      <li className="nav-item active">
+      {!authManager.user ? (<>
+              <li className="nav-item">
+                <Link to="/login" className='nav-link'>Sign In</Link>
+              </li> 
+            </>): 
+            <button type="button" className="btn btn-secondary" onClick={authManager.logout}>Sign Out</button>}
       </li>
 
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search"/>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <form className="form-inline my-2 my-lg-0">
+      <input className="form-control mr-sm-2" type="search" placeholder="Search"/>
+      <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
 </nav>
