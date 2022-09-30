@@ -1,61 +1,69 @@
 import { useContext, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import Person from './Person';
 
-function SearchPersons( {onSubmit} ) {
+
+function SearchPersons() {
+
+    const [persons, setPersons] = useState([]);
+
+    const history = useHistory();
+
     const [prefix, setPrefix] = useState([]);
 
-      const handleSubmit = (evt) => {
+    const handleChange = (evt) => setPrefix(evt.target.value);
+
+    const handleSubmit = (evt) => {
+
         evt.preventDefault();
 
-        const init = {
-            method: 'GET',
-            body: JSON.stringify(prefix)
-          };
-    
-        fetch(`http://localhost:8080/api/person/search/${prefix}`, init)
-        .then(resp => {
-          if (resp.status === 200) {
-            return resp.json();
-          }
-          return Promise.reject('Something has gone wrong in fetching the Person Search data.');
-        })
-        .then(data => {
-            setPrefix(data);
-        })
-       // .catch(err => history.push('/error', {errorMessage: err}));
-      }
+        fetch(`http://localhost:8080/api/person/search/${prefix}`)
+            .then(resp => {
+                console.log(resp.status);
+                if (resp.status === 200) {
+                    // return resp.json();
+                }
+               // return Promise.reject('Something has gone wrong in fetching the Person data.');
+            })
+            // .then(data => {
+            //     setPersons(data);
+            // })
+            // .catch(console.log);
+        //.catch(err => history.push('/error', {errorMessage: err}));
+
+    }
 
 
-      return (
+
+    return (
         <>
-          <h2>Search People</h2>
+            <h2>Search People</h2>
 
-          <div className="search-wrapper mb-3">
-            <form onSubmit={handleSubmit} className="form-inline my-2 my-lg-0">
-                <input className="form-control mr-sm-2" type="search" placeholder="Search" id="search"/>
-                <button className="btn btn-outline-success my-2 my-sm-0 btn btn-light" type="submit">Search</button>
+            <form onSubmit={handleSubmit}>
+                <div className="search-wrapper mb-3">
+                    <input className="form-control mr-sm-2" type="text" placeholder="Search" id="search" value={prefix} onChange={handleChange} />
+                    <button className="btn btn-outline-success my-2 my-sm-0 btn btn-light" type="submit">Search</button>
+                </div>
             </form>
-        </div>
 
-        <table className="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Photo</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {prefix.map(person => <Person key={person.id} person={person} />)}
-            </tbody>
-          </table>
-          
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Photo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {persons.map(person => <Person key={person.id} person={person} />)}
+                </tbody>
+            </table>
+
 
         </>
-      )
+    )
 
 }
 
