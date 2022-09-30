@@ -5,10 +5,10 @@ POST {{url}}/api/location HTTP/1.1
 Content-Type: application/json
 
 {
-  "address": "Test Address 3",
-  "city": "Test City 2",
+  "address": "7 N 8th St",
+  "city": "Richmond",
   "state": "VA",
-  "zipCode": 22015,
+  "zipCode": 23219,
   "addressType": "Home"
 }
 
@@ -135,7 +135,7 @@ GET {{url}}/api/person/3 HTTP/1.1
 
 ###
 
-GET {{url}}/api/business/3 HTTP/1.1
+GET {{url}}/api/business/2 HTTP/1.1
 
 ###
 
@@ -150,4 +150,36 @@ Content-Type: application/json
 "locationId": 1,
 "personId": 3
 }
+
+###
+
+PUT {{url}}/api/business/1 HTTP/1.1
+Content-Type: application/json
+
+{
+"businessId": 1,
+"name": "Silver-Blood Inn",
+"description": "Tavern in Markarth",
+"photoDir": "C:\\Users\\MFarooqui\\Pictures\\Saved Pictures\\Discord Reacts\\kittyconfuse.png",
+"rating": 4.5,
+"locationId": 3,
+"personId": 3
+}
+
+###
+
+PUT {{url}}/api/business/2 HTTP/1.1
+Content-Type: application/json
+
+{
+"businessId": 2,
+"name": "The Bee and Barb",
+"description": "Tavern in Riften",
+"photoDir": "C:\\Users\\MFarooqui\\Pictures\\Saved Pictures\\Discord Reacts\\kittyconfuse.png",
+"rating": 4.5,
+"locationId": 1,
+"personId": 3
+}
+
+###
 

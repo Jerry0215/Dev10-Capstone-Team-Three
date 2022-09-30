@@ -29,15 +29,12 @@ function BusinessPage(){
         <>
         <h2>{business.name}</h2>
         <img src={path} alt="Everything is on fire"/>
+
         <Reviews businessId={businessId}></Reviews>
         <Events businessId={businessId}></Events>
         <Locations businessId={businessId}></Locations>
         </>
       )
-
-    
-
-
 
 
 
