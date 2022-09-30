@@ -23,6 +23,7 @@ function App() {
     <div className="App" >
       
       <Router>
+      <Nav></Nav>
         <div className='container'>
         <Route exact path="/">
           <Home />
