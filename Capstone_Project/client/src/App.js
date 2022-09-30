@@ -64,6 +64,7 @@ function App() {
   return (
     
     <div className="App" >
+      <div className="backdrop"></div>
      <UserContext.Provider value={authManager} >
       <Router>
       <Nav></Nav>

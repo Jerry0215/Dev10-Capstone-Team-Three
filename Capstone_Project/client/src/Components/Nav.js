@@ -27,14 +27,14 @@ function Nav () {
         <Link className="nav-link" to="/business">Businesses</Link>
       </li>
 
-      <li className="nav-item active">
+      
       {!authManager.user ? (<>
-              <li className="nav-item">
+              <li className="nav-item active">
                 <Link to="/login" className='nav-link'>Sign In</Link>
               </li> 
             </>): 
             <button type="button" className="btn btn-secondary" onClick={authManager.logout}>Sign Out</button>}
-      </li>
+      
 
     </ul>
     <form className="form-inline my-2 my-lg-0">
