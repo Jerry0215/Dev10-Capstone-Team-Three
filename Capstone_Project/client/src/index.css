@@ -261,3 +261,17 @@
   
 }
 
+.cards{
+
+
+  color: #27ae60;
+  background: #322e35;
+  width: 18rem;
+  grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)) !important;
+  box-shadow: 0px 0px 20px #000000b3;
+  
+}
+
+
+
+
