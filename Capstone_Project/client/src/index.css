@@ -214,10 +214,46 @@
   width: 500px;
   padding: 25px;
   text-align: center;
-  background: url(../public/pictures/sheeessh\ doogggy.png);
+  background: url(../public/pictures/createAccount.jpg);
+  background-size: cover;
+  background-position: 50%;
+  background-position: top;
+  
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
   overflow: hidden;
+  color: black
 }
+
+.signup-form h2{
+  margin-top: 100px;
+  font-size: 40px;
+}
+
+.signup-form input{
+  display: block;
+  width: 100%;
+  padding: 0 16px;
+  height: 44px;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+}
+
+.signB{
+  margin: 20px 0;
+  background-color: rgba(255, 255, 255, .8);
+  border-radius: 6px;
+}
+
+.sign-btn{
+  margin-top: 60px;
+  margin-bottom: 20px;
+  background: #27ae60;
+  color: #fff;
+  border-radius: 44px;
+}
+
