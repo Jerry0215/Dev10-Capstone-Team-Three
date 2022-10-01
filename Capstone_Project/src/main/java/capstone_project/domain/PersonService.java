@@ -96,9 +96,7 @@ public class PersonService {
             result.addMessage("Last Name is required", ResultType.INVALID);
         }
 
-        if (Validations.isNullOrBlank(person.getPhotoDir())) {
-            result.addMessage("Profile picture is required", ResultType.INVALID);
-        }
+
 
         if (Validations.isNullOrBlank(person.getPhone())){
             result.addMessage("Phone number is required", ResultType.INVALID);
