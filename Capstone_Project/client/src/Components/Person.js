@@ -1,6 +1,9 @@
+
+
+
 function Person ({ person }) {
 
-  let path = "../src/" + person.photoDir;
+  const path = require("../pictures/"+person.photoName);
   
     return (
       

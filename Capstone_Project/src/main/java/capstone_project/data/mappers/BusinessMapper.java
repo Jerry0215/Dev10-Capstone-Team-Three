@@ -22,12 +22,12 @@ public class BusinessMapper implements RowMapper<Business> {
         business.setName(resultSet.getString("name"));
         business.setDescription(resultSet.getString("description"));
         Blob blob = resultSet.getBlob("photo");
-
+        business.setPhotoName(resultSet.getString("photoName"));
         business.setPhotoDir("pictures\\" + resultSet.getString("photoName"));
         byte[] data = blob.getBytes(1, (int) blob.length());
         
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream("client\\public\\"+business.getPhotoDir());
+            FileOutputStream fileOutputStream = new FileOutputStream("client\\src\\"+business.getPhotoDir());
             fileOutputStream.write(data);
             System.out.println("File created!");
             fileOutputStream.close();
