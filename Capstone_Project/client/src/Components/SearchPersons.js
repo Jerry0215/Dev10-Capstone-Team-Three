@@ -48,14 +48,6 @@ function SearchPersons() {
             </form>
 
             <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Photo</th>
-                        <th></th>
-                    </tr>
-                </thead>
                 <tbody>
                     {persons.map(person => <Person key={person.personId} person={person} />)}
                 </tbody>

@@ -8,6 +8,12 @@ function Person ({ person }) {
       <div className="cards">
       <div class="card-group">
         
+
+        <td>{person.firstName} {person.middleName} {person.lastName} {person.suffix}</td>
+        <td>{person.phone}</td>
+        <td><img src={path} alt="Everything is on fire"/></td>
+      
+
         <img className="card-img-top" src={path} alt=""></img>
         <div className="cover"></div>
         <div className="menu"></div>
@@ -20,6 +26,7 @@ function Person ({ person }) {
       </div>
       </div>
       </div>
+
     );
 
 }
