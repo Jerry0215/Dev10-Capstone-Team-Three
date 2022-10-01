@@ -18,6 +18,7 @@ import BusinessPage from "./Components/BusinessPage";
 import AllEvents from "./Components/AllEvents";
 import Error from "./Components/Error";
 import Register from "./Components/Register";
+import PersonPage from "./Components/PersonPage";
 import SearchPersons from "./Components/SearchPersons";
 import SearchBusinesses from "./Components/SearchBusinesses";
 
@@ -108,7 +109,9 @@ function App() {
         <Route exact path="/login" >
           <Login ></Login>
         </Route>
-
+        <Route exact path="/personpage/:personId" component={PersonPage} >
+          
+        </Route>
         </div>
       </Router>
       </UserContext.Provider> 
