@@ -5,7 +5,7 @@ function Person ({ person }) {
       
       <tr>
         
-        <td>{person.firstName}-{person.middleName}-{person.lastName}-{person.suffix}</td>
+        <td>{person.firstName} {person.middleName} {person.lastName} {person.suffix}</td>
         <td>{person.phone}</td>
         <td><img src={path} alt="Everything is on fire"/></td>
       </tr>
