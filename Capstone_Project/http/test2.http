@@ -193,7 +193,7 @@ Content-Type: application/json
 
 ###
 
-DELETE {{url}}/api/person/14
+DELETE {{url}}/api/person/1
 
 ###
 GET {{url}}/api/person/search/t HTTP/1.1

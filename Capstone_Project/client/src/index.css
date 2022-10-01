@@ -95,7 +95,7 @@
 
 
 .login{
-  background: url("../public/pictures/food\ login.jpg");
+ /* background: url("../public/pictures/food\ login.jpg");*/
   background-position: top;
   background-size: cover;
   min-height: 100vh;
@@ -214,7 +214,7 @@
   width: 500px;
   padding: 25px;
   text-align: center;
-  background: url(../public/pictures/createAccount.jpg);
+  /*background: url(../public/pictures/createAccount.jpg);*/
   background-size: cover;
   background-position: 50%;
   background-position: top;
