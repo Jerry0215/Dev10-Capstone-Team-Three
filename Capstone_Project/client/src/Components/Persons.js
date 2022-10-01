@@ -24,11 +24,7 @@ function Persons() {
       return (
         <>
           <h2>Persons</h2>
-          
-            
-          
           {persons.map(person => <Person key={person.id} person={person} />)}
-          
         </>
       )
 
