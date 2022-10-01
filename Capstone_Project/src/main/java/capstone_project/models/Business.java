@@ -10,16 +10,16 @@ public class Business {
 
     private String photoDir;
 
-    private Blob photo;
+    private String photo;
     private Double rating;
 
     private String photoName;
 
-    public Blob getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(Blob photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 

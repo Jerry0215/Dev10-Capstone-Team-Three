@@ -10,14 +10,13 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.Base64;
 import java.util.List;
 
 @Repository
@@ -66,7 +65,15 @@ public class BusinessJdbcTemplateRepository implements BusinessRepository{
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1,business.getName());
             ps.setString(2,business.getDescription());
-            ps.setBlob(3, business.getPhoto());
+            byte[] name = Base64.getEncoder().encode(business.getPhoto().getBytes());
+            try {
+                byte[] decodedString = Base64.getDecoder().decode(new String(name).getBytes("UTF-8"));
+                Blob blob = connection.createBlob();
+                blob.setBytes(1, decodedString);
+                ps.setBlob(3, blob);
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+            }
 
             ps.setString(4, business.getPhotoName());
             ps.setInt(5,0);

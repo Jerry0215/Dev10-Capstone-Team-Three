@@ -25,16 +25,8 @@ public class BusinessMapper implements RowMapper<Business> {
         business.setPhotoName(resultSet.getString("photoName"));
         business.setPhotoDir("pictures\\" + resultSet.getString("photoName"));
         byte[] data = blob.getBytes(1, (int) blob.length());
-        
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream("client\\src\\"+business.getPhotoDir());
-            fileOutputStream.write(data);
-            System.out.println("File created!");
-            fileOutputStream.close();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        String test = new String(data);
+        business.setPhoto(test);
         business.setRating(resultSet.getDouble("rating"));
         business.setLocationId(resultSet.getInt("locationId"));
         business.setPersonId(resultSet.getInt("personId"));
