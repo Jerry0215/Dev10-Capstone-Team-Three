@@ -22,14 +22,14 @@ function SearchPersons() {
             .then(resp => {
                 console.log(resp.status);
                 if (resp.status === 200) {
-                    // return resp.json();
+                    return resp.json();
                 }
-               // return Promise.reject('Something has gone wrong in fetching the Person data.');
+                return Promise.reject('Something has gone wrong in fetching the Person data.');
             })
-            // .then(data => {
-            //     setPersons(data);
-            // })
-            // .catch(console.log);
+            .then(data => {
+                setPersons(data);
+            })
+            .catch(console.log);
         //.catch(err => history.push('/error', {errorMessage: err}));
 
     }
@@ -57,7 +57,7 @@ function SearchPersons() {
                     </tr>
                 </thead>
                 <tbody>
-                    {persons.map(person => <Person key={person.id} person={person} />)}
+                    {persons.map(person => <Person key={person.personId} person={person} />)}
                 </tbody>
             </table>
 
