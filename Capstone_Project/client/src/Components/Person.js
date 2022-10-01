@@ -6,9 +6,9 @@ function Person ({ person }) {
   const path = person.photo;
     return (
       
-      <div class="col-sm-4">
+      <div className="col-sm-4">
       <div className="cards">
-      <div class="card-group">
+      <div className="card-group">
 
 
         <img className="card-img-top" src={path} alt=""></img>
@@ -16,8 +16,8 @@ function Person ({ person }) {
         <div className="menu"></div>
         
         <div className="card-body">
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" className="btn btn-primary">Go somewhere</a>
         </div>
 
       </div>
