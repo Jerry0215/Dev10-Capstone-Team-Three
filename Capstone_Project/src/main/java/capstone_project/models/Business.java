@@ -8,9 +8,18 @@ public class Business {
     private String photoDir;
     private Double rating;
 
-
+    private String photoName;
 
     private int locationId;
+
+    public String getPhotoName() {
+        return photoName;
+    }
+
+    public void setPhotoName(String photoName) {
+        this.photoName = photoName;
+    }
+
     private int personId;
     public String getPhotoDir() {
         return photoDir;

@@ -155,10 +155,10 @@ Content-Type: application/json
 {
 "name": "The Bannered Mare",
 "description": "Tavern in Whiterun",
-"photoDir": "C:\\Users\\MFarooqui\\Pictures\\Saved Pictures\\Discord Reacts\\kittyconfuse.png",
+"photoDir": "D:\\Capstone Repo 2\\Dev10-Capstone-Team-Three\\Capstone_Project\\client\\src\\pictures\\kitty.png",
 "rating": 4.5,
 "locationId": 1,
-"personId": 3
+"personId": 2
 }
 
 ###

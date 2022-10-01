@@ -5,6 +5,7 @@ import Events from './Events';
 import Locations from './Locations';
 function BusinessPage(){
     const [business,setBusiness] = useState([])
+    const [path, setPath] = useState([])
     let { businessId } = useParams();
     const init = {
         method:'GET'
@@ -18,12 +19,16 @@ function BusinessPage(){
           return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
         })
         .then(data => {
+          
           setBusiness(data);
+          const path = require("../pictures/"+data.photoName);
+          console.log(data.photoName)
+          setPath(path);
         })
         //.catch(err => history.push('/error', {errorMessage: err}));
       },[])
 
-      let path = "../" + business.photoDir;
+      
       
       return (
         <>
