@@ -135,10 +135,10 @@ insert into location
     (1,'7 N 8th St','Richmond','VA','23219','Home');
 
     
-insert into person (firstName, middleName, lastName, suffix, photo, photoName, phone, locationId, appUserId)
+insert into person (firstName, middleName, lastName, suffix, photoName, phone, locationId, appUserId)
 	values
-	('Test First Name','Test Middle Name','Test Last Name', 'Sr.', LOAD_FILE('C:\\Users\\Owner\\Downloads\\jiinx.jpg'), 'Test Picture.jpg', 'Test Phone', 1, 1);
-select * from person;
+	('Test First Name','Test Middle Name','Test Last Name', 'Sr.', 'Test Picture.jpg', 'Test Phone', 1, 1);
+
 insert into business (`name`, `description`, rating, locationId, personId)
 	values
     ('Test Business Name','Test Business Description',5,1,1);
