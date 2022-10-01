@@ -95,7 +95,7 @@
 
 
 .login{
-  background: url("../src/pictures/food\ login.jpg");
+ /* background: url("../src/pictures/food\ login.jpg");*/
   background-position: top;
   background-size: cover;
   min-height: 100vh;

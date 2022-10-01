@@ -1,7 +1,9 @@
 function Person ({ person }) {
 
-  let path = "../" + person.photoDir;
+  let path = "../src/" + person.photoDir;
+  
     return (
+      
       <div class="col-sm-4">
       <div className="cards">
       <div class="card-group">
