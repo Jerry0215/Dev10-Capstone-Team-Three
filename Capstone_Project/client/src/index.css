@@ -292,3 +292,8 @@ input {
   gap: .25rem;
   margin-top: 1rem;
 }
+
+.right-aligned-link {
+text-align: right;
+float: right;
+}
