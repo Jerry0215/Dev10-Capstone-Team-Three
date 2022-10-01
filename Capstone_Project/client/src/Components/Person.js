@@ -9,7 +9,7 @@ function Person ({ person }) {
       <div class="col-sm-4">
       <div className="cards">
       <div class="card-group">
-        
+
 
         <img className="card-img-top" src={path} alt=""></img>
         <div className="cover"></div>
