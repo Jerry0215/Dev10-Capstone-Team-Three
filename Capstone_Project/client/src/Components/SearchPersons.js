@@ -35,7 +35,6 @@ function SearchPersons() {
     }
 
 
-
     return (
         <>
             <h2>Search People</h2>
