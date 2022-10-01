@@ -24,7 +24,9 @@ function Persons() {
       return (
         <>
           <h2>Persons</h2>
+          <div class="row">
           {persons.map(person => <Person key={person.id} person={person} />)}
+          </div>
         </>
       )
 

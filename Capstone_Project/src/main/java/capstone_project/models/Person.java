@@ -5,6 +5,12 @@ package capstone_project.models;
 //import org.springframework.security.core.userdetails.User;
 
 
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mysql.cj.jdbc.BlobFromLocator;
+
+
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,14 +23,29 @@ public class Person {
 
     private String suffix;
 
+    private String photo;
+
+    public String getPhoto() {
+
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+
+        this.photo = photo;
+    }
 
     private String photoDir;
+
+
     private String photoName;
     private String phone;
 
     public String getPhotoName() {
         return photoName;
     }
+
+
 
     public void setPhotoName(String photoName) {
         this.photoName = photoName;

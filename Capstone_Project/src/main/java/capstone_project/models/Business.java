@@ -1,14 +1,27 @@
 package capstone_project.models;
 
+
+import com.mysql.cj.jdbc.Blob;
+
 public class Business {
     private int businessId;
     private String name;
     private String description;
 
     private String photoDir;
+
+    private Blob photo;
     private Double rating;
 
     private String photoName;
+
+    public Blob getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Blob photo) {
+        this.photo = photo;
+    }
 
     private int locationId;
 

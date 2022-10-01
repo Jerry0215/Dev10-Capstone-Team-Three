@@ -21,6 +21,7 @@ import Register from "./Components/Register";
 import PersonPage from "./Components/PersonPage";
 import SearchPersons from "./Components/SearchPersons";
 import SearchBusinesses from "./Components/SearchBusinesses";
+import PersonForm from "./Components/PersonForm";
 
 const LOCALSTORAGE_KEY = 'NyelpAppToken';
 
@@ -67,6 +68,7 @@ function App() {
   return (
     
     <div className="App" >
+      
       <div className="backdrop"></div>
      <UserContext.Provider value={authManager} >
       <Router>
@@ -111,6 +113,9 @@ function App() {
         </Route>
         <Route exact path="/personpage/:personId" component={PersonPage} >
           
+        </Route>
+        <Route path={['/personform/add', '/personform/edit/:editId']}>
+          <PersonForm></PersonForm>
         </Route>
         </div>
       </Router>

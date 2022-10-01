@@ -66,16 +66,9 @@ public class BusinessJdbcTemplateRepository implements BusinessRepository{
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1,business.getName());
             ps.setString(2,business.getDescription());
-            Path pathToAFile = Paths.get(business.getPhotoDir());
+            ps.setBlob(3, business.getPhoto());
 
-
-            try {
-                ps.setBinaryStream(3,new FileInputStream(business.getPhotoDir()));
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-
-            ps.setString(4,pathToAFile.getFileName().toString());
+            ps.setString(4, business.getPhotoName());
             ps.setInt(5,0);
             ps.setInt(6,business.getLocationId());
             ps.setInt(7,business.getPersonId());
