@@ -3,6 +3,7 @@ package capstone_project.controllers;
 import capstone_project.domain.Result;
 import capstone_project.domain.ResultType;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -53,6 +54,11 @@ public class ErrorResponse {
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<List<String>> handleValidationException(ValidationException ex) {
         return new ResponseEntity<>(List.of(ex.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(DuplicateKeyException.class)
+    public ResponseEntity<List<String>> handleDuplicateKeyException(DuplicateKeyException ex) {
+        return new ResponseEntity<>(List.of("That username is already in use"), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(BadCredentialsException.class)

@@ -19,6 +19,8 @@ import AllEvents from "./Components/AllEvents";
 import Error from "./Components/Error";
 import Register from "./Components/Register";
 import PersonPage from "./Components/PersonPage";
+import SearchPersons from "./Components/SearchPersons";
+import SearchBusinesses from "./Components/SearchBusinesses";
 
 const LOCALSTORAGE_KEY = 'NyelpAppToken';
 
@@ -72,6 +74,12 @@ function App() {
         <div className='container'>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/searchpeople" >
+          <SearchPersons/>
+        </Route>
+        <Route exact path="/searchbusinesses" >
+          <SearchBusinesses/>
         </Route>
         <Route exact path="/error">
           <Error>

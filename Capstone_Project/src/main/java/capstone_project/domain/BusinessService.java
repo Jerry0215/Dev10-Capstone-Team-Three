@@ -3,9 +3,11 @@ package capstone_project.domain;
 import capstone_project.data.BusinessRepository;
 import capstone_project.data.ReviewRepository;
 import capstone_project.models.Business;
+import capstone_project.models.Person;
 import capstone_project.models.Review;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,6 +24,18 @@ public class BusinessService {
         this.repository= businessRepository;
         this.reviewRepository = reviewRepository;
     }
+
+    public List<Business> findByName(String prefix) {
+
+        List<Business> searchResult = new ArrayList<>();
+
+        searchResult.addAll(repository.findAll().stream().distinct()
+                .filter(business ->
+                        business.getName().toLowerCase().startsWith(prefix.toLowerCase())).toList());
+
+        return searchResult;
+    }
+
     public List<Business> findAll() {
         return repository.findAll();
     }

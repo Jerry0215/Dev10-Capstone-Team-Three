@@ -11,14 +11,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     
 
-    <title>Businesses</title>
+  <title>Search Person</title>
   </head>
+
   <body>
-    
-    <div id="root"></div>
+    <div className="search-wrapper">
+        <form className="form-inline my-2 my-lg-0">
+          <input className="form-control mr-sm-2" type="search" placeholder="Search" id="search"/>
+          <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+  <div class="user-cards" data-user-cards-container></div>
+  <template data-user-template>
+    <div class="card">
+      <div class="header" data-header></div>
+      <div class="body" data-body></div>
+    </div>
+  </template>
+</body>
 
-
-
-  </body>
 </html>
 
