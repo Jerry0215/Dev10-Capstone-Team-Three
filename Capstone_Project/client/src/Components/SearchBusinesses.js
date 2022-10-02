@@ -39,12 +39,10 @@ function SearchBusinesses() {
         <>
             <h2>Search Businesses</h2>
 
-            <form onSubmit={handleSubmit}>
-                <div className="search-wrapper mb-3">
-                    <input className="form-control mr-sm-2" type="text" placeholder="Search" id="search" value={prefix} onChange={handleChange} />
+            <form className="search" onSubmit={handleSubmit} action="action_page.php">
+                    <input className="form-control" type="text" placeholder="Search" id="search" value={prefix} onChange={handleChange} ></input>
                     <button className="btn btn-outline-success my-2 my-sm-0 btn btn-light" type="submit">Search</button>
-                </div>
-            </form>
+              </form> 
 
             <table className="table table-striped">
                 <tbody>
