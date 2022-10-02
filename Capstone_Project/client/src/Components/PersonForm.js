@@ -4,18 +4,18 @@ import Error from './Error';
 
 
 
-const DEFAULT_PERSON = { firstName: '', middleName: '', lastName: '', suffix: '', photo: '', photoName: '', phone: '' , locationId: 1, userId: 1}
-
+const DEFAULT_PERSON = { firstName: '', middleName: '', lastName: '', suffix: '', photo: '', photoName: '', phone: '' , locationId: 0, userId: 1}
+const DEFAULT_LOCATION = { address: '', city: '', state: '', zipCode: '', addressType: 'Home'}
 
 function PersonForm(){
 
     const [person, setPerson] = useState(DEFAULT_PERSON);
-    
+    const [location, setLocation] = useState(DEFAULT_LOCATION);
     const { editId } = useParams();
     const [blob, setBlob] = useState([]);
     const history = useHistory();
     const [errors, setErrors] = useState([]);
-
+    const locationID = 0;
     useEffect(() => {
         if (editId) {
           fetch(`http://localhost:8080/api/person/${editId}`)
@@ -33,10 +33,14 @@ function PersonForm(){
             .then(body => {
               if (body) {
                 setPerson(body);
+                
               }
             })
             .catch(err => history.push('/error', {errorMessage: err}));
+          
+           
         }
+        
     
       }, [])
 
@@ -73,7 +77,7 @@ function PersonForm(){
         
       }
 
-      const savePanel = () => {
+      const savePerson = () => {
         
         const init = {
           method: 'POST',
@@ -103,7 +107,9 @@ function PersonForm(){
         .catch(err => history.push('/error', {errorMessage: err}));
       }
 
-      const updatePanel = () => {
+      
+
+      const updatePerson = () => {
         const updatePerson = {id: editId, ...person};
     
         const init = {
@@ -140,18 +146,22 @@ function PersonForm(){
         .catch(err => history.push('/error', {errorMessage: err}));
       }
 
+     
+
 
       const onSubmit = (evt) => {
         
         evt.preventDefault();
         
-        const fetchFunction = editId > 0 ? updatePanel : savePanel;
+        
+      
+        const fetchFunction2 = editId > 0 ? updatePerson : savePerson;
     
-        fetchFunction();
+        fetchFunction2();
     
       }
 
-      const handleChange = (evt) => {
+      const handleChangePerson = (evt) => {
         
         const property = evt.target.name;
         const valueType = evt.target.type === 'checkbox' ? 'checked' : 'value';
@@ -163,6 +173,7 @@ function PersonForm(){
         console.log(newPerson);
         setPerson(newPerson);
       }
+      
       
 
       const handleTwoFunction = (evt) => {
@@ -178,28 +189,29 @@ function PersonForm(){
         <form onSubmit={onSubmit}>
             <div className="form-group">
                 <label htmlFor="firstName">First Name:</label>
-                <input name="firstName" type="text" className="form-control" id="firstName" value={person.firstName} onChange={handleChange} />
+                <input name="firstName" type="text" className="form-control" id="firstName" value={person.firstName} onChange={handleChangePerson} />
             </div>
             <div className="form-group">
                 <label htmlFor="middleName">Middle Name:</label>
-                <input name="middleName" type="text" className="form-control" id="middleName" value={person.middleName} onChange={handleChange} />
+                <input name="middleName" type="text" className="form-control" id="middleName" value={person.middleName} onChange={handleChangePerson} />
             </div>
             <div className="form-group">
                 <label htmlFor="lastName">Last Name:</label>
-                <input name="lastName" type="text" className="form-control" id="lastName" value={person.lastName} onChange={handleChange} />
+                <input name="lastName" type="text" className="form-control" id="lastName" value={person.lastName} onChange={handleChangePerson} />
             </div>
             <div className="form-group">
                 <label htmlFor="suffix">Suffix:</label>
-                <input name="suffix" type="text" className="form-control" id="suffix" value={person.suffix} onChange={handleChange} />
+                <input name="suffix" type="text" className="form-control" id="suffix" value={person.suffix} onChange={handleChangePerson} />
             </div>
             <div className="form-group">
                 <label htmlFor="phone">Phone #:</label>
-                <input name="phone" type="text" className="form-control" id="phone" value={person.phone} onChange={handleChange} />
+                <input name="phone" type="text" className="form-control" id="phone" value={person.phone} onChange={handleChangePerson} />
             </div>
             <div className="form-group">
                 <label htmlFor="photoName">Photo Name:</label>
-                <input name="photoName" type="text" className="form-control" id="photoName" value={person.photoName} onChange={handleChange} />
+                <input name="photoName" type="text" className="form-control" id="photoName" value={person.photoName} onChange={handleChangePerson} />
             </div>
+
             
                 <label htmlFor="profilePicture">Upload Picture: </label>
                 <input name="profilePicture" type="file" id="img"  onChange={handleTwoFunction}></input>
