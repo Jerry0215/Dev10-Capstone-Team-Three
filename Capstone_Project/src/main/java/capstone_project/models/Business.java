@@ -15,6 +15,10 @@ public class Business {
 
     private String photoName;
 
+    private int locationId;
+
+    private int personId;
+
     public String getPhoto() {
         return photo;
     }
@@ -22,8 +26,6 @@ public class Business {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
-
-    private int locationId;
 
     public String getPhotoName() {
         return photoName;
@@ -33,7 +35,7 @@ public class Business {
         this.photoName = photoName;
     }
 
-    private int personId;
+
     public String getPhotoDir() {
         return photoDir;
     }

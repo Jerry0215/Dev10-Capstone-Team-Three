@@ -25,6 +25,14 @@ public class Person {
 
     private String photo;
 
+
+//    private AppUser user;
+
+
+    private int locationId;
+    private int userId;
+
+
     public String getPhoto() {
 
         return photo;
@@ -61,12 +69,6 @@ public class Person {
 
     private List<Location> locations = new ArrayList<>();
 
-
-//    private AppUser user;
-
-
-    private int locationId;
-    private int userId;
 
 
     public int getLocationId() {

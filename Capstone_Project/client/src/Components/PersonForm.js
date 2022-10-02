@@ -4,182 +4,182 @@ import Error from './Error';
 
 
 
-const DEFAULT_PERSON = { firstName: '', middleName: '', lastName: '', suffix: '', photo: '', photoName: '', phone: '' , locationId: 1, userId: 1}
+const DEFAULT_PERSON = { firstName: '', middleName: '', lastName: '', suffix: '', photo: '', photoName: '', phone: '', locationId: 1, userId: 1 }
 
 
-function PersonForm(){
+function PersonForm() {
 
-    const [person, setPerson] = useState(DEFAULT_PERSON);
-    
-    const { editId } = useParams();
-    const [blob, setBlob] = useState([]);
-    const history = useHistory();
-    const [errors, setErrors] = useState([]);
+  const [person, setPerson] = useState(DEFAULT_PERSON);
 
-    useEffect(() => {
-        if (editId) {
-          fetch(`http://localhost:8080/api/person/${editId}`)
-            .then(resp => {
-              switch(resp.status) {
-                case 200:
-                  return resp.json();
-                case 404:
-                  history.push('/not-found', { id: editId })
-                  break;
-                default:
-                  return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
-              }
-            })
-            .then(body => {
-              if (body) {
-                setPerson(body);
-              }
-            })
-            .catch(err => history.push('/error', {errorMessage: err}));
-        }
-    
-      }, [])
+  const { editId } = useParams();
+  const [blob, setBlob] = useState([]);
+  const history = useHistory();
+  const [errors, setErrors] = useState([]);
 
-    function read(data, callback) {
-        const reader = new FileReader();
-        reader.onload = callback;
-        reader.onerror = console.log;
-        reader.readAsDataURL(data);
-        console.log(reader);
-      }
-
-    function convertToBase64() {
-        
-        const img = document.getElementById('img');
-        
-        read(img.files[0], convertToBlob);
-
-        img.value = null;
-        
-      }
-
-      function convertToBlob(evt) {
-        const dataURL = evt.target.result;
-        
-        const newPerson = {...person};
-
-       
-        
-        newPerson["photo"] = dataURL;
-        console.log(newPerson);
-        setPerson(newPerson);
-        
-        
-        
-      }
-
-      const savePanel = () => {
-        
-        const init = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({...person})
-        };
-    
-        fetch('http://localhost:8080/api/person', init)
+  useEffect(() => {
+    if (editId) {
+      fetch(`http://localhost:8080/api/person/${editId}`)
         .then(resp => {
-          
-          if (resp.status === 201 || resp.status === 400) {
-            return resp.json();
+          switch (resp.status) {
+            case 200:
+              return resp.json();
+            case 404:
+              history.push('/not-found', { id: editId })
+              break;
+            default:
+              return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
           }
-          return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
         })
         .then(body => {
-          
-          if (body.personId) {
-            
-            history.push('/agents')
-          } else if (body) {
-            setErrors(body);
+          if (body) {
+            setPerson(body);
           }
         })
-        .catch(err => history.push('/error', {errorMessage: err}));
-      }
+        .catch(err => history.push('/error', { errorMessage: err }));
+    }
 
-      const updatePanel = () => {
+  }, [])
 
-      }
+  function read(data, callback) {
+    const reader = new FileReader();
+    reader.onload = callback;
+    reader.onerror = console.log;
+    reader.readAsDataURL(data);
+    console.log(reader);
+  }
 
-      const onSubmit = (evt) => {
-        console.log(DEFAULT_PERSON)
-        evt.preventDefault();
-        
-        const fetchFunction = editId > 0 ? updatePanel : savePanel;
-    
-        fetchFunction();
-    
-      }
+  function convertToBase64() {
 
-      const handleChange = (evt) => {
-        
-        const property = evt.target.name;
-        const valueType = evt.target.type === 'checkbox' ? 'checked' : 'value';
-        const value = evt.target[valueType];
-    
-        const newPerson = {...person};
-        
-        newPerson[property] = value;
-        console.log(newPerson);
-        setPerson(newPerson);
-      }
-      
+    const img = document.getElementById('img');
 
-      const handleTwoFunction = (evt) => {
-        convertToBase64();
-        
-     
-      }
+    read(img.files[0], convertToBlob);
 
-    return(
-        <>
-        <h2>{editId ? 'Update' : 'Add'} Profile</h2>
-        {errors.length > 0 ? <Error errors={errors} /> : null}
-        <form onSubmit={onSubmit}>
-            <div className="form-group">
-                <label htmlFor="firstName">First Name:</label>
-                <input name="firstName" type="text" className="form-control" id="firstName" value={person.firstName} onChange={handleChange} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="middleName">Middle Name:</label>
-                <input name="middleName" type="text" className="form-control" id="middleName" value={person.middleName} onChange={handleChange} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="lastName">Last Name:</label>
-                <input name="lastName" type="text" className="form-control" id="lastName" value={person.lastName} onChange={handleChange} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="suffix">Suffix:</label>
-                <input name="suffix" type="text" className="form-control" id="suffix" value={person.suffix} onChange={handleChange} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="phone">Phone #:</label>
-                <input name="phone" type="text" className="form-control" id="phone" value={person.phone} onChange={handleChange} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="photoName">Photo Name:</label>
-                <input name="photoName" type="text" className="form-control" id="photoName" value={person.photoName} onChange={handleChange} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="profilePicture">Upload Picture: </label>
-                <input name="profilePicture" type="file" id="img"  onChange={handleTwoFunction}></input>
-            </div>
-            <div className="form-group">
-                
-                <button type="submit" className="btn btn-success mr-3">Submit</button>
-            </div>
-        </form>
+    img.value = null;
 
-        
-          
-        </>
-    )
+  }
+
+  function convertToBlob(evt) {
+    const dataURL = evt.target.result;
+
+    const newPerson = { ...person };
+
+
+
+    newPerson["photo"] = dataURL;
+    console.log(newPerson);
+    setPerson(newPerson);
+
+
+
+  }
+
+  const savePanel = () => {
+
+    const init = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ...person })
+    };
+
+    fetch('http://localhost:8080/api/person', init)
+      .then(resp => {
+
+        if (resp.status === 201 || resp.status === 400) {
+          return resp.json();
+        }
+        return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
+      })
+      .then(body => {
+
+        if (body.personId) {
+
+          history.push('/person')
+        } else if (body) {
+          setErrors(body);
+        }
+      })
+      .catch(err => history.push('/error', { errorMessage: err }));
+  }
+
+  const updatePanel = () => {
+
+  }
+
+  const onSubmit = (evt) => {
+    console.log(DEFAULT_PERSON)
+    evt.preventDefault();
+
+    const fetchFunction = editId > 0 ? updatePanel : savePanel;
+
+    fetchFunction();
+
+  }
+
+  const handleChange = (evt) => {
+
+    const property = evt.target.name;
+    const valueType = evt.target.type === 'checkbox' ? 'checked' : 'value';
+    const value = evt.target[valueType];
+
+    const newPerson = { ...person };
+
+    newPerson[property] = value;
+    console.log(newPerson);
+    setPerson(newPerson);
+  }
+
+
+  const handleTwoFunction = (evt) => {
+    convertToBase64();
+
+
+  }
+
+  return (
+    <>
+      <h2>{editId ? 'Update' : 'Add'} Profile</h2>
+      {errors.length > 0 ? <Error errors={errors} /> : null}
+      <form onSubmit={onSubmit}>
+        <div className="form-group">
+          <label htmlFor="firstName">First Name:</label>
+          <input name="firstName" type="text" className="form-control" id="firstName" value={person.firstName} onChange={handleChange} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="middleName">Middle Name:</label>
+          <input name="middleName" type="text" className="form-control" id="middleName" value={person.middleName} onChange={handleChange} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="lastName">Last Name:</label>
+          <input name="lastName" type="text" className="form-control" id="lastName" value={person.lastName} onChange={handleChange} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="suffix">Suffix:</label>
+          <input name="suffix" type="text" className="form-control" id="suffix" value={person.suffix} onChange={handleChange} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="phone">Phone #:</label>
+          <input name="phone" type="text" className="form-control" id="phone" value={person.phone} onChange={handleChange} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="photoName">Photo Name:</label>
+          <input name="photoName" type="text" className="form-control" id="photoName" value={person.photoName} onChange={handleChange} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="profilePicture">Upload Picture: </label>
+          <input name="profilePicture" type="file" id="img" onChange={handleTwoFunction}></input>
+        </div>
+        <div className="form-group">
+
+          <button type="submit" className="btn btn-success mr-3">Submit</button>
+        </div>
+      </form>
+
+
+
+    </>
+  )
 }
 
 
