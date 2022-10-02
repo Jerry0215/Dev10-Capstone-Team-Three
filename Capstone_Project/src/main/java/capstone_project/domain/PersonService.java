@@ -6,6 +6,7 @@ import capstone_project.models.Person;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,7 +57,7 @@ public class PersonService {
         return result;
     }
 
-    public Result<Person> update(Person person) throws IOException {
+    public Result<Person> update(Person person) throws IOException, SQLException {
         Result<Person> result = validate(person);
         if (!result.isSuccess()) {
             return result;

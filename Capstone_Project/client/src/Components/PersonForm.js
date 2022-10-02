@@ -95,7 +95,7 @@ function PersonForm(){
           
           if (body.personId) {
             
-            history.push('/agents')
+            history.push('/person')
           } else if (body) {
             setErrors(body);
           }
@@ -104,11 +104,45 @@ function PersonForm(){
       }
 
       const updatePanel = () => {
-
+        const updatePerson = {id: editId, ...person};
+    
+        const init = {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(updatePerson)
+        };
+    
+        fetch(`http://localhost:8080/api/person/${editId}`, init)
+        .then(resp => {
+          console.log(resp.status);
+          switch (resp.status) {
+            case 200:
+              return null;
+            case 400:
+              return resp.json();
+            case 404:
+              history.push('/not-found', { id: editId });
+              break;
+            default:
+              return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
+    
+          }
+        })
+        .then(body => {
+          if (!body) {
+            history.push('/person')
+          } else if (body) {
+            setErrors(body);
+          }
+        })
+        .catch(err => history.push('/error', {errorMessage: err}));
       }
 
+
       const onSubmit = (evt) => {
-        console.log(DEFAULT_PERSON)
+        
         evt.preventDefault();
         
         const fetchFunction = editId > 0 ? updatePanel : savePanel;
@@ -166,10 +200,10 @@ function PersonForm(){
                 <label htmlFor="photoName">Photo Name:</label>
                 <input name="photoName" type="text" className="form-control" id="photoName" value={person.photoName} onChange={handleChange} />
             </div>
-            <div className="form-group">
+            
                 <label htmlFor="profilePicture">Upload Picture: </label>
                 <input name="profilePicture" type="file" id="img"  onChange={handleTwoFunction}></input>
-            </div>
+            
             <div className="form-group">
                 
                 <button type="submit" className="btn btn-success mr-3">Submit</button>
