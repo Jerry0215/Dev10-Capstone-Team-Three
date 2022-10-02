@@ -31,7 +31,7 @@ function PersonPage(){
         
         return (
         <>
-        <h2>{person.firstName}</h2>
+        <h2>{person.firstName}{person.middleName} {person.lastName} {person.suffix}</h2>
         
 
         <table className="table table-striped">

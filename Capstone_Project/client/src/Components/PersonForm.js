@@ -4,94 +4,34 @@ import Error from './Error';
 
 
 
-const DEFAULT_PERSON = { firstName: '', middleName: '', lastName: '', suffix: '', photo: '', photoName: '', phone: '' , locationId: 1, userId: 1}
+const DEFAULT_PERSON = { firstName: '', middleName: '', lastName: '', suffix: '', photo: '', photoName: '', phone: '', locationId: 1, userId: 1 }
 
 
-function PersonForm(){
+function PersonForm() {
 
-    const [person, setPerson] = useState(DEFAULT_PERSON);
-    
-    const { editId } = useParams();
-    const [blob, setBlob] = useState([]);
-    const history = useHistory();
-    const [errors, setErrors] = useState([]);
+  const [person, setPerson] = useState(DEFAULT_PERSON);
 
-    useEffect(() => {
-        if (editId) {
-          fetch(`http://localhost:8080/api/person/${editId}`)
-            .then(resp => {
-              switch(resp.status) {
-                case 200:
-                  return resp.json();
-                case 404:
-                  history.push('/not-found', { id: editId })
-                  break;
-                default:
-                  return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
-              }
-            })
-            .then(body => {
-              if (body) {
-                setPerson(body);
-              }
-            })
-            .catch(err => history.push('/error', {errorMessage: err}));
-        }
-    
-      }, [])
+  const { editId } = useParams();
+  const [blob, setBlob] = useState([]);
+  const history = useHistory();
+  const [errors, setErrors] = useState([]);
 
-    function read(data, callback) {
-        const reader = new FileReader();
-        reader.onload = callback;
-        reader.onerror = console.log;
-        reader.readAsDataURL(data);
-        console.log(reader);
-      }
-
-    function convertToBase64() {
-        
-        const img = document.getElementById('img');
-        
-        read(img.files[0], convertToBlob);
-
-        img.value = null;
-        
-      }
-
-      function convertToBlob(evt) {
-        const dataURL = evt.target.result;
-        
-        const newPerson = {...person};
-
-       
-        
-        newPerson["photo"] = dataURL;
-        console.log(newPerson);
-        setPerson(newPerson);
-        
-        
-        
-      }
-
-      const savePanel = () => {
-        
-        const init = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({...person})
-        };
-    
-        fetch('http://localhost:8080/api/person', init)
+  useEffect(() => {
+    if (editId) {
+      fetch(`http://localhost:8080/api/person/${editId}`)
         .then(resp => {
-          
-          if (resp.status === 201 || resp.status === 400) {
-            return resp.json();
+          switch (resp.status) {
+            case 200:
+              return resp.json();
+            case 404:
+              history.push('/not-found', { id: editId })
+              break;
+            default:
+              return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
           }
-          return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
         })
         .then(body => {
+
           
           if (body.personId) {
             
@@ -214,6 +154,7 @@ function PersonForm(){
           
         </>
     )
+
 }
 
 

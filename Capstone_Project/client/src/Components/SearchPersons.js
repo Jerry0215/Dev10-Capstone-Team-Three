@@ -42,9 +42,9 @@ function SearchPersons() {
 
 
             <form className="search" onSubmit={handleSubmit} action="action_page.php">
-                    <input className="form-control" type="text" placeholder="Search" id="search" value={prefix} onChange={handleChange} ></input>
-                    <button className="btn btn-outline-success my-2 my-sm-0 btn btn-light" type="submit">Search</button>
-              </form> 
+                <input className="form-control" type="text" placeholder="Search" id="search" value={prefix} onChange={handleChange} ></input>
+                <button className="btn btn-outline-success my-2 my-sm-0 btn btn-light" type="submit">Search</button>
+            </form>
 
             <table className="table table-striped">
                 <tbody>
