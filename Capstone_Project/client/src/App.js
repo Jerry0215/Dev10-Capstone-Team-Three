@@ -40,7 +40,7 @@ function App() {
           <Businesses/> 
         </Route>
         <Route exact path="/location">
-          <Locations/>
+          <Locations businessId={1}/>
         </Route>
         <Route exact path="/event">
           <AllEvents></AllEvents>

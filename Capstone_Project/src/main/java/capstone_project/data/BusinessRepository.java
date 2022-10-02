@@ -11,3 +11,4 @@ public interface BusinessRepository {
     boolean update(Business business);
     List<Business> findAll();
 }
+

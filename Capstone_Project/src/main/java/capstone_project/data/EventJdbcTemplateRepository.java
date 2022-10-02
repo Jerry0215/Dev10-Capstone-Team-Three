@@ -31,13 +31,13 @@ public class EventJdbcTemplateRepository implements EventRepository {
 
     @Override
     public List<Event> findAll() {
-        final String sql = "select eventId, name, description, timeDate, locationId, businessId from event limit 1000;";
+        final String sql = "select eventId, name, description, timeDate, businessId from event limit 1000;";
         return jdbcTemplate.query(sql, new EventMapper());
     }
 
     @Override
     public Event findById(int eventId) {
-        final String sql = "select eventId, name, description, timeDate, locationId, businessId "
+        final String sql = "select eventId, name, description, timeDate, businessId "
                 + "from event "
                 + "where eventId = ?;";
 
@@ -48,8 +48,8 @@ public class EventJdbcTemplateRepository implements EventRepository {
 
     @Override
     public Event add(Event event) {
-        final String sql = "insert into event (name, description, timeDate, locationId, businessId)"
-                + "values (?,?,?,?,?);";
+        final String sql = "insert into event (name, description, timeDate, businessId)"
+                + "values (?,?,?,?);";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
@@ -57,8 +57,7 @@ public class EventJdbcTemplateRepository implements EventRepository {
             ps.setString(1, event.getName());
             ps.setString(2, event.getDescription());
             ps.setTimestamp(3, event.getTimeDate());
-            ps.setInt(4, event.getLocationId());
-            ps.setInt(5, event.getBusinessId());
+            ps.setInt(4, event.getBusinessId());
             return ps;
         }, keyHolder);
 
@@ -77,7 +76,6 @@ public class EventJdbcTemplateRepository implements EventRepository {
                 + "name = ?, "
                 + "description = ?, "
                 + "timeDate = ?, "
-                + "locationId = ?, "
                 + "businessId = ? "
                 + "where eventId = ?;";
 
@@ -85,7 +83,6 @@ public class EventJdbcTemplateRepository implements EventRepository {
                 event.getName(),
                 event.getDescription(),
                 event.getTimeDate(),
-                event.getLocationId(),
                 event.getBusinessId(),
                 event.getEventId()) > 0;
     }
