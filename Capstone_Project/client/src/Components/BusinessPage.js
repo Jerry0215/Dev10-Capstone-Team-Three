@@ -21,9 +21,9 @@ function BusinessPage(){
         .then(data => {
           
           setBusiness(data);
-          const path = require("../pictures/"+data.photoName);
-          console.log(data.photoName)
-          setPath(path);
+          
+          console.log(data.photo)
+          setPath(data.photo);
         })
         //.catch(err => history.push('/error', {errorMessage: err}));
       },[])
