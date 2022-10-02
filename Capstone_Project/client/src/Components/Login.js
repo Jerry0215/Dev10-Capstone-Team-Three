@@ -35,6 +35,7 @@ function Login({ onSubmit }) {
         
         case 200:
           return resp.json();
+          history.push("/");
         case 403:
           setErrors(['The login information is incorrect']);
           break;
@@ -46,7 +47,7 @@ function Login({ onSubmit }) {
     .then(body => authManager.login(body.jwt_token))
     //.catch(err => history.push('/error', {errorMessage: err}));
     
-    history.push("/");
+   
   }
 
   const handleChange = (evt) => {

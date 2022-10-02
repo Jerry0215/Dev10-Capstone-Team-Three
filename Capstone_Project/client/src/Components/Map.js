@@ -8,8 +8,6 @@ function Map({address,state,city}){
     let srcsetString = "https://www.mapquestapi.com/staticmap/v5/map?locations="+address+","+city+","+state+"&size=@2x&key="+key;
 
 return (
-    
-
     <img className="img-responsive static-map-example-image" srcSet={srcsetString}
      src={srcsetString} alt="Map with Center"/>
 );

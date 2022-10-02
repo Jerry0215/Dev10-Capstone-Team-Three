@@ -1,0 +1,20 @@
+@url=http://localhost:8080
+
+POST {{url}}/create_account HTTP/1.1
+Content-Type: application/json
+
+{
+  "username":"newadmin@admin.com",
+  "password":"P@ssword1!"
+}
+
+###
+
+
+POST {{url}}/authenticate HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "newadmin@admin.com",
+  "password": "P@ssword1!"
+}
