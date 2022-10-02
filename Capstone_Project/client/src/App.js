@@ -22,6 +22,7 @@ import PersonPage from "./Components/PersonPage";
 import SearchPersons from "./Components/SearchPersons";
 import SearchBusinesses from "./Components/SearchBusinesses";
 import PersonForm from "./Components/PersonForm";
+import Profile from "./Components/Profile";
 
 const LOCALSTORAGE_KEY = 'NyelpAppToken';
 
@@ -76,6 +77,9 @@ function App() {
         <div className='container'>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route>
+          <Profile/>
         </Route>
         <Route exact path="/searchpeople" >
           <SearchPersons/>
