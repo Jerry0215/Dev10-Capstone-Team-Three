@@ -8,6 +8,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.sql.rowset.serial.SerialBlob;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.*;
@@ -92,7 +93,7 @@ public class PersonJdbcTemplateRepository implements PersonRepository {
    }
 
     @Override
-    public boolean update(Person person) throws  IOException {
+    public boolean update(Person person) throws IOException, SQLException, UnsupportedEncodingException {
         final String sql = "update person set " +
                 " firstName = ?," +
                 " middleName = ?," +
@@ -103,17 +104,19 @@ public class PersonJdbcTemplateRepository implements PersonRepository {
                 " phone = ?," +
                 " locationId = ?" +
                 " where personId = ?;";
+        byte[] name = Base64.getEncoder().encode(person.getPhoto().getBytes());
+
+        byte[] decodedString = Base64.getDecoder().decode(new String(name).getBytes("UTF-8"));
+        Blob blob = new javax.sql.rowset.serial.SerialBlob(decodedString);
 
 
-        Path p = FileSystems.getDefault().getPath(person.getPhotoDir());
-        byte [] fileData = Files.readAllBytes(p);
 
         int rowCount = template.update(sql,
                 person.getFirstName(),
                 person.getMiddleName(),
                 person.getLastName(),
                 person.getSuffix(),
-                fileData,
+                blob,
                 person.getPhotoName(),
                 person.getPhone(),
                 person.getLocationId(),

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -47,7 +48,7 @@ public class PersonController {
     }
 
     @PutMapping("/{personId}")
-    public ResponseEntity<Object> update(@PathVariable int personId, @RequestBody Person person) throws IOException {
+    public ResponseEntity<Object> update(@PathVariable int personId, @RequestBody Person person) throws IOException, SQLException {
         if (personId != person.getPersonId()) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
