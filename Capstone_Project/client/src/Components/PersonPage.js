@@ -7,11 +7,13 @@ import UserContext from '../UserContext';
 function PersonPage(){
     
     const [person,setPerson] = useState([])
-
+    const history = useHistory(); 
     let { personId } = useParams();
 
     const authManager = useContext(UserContext);
-
+    authManager.user.personId = 1; // TODO: refactor so that authManger has a person connected
+    
+    
     useEffect(() => {
 
       const init = {
@@ -37,10 +39,11 @@ function PersonPage(){
 
         let path = "../" + person.photoDir;
         
+        const onEditClick = () => history.push(`/personform/edit/${personId}`)
         return (
         <>
         <h2>{person.firstName} {person.middleName} {person.lastName} {person.suffix}</h2>
-        
+        {personId == authManager.user.personId ? <button type="button" onClick={onEditClick}>Edit Profile</button>:null}
 
         <table className="table table-striped">
             <thead>

@@ -24,6 +24,7 @@ import SearchBusinesses from "./Components/SearchBusinesses";
 import PersonForm from "./Components/PersonForm";
 import BusinessForm from "./Components/BusinessForm";
 import LocationForm from "./Components/LocationForm";
+import { isCompositeComponent } from "react-dom/test-utils";
 
 const LOCALSTORAGE_KEY = 'NyelpAppToken';
 
@@ -31,14 +32,15 @@ function App() {
   const [user, setUser] = useState(null);
 
   const login = (token) => {
-    const decodedToken = jwt_decode(token);
-
+    const decodedToken = jwt_decode(token); 
     localStorage.setItem(LOCALSTORAGE_KEY, token);
-
+    console.log(decodedToken)
+    console.log("test"); 
     const roles = decodedToken.authorities.split(',');
 
     const user = {
       username: decodedToken.sub,
+      personId: decodedToken.appUserId,
       roles,
       token,
       hasRole: function(role) {
@@ -61,11 +63,14 @@ function App() {
   }
 
   useState(() => {
+    
     const previouslySavedToken = localStorage.getItem(LOCALSTORAGE_KEY);
+    
     if (previouslySavedToken) {
       login(previouslySavedToken);
     }
   }, [])
+  console.log(authManager); 
 
   return (
     
