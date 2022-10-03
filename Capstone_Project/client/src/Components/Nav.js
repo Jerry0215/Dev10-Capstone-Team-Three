@@ -23,7 +23,7 @@ function Nav() {
           {authManager.user ?
               (<>
                 <li className="nav-item active">
-                  <Link to="/personpage/:personId" className='nav-link'>Profile</Link>
+                  <Link to={"/personpage/" +authManager.user.personId} className='nav-link'>Profile</Link>
                 </li>
               </>) : null
             }
