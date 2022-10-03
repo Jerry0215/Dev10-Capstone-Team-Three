@@ -5,13 +5,14 @@ import UserContext from '../UserContext';
 
 
 function PersonPage(){
-    
+    // business, location, person.personId -> personId attached
+
     const [person,setPerson] = useState([])
     const history = useHistory(); 
     let { personId } = useParams();
 
     const authManager = useContext(UserContext);
-    authManager.user.personId = 1; // TODO: refactor so that authManger has a person connected
+     
     
     
     useEffect(() => {

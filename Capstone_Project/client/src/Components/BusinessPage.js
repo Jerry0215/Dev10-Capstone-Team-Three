@@ -48,9 +48,10 @@ function BusinessPage() {
       <h2>{business.name}</h2>
       <p>{business.description}</p>
       <img src={path} alt="Everything is on fire" />
-
+      {business.personId == authManager.user.personId ? <button type="button">Edit Business</button>:null}
       <Reviews businessId={businessId}></Reviews>
       <Events businessId={businessId}></Events>
+      {business.personId != authManager.user.personId ? <button type="button">Add Review</button>:null}
       <Locations businessId={businessId}></Locations>
     </>
   )
