@@ -1,5 +1,5 @@
 import { useHistory, useParams } from 'react-router-dom';
-import { useEffect, useState,  useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Reviews from './Reviews';
 import Events from './Events';
 import Locations from './Locations';
@@ -15,41 +15,47 @@ function BusinessPage() {
 
     useEffect(() => {
 
-      const init = {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${authManager.user.token}`
+    const init = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${authManager.user.token}`
+      }
+    };
+
+    console.log(authManager);
+
+    fetch(`http://localhost:8080/api/business/${businessId}`, init)
+      .then(resp => {
+        if (resp.status === 200) {
+          return resp.json();
         }
-      };
-  
-        fetch(`http://localhost:8080/api/business/${businessId}`,init)
-        .then(resp => {
-          if (resp.status === 200) {
-            return resp.json();
-          }
-          return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
-        })
-        .then(data => {
-          
-          setBusiness(data);
-          
-          console.log(data.photo)
-          setPath(data.photo);
-        })
-        //.catch(err => history.push('/error', {errorMessage: err}));
-      },[])
+        return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
+      })
+      .then(data => {
 
-      
-      return (
-        <>
-        <h2>{business.name}</h2>
-        <img src={path} alt="Everything is on fire"/>
+        setBusiness(data);
 
-        <Reviews businessId={businessId}></Reviews>
-        <Events businessId={businessId}></Events>
-        <Locations businessId={businessId}></Locations>
-        </>
-      );
+        console.log(data.photo)
+        setPath(data.photo);
+      })
+    //.catch(err => history.push('/error', {errorMessage: err}));
+  }, [])
+
+
+
+  return (
+    <>
+      <h2>{business.name}</h2>
+      <p>{business.description}</p>
+      <img src={path} alt="Everything is on fire" />
+
+      <Reviews businessId={businessId}></Reviews>
+      <Events businessId={businessId}></Events>
+      <Locations businessId={businessId}></Locations>
+    </>
+  )
+
+
 
 }
 

@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -21,16 +23,15 @@ public class BusinessController {
     }
 
     @GetMapping("/search/{prefix}")
-    public List<Business> findByName(@PathVariable String prefix)
-    { return service.findByName(prefix); }
+    public List<Business> findByName(@PathVariable String prefix) throws SQLException, IOException { return service.findByName(prefix); }
 
 
     @GetMapping
-    public List<Business> findAll(){
+    public List<Business> findAll() throws SQLException, IOException {
         return service.findAll();
     }
     @GetMapping("/{businessId}")
-    public Business findById(@PathVariable int businessId){
+    public Business findById(@PathVariable int businessId) throws SQLException, IOException {
         return service.findById(businessId);
     }
 
@@ -44,7 +45,7 @@ public class BusinessController {
     }
 
     @PutMapping("/{businessId}")
-    public ResponseEntity<Object> update(@PathVariable int businessId, @RequestBody Business business){
+    public ResponseEntity<Object> update(@PathVariable int businessId, @RequestBody Business business) throws SQLException, IOException {
 
         if (businessId != business.getBusinessId()){
             return new ResponseEntity<>(HttpStatus.CONFLICT);

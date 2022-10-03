@@ -19,6 +19,7 @@ function Events({ businessId }) {
       }
     };
 
+
     fetch(`http://localhost:8080/api/event/business/${businessId}`, init)
       .then(resp => {
         if (resp.status === 200) {
@@ -29,7 +30,7 @@ function Events({ businessId }) {
       .then(data => {
         setEvents(data);
       })
-      .catch(err => history.push('/error', { errorMessage: err }));
+     // .catch(err => history.push('/error', { errorMessage: err }));
   }, [])
 
   const handleAddEvent = () => history.push('/event/add')

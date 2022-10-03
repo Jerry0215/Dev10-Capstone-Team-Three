@@ -21,6 +21,7 @@ function PersonPage(){
         }
       };
 
+      console.log(authManager);
       
         fetch(`http://localhost:8080/api/person/${personId}`,init)
         .then(resp => {

@@ -1,14 +1,25 @@
 import { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import UserContext from '../UserContext';
 import Event from './Event';
 
 function AllEvents() {
     const [events, setEvents] = useState([]);
 
     const history = useHistory();
+
+    const authManager = useContext(UserContext);
     
     useEffect(() => {
-        fetch("http://localhost:8080/api/event/")
+
+      const init = {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${authManager.user.token}`
+        }
+      };
+
+        fetch("http://localhost:8080/api/event/",init)
         .then(resp => {
           if (resp.status === 200) {
             return resp.json();

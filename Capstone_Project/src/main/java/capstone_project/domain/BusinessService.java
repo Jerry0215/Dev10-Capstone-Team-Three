@@ -7,6 +7,8 @@ import capstone_project.models.Person;
 import capstone_project.models.Review;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class BusinessService {
         this.reviewRepository = reviewRepository;
     }
 
-    public List<Business> findByName(String prefix) {
+    public List<Business> findByName(String prefix) throws SQLException, IOException {
 
         List<Business> searchResult = new ArrayList<>();
 
@@ -36,10 +38,10 @@ public class BusinessService {
         return searchResult;
     }
 
-    public List<Business> findAll() {
+    public List<Business> findAll() throws SQLException, IOException {
         return repository.findAll();
     }
-    public Business findById(int businessId){
+    public Business findById(int businessId) throws SQLException, IOException {
         return repository.findById(businessId);
     }
     public boolean deleteById(int businessId){
@@ -62,7 +64,7 @@ public class BusinessService {
 
 
 
-    public Result<Business> update(Business business){
+    public Result<Business> update(Business business) throws SQLException, IOException {
         Result<Business> result = validate(business);
         if (!result.isSuccess()){
             return result;

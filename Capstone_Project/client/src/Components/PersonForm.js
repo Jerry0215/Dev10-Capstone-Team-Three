@@ -4,7 +4,7 @@ import Error from './Error';
 import UserContext from '../UserContext';
 
 
-const DEFAULT_PERSON = { firstName: '', middleName: '', lastName: '', suffix: '', photo: '', photoName: '', phone: '', locationId: 0, userId: 1 }
+const DEFAULT_PERSON = { firstName: '', middleName: '', lastName: '', suffix: '', photo: '', photoName: '', phone: '', locationId: 1, userId: 1 }
 const DEFAULT_LOCATION = { address: '', city: '', state: '', zipCode: '', addressType: 'Home' }
 
 function PersonForm() {
@@ -111,7 +111,7 @@ function PersonForm() {
       })
       .then(body => {
         if (body.personId) {
-          history.push(`/personPage/${person.personId}`)
+          history.push(`/personPage/${body.personId}`)
         } else if (body) {
           setErrors(body);
         }
@@ -133,8 +133,9 @@ function PersonForm() {
 
       fetch(`http://localhost:8080/api/person/${editId}`, init)
       .then(resp => {
+        console.log(resp.status);
         switch (resp.status) {
-          case 204:
+          case 200:
             return null;
           case 400:
             return resp.json();

@@ -107,7 +107,8 @@ function BusinessForm() {
       })
       .then(body => {
         if (body.businessId) {
-          history.push(`/businessPage/${business.businessId}`)
+          
+          history.push(`/businessPage/${body.businessId}`)
         } else if (body) {
           setErrors(body);
         }
@@ -128,21 +129,21 @@ function BusinessForm() {
     };
 
     fetch(`http://localhost:8080/api/business/${editId}`, init)
-      .then(resp => {
-        switch (resp.status) {
-          case 204:
-            return null;
-          case 400:
-            return resp.json();
-          case 404:
-            history.push('/not-found', { id: editId });
-            break;
-          case 403:
-            authManager.logout();
-            history.push('/login');
-            break;
-          default:
-            return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
+    .then(resp => {
+      switch (resp.status) {
+        case 204:
+          return null;
+        case 400:
+          return resp.json();
+        case 404:
+          history.push('/not-found', { id: editId });
+          break;
+        case 403:
+          authManager.logout();
+          history.push('/login');
+          break;
+        default:
+          return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
 
         }
       })
