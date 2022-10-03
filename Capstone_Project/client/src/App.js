@@ -40,7 +40,6 @@ function App() {
 
     const user = {
       username: decodedToken.sub,
-      personId: decodedToken.appUserId,
       roles,
       token,
       hasRole: function(role) {
