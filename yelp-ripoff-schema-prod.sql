@@ -76,7 +76,7 @@ create table business (
 businessId int primary key auto_increment,
 `name` varchar(50) not null,
  `description` varchar(100) not null,
- photo blob null,
+ photo longblob null,
  photoName varchar(150) null,
  rating Double not null,
  locationId int not null,

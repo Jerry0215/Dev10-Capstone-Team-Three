@@ -1,7 +1,7 @@
 import Person from "./Person";
 import {useHistory, useParams} from 'react-router-dom'; 
-import { useEffect, useState } from 'react';
-
+import { useEffect, useState, useContext } from 'react';
+import UserContext from '../UserContext';
 
 
 function PersonPage(){
@@ -10,10 +10,18 @@ function PersonPage(){
 
     let { personId } = useParams();
 
-    const init = {
-        method:'GET'
-    };
+    const authManager = useContext(UserContext);
+
     useEffect(() => {
+
+      const init = {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${authManager.user.token}`
+        }
+      };
+
+      
         fetch(`http://localhost:8080/api/person/${personId}`,init)
         .then(resp => {
             if (resp.status === 200) {
@@ -31,16 +39,16 @@ function PersonPage(){
         
         return (
         <>
-        <h2>{person.firstName}{person.middleName} {person.lastName} {person.suffix}</h2>
+        <h2>{person.firstName} {person.middleName} {person.lastName} {person.suffix}</h2>
         
 
         <table className="table table-striped">
             <thead>
               <tr>
-                <th scope="col">Name</th>
+                {/* <th scope="col">Name</th>
                 <th scope="col">Phone</th>
                 <th scope="col">Photo</th>
-                <th></th>
+                <th></th> */}
               </tr>
             </thead>
             <tbody>

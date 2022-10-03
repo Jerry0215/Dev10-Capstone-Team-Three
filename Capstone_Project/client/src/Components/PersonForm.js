@@ -1,6 +1,7 @@
 import { useHistory, useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import Error from './Error';
+import UserContext from '../UserContext';
 
 
 
@@ -67,6 +68,7 @@ function PersonForm(){
         
         const newPerson = {...person};
 
+
        
         
         newPerson["photo"] = dataURL;
@@ -88,6 +90,7 @@ function PersonForm(){
         };
     
         fetch('http://localhost:8080/api/person', init)
+
         .then(resp => {
           
           if (resp.status === 201 || resp.status === 400) {
@@ -96,16 +99,11 @@ function PersonForm(){
           return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
         })
         .then(body => {
+
           
+
           if (body.personId) {
-            
-            history.push('/person')
-          } else if (body) {
-            setErrors(body);
-          }
-        })
-        .catch(err => history.push('/error', {errorMessage: err}));
-      }
+
 
       
 
@@ -138,13 +136,41 @@ function PersonForm(){
         })
         .then(body => {
           if (!body) {
+
             history.push('/person')
           } else if (body) {
             setErrors(body);
           }
         })
-        .catch(err => history.push('/error', {errorMessage: err}));
-      }
+        .catch(err => history.push('/error', { errorMessage: err }));
+    }
+  }, [])
+
+  const updatePerson = () => {
+    const updatePerson = { id: editId, ...person };
+
+    const init = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatePerson)
+    };
+
+    fetch(`http://localhost:8080/api/person/${editId}`, init)
+      .then(resp => {
+        console.log(resp.status);
+        switch (resp.status) {
+          case 200:
+            return null;
+          case 400:
+            return resp.json();
+          case 404:
+            history.push('/not-found', { id: editId });
+            break;
+          default:
+            return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
+
 
      
 
@@ -176,11 +202,8 @@ function PersonForm(){
       
       
 
-      const handleTwoFunction = (evt) => {
-        convertToBase64();
-        
-     
-      }
+
+
 
     return(
         <>
@@ -226,6 +249,7 @@ function PersonForm(){
           
         </>
     )
+
 }
 
 

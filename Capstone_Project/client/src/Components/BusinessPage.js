@@ -1,15 +1,27 @@
-import {useHistory, useParams} from 'react-router-dom'; 
-import { useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import { useEffect, useState,  useContext } from 'react';
 import Reviews from './Reviews';
 import Events from './Events';
 import Locations from './Locations';
-function BusinessPage(){
-    const [business,setBusiness] = useState([])
-    const [path, setPath] = useState([])
-    let { businessId } = useParams();
+import UserContext from '../UserContext';
+
+
+function BusinessPage() {
+  const [business, setBusiness] = useState([])
+  const [path, setPath] = useState([])
+  let { businessId } = useParams();
+
+  const authManager = useContext(UserContext);
+
+  useEffect(() => {
+
     const init = {
-        method:'GET'
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${authManager.user.token}`
+      }
     };
+
     useEffect(() => {
         fetch(`http://localhost:8080/api/business/${businessId}`,init)
         .then(resp => {
