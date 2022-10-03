@@ -26,7 +26,7 @@ public class Person {
     private String photo;
 
 
-//    private AppUser user;
+    private AppUser user;
 
 
     private int locationId;
@@ -147,13 +147,13 @@ public class Person {
     }
 
 
-//    public AppUser getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(AppUser user) {
-//        this.user = user;
-//    }
+    public AppUser getUser() {
+        return user;
+    }
+
+    public void setUser(AppUser user) {
+        this.user = user;
+    }
 
 
 }

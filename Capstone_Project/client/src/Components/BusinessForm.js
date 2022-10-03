@@ -20,8 +20,16 @@ function BusinessForm() {
   const authManager = useContext(UserContext);
 
   useEffect(() => {
+
+    const init = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${authManager.user.token}`
+      }
+    };
+
     if (editId) {
-      fetch(`http://localhost:8080/api/business/${editId}`)
+      fetch(`http://localhost:8080/api/business/${editId}`, init)
         .then(resp => {
           switch (resp.status) {
             case 200:

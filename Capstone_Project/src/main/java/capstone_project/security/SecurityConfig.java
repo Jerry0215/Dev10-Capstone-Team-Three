@@ -25,12 +25,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors();
 
         http.authorizeRequests()
-                // what are we going to set up each endpoint to be
+
                 .antMatchers(HttpMethod.POST, "/authenticate", "/create_account").permitAll()
 
+                .antMatchers(HttpMethod.GET,  "/api/person","/api/person/*","/api/business","/api/business/*","/api/location","/api/location/*","/api/review","/api/review/*","/api/event","/api/event/*","/api/business/search/*","/api/person/search/*").hasAnyRole("ADMIN","USER")
 
-                // last resort
-                .antMatchers("/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/person", "/api/business","/api/review").hasAnyRole("ADMIN", "USER")
+
+                .antMatchers(HttpMethod.PUT, "/api/person/*","/api/business/*").hasAnyRole("ADMIN", "USER")
+
+                .antMatchers(HttpMethod.DELETE,  "/api/person/*","api/business/*").hasAnyRole("ADMIN","USER")
+
+                .antMatchers("/**").denyAll()
 
                 .and()
                 .addFilter(new JwtRequestFilter(authenticationManager(), converter))
