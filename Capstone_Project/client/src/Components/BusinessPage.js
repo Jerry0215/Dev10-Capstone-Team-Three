@@ -7,6 +7,7 @@ import UserContext from '../UserContext';
 
 
 function BusinessPage() {
+  
   const [business, setBusiness] = useState([])
   const [path, setPath] = useState([])
   let { businessId } = useParams();
@@ -41,17 +42,21 @@ function BusinessPage() {
     //.catch(err => history.push('/error', {errorMessage: err}));
   }, [])
 
-
-
+  const [editMode, setEditMode] = useState(false); 
+  
+  const enterEditMode = () => setEditMode(!editMode);
+  console.log(editMode); 
   return (
     <>
       <h2>{business.name}</h2>
       <p>{business.description}</p>
       <img src={path} alt="Everything is on fire" />
-      {business.personId == authManager.user.personId ? <button type="button">Edit Business</button>:null}
+      {business.personId == authManager.user.personId ? <button type="button" onClick={enterEditMode}>Change Edit Mode</button>:null}
+      {(editMode && business.personId == authManager.user.personId) ? <button type="button">Edit Business</button>:null}
       <Reviews businessId={businessId}></Reviews>
-      <Events businessId={businessId}></Events>
       {business.personId != authManager.user.personId ? <button type="button">Add Review</button>:null}
+      <Events businessId={businessId}></Events>
+      {(editMode && business.personId == authManager.user.personId) ? <button type="button">Add Event</button>:null}
       <Locations businessId={businessId}></Locations>
     </>
   )
