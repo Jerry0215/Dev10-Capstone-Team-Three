@@ -23,6 +23,7 @@ import SearchPersons from "./Components/SearchPersons";
 import SearchBusinesses from "./Components/SearchBusinesses";
 import PersonForm from "./Components/PersonForm";
 import BusinessForm from "./Components/BusinessForm";
+import LocationForm from "./Components/LocationForm";
 
 const LOCALSTORAGE_KEY = 'NyelpAppToken';
 
@@ -120,6 +121,9 @@ function App() {
         </Route>
         <Route path={['/businessform/add', '/businessform/edit/:editId']}>
           <BusinessForm></BusinessForm>
+        </Route>
+        <Route path={['/locationform/add', '/locationform/edit/:editId']}>
+          <LocationForm></LocationForm>
         </Route>
         </div>
       </Router>

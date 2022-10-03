@@ -22,35 +22,36 @@ function BusinessPage() {
       }
     };
 
-    fetch(`http://localhost:8080/api/business/${businessId}`, init)
-      .then(resp => {
-        if (resp.status === 200) {
-          return resp.json();
-        }
-        return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
-      })
-      .then(data => {
+    useEffect(() => {
+        fetch(`http://localhost:8080/api/business/${businessId}`,init)
+        .then(resp => {
+          if (resp.status === 200) {
+            return resp.json();
+          }
+          return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
+        })
+        .then(data => {
+          
+          setBusiness(data);
+          
+          console.log(data.photo)
+          setPath(data.photo);
+        })
+        //.catch(err => history.push('/error', {errorMessage: err}));
+      },[])
 
-        setBusiness(data);
+      
+      
+      return (
+        <>
+        <h2>{business.name}</h2>
+        <img src={path} alt="Everything is on fire"/>
 
-        console.log(data.photo)
-        setPath(data.photo);
-      })
-    //.catch(err => history.push('/error', {errorMessage: err}));
-  }, [])
-
-
-
-  return (
-    <>
-      <h2>{business.name}</h2>
-      <img src={path} alt="Everything is on fire" />
-
-      <Reviews businessId={businessId}></Reviews>
-      <Events businessId={businessId}></Events>
-      <Locations businessId={businessId}></Locations>
-    </>
-  )
+        <Reviews businessId={businessId}></Reviews>
+        <Events businessId={businessId}></Events>
+        <Locations businessId={businessId}></Locations>
+        </>
+      )
 
 
 
