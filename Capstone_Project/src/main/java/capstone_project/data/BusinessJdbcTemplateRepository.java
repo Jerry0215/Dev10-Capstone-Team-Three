@@ -15,6 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Blob;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Base64;
 import java.util.List;
@@ -28,7 +29,7 @@ public class BusinessJdbcTemplateRepository implements BusinessRepository{
     }
 
     @Override
-    public Business findById(int businessId){
+    public Business findById(int businessId) throws SQLException, IOException {
         final String sql = "select * "
                 +"from business "
                 +"where businessId = ?;";
@@ -42,7 +43,7 @@ public class BusinessJdbcTemplateRepository implements BusinessRepository{
         return business;
     }
     @Override
-    public List<Business> findAll() {
+    public List<Business> findAll() throws SQLException, IOException {
         final String sql = "select * "
                 + "from business;";
 
@@ -76,7 +77,7 @@ public class BusinessJdbcTemplateRepository implements BusinessRepository{
             }
 
             ps.setString(4, business.getPhotoName());
-            ps.setInt(5,0);
+            ps.setDouble(5,0);
             ps.setInt(6,business.getLocationId());
             ps.setInt(7,business.getPersonId());
             return ps;
@@ -88,24 +89,33 @@ public class BusinessJdbcTemplateRepository implements BusinessRepository{
         return business;
     }
     @Override
-    public boolean update(Business business){
+    public boolean update(Business business) throws IOException, SQLException {
         final String sql = "update business set "
                 +"name = ?, "
                 +"description = ?, "
+                +"photo = ?, "
+                +"photoName = ?, "
                 +"rating = ?, "
                 +"locationId = ?, "
                 +"personId = ? "
                 +"where businessId = ?;";
+        byte[] name = Base64.getEncoder().encode(business.getPhoto().getBytes());
+
+        byte[] decodedString = Base64.getDecoder().decode(new String(name).getBytes("UTF-8"));
+        Blob blob = new javax.sql.rowset.serial.SerialBlob(decodedString);
+
         return jdbcTemplate.update(sql,
                 business.getName(),
                 business.getDescription(),
+                blob,
+                business.getPhotoName(),
                 business.getRating(),
                 business.getLocationId(),
                 business.getPersonId(),
                 business.getBusinessId()) > 0;
     }
 
-    private void updateRating(Business business){
+    private void updateRating(Business business) throws SQLException, IOException {
         if(business == null){
             return;
         }

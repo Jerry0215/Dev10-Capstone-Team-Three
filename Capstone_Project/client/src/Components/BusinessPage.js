@@ -1,5 +1,5 @@
 import { useHistory, useParams } from 'react-router-dom';
-import { useEffect, useState,  useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Reviews from './Reviews';
 import Events from './Events';
 import Locations from './Locations';
@@ -21,6 +21,8 @@ function BusinessPage() {
         Authorization: `Bearer ${authManager.user.token}`
       }
     };
+
+    console.log(authManager);
 
     fetch(`http://localhost:8080/api/business/${businessId}`, init)
       .then(resp => {
@@ -44,6 +46,7 @@ function BusinessPage() {
   return (
     <>
       <h2>{business.name}</h2>
+      <p>{business.description}</p>
       <img src={path} alt="Everything is on fire" />
 
       <Reviews businessId={businessId}></Reviews>

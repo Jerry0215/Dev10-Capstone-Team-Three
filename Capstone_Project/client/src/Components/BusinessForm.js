@@ -91,6 +91,7 @@ function BusinessForm() {
     const init = {
       method: 'POST',
       headers: {
+        Authorization: `Bearer ${authManager.user.token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ ...business })
@@ -107,8 +108,8 @@ function BusinessForm() {
       .then(body => {
 
         if (body.businessId) {
-
-          history.push(`/businessPage/${business.businessId}`)
+          
+          history.push(`/businessPage/${body.businessId}`)
         } else if (body) {
           setErrors(body);
         }
@@ -128,7 +129,7 @@ function BusinessForm() {
       body: JSON.stringify(updateBusiness)
     };
 
-    fetch(`http://localhost:8080/business/${editId}`, init)
+    fetch(`http://localhost:8080/api/business/${editId}`, init)
     .then(resp => {
       switch (resp.status) {
         case 204:
