@@ -4,8 +4,8 @@ import UserContext from '../UserContext';
 import Error from './Error';
 
 const DEFAULT_BUSINESS = { name: '', description: '', photoDir: '', photo: '', photoName: '', rating: 0, photoName: '', locationId: 1, personId: 1 }
-const DEFAULT_LOCATION = { address: '', city: '', state: '', zipCode: '', addressType: 'Business'}
-const DEFAULT_REVIEW = {content: '', timeDate:'', rating: 0, personId: 1, businessId: 1}
+const DEFAULT_LOCATION = { address: '', city: '', state: '', zipCode: '', addressType: 'Business' }
+const DEFAULT_REVIEW = { content: '', timeDate: '', rating: 0, personId: 1, businessId: 1 }
 
 function BusinessForm() {
 
@@ -91,6 +91,7 @@ function BusinessForm() {
     const init = {
       method: 'POST',
       headers: {
+        Authorization: `Bearer ${authManager.user.token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ ...business })
@@ -105,9 +106,7 @@ function BusinessForm() {
         return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
       })
       .then(body => {
-
         if (body.businessId) {
-
           history.push(`/businessPage/${business.businessId}`)
         } else if (body) {
           setErrors(body);
@@ -117,44 +116,44 @@ function BusinessForm() {
   }
 
   const updateBusiness = () => {
-    const updateBusiness = {id: editId, ...business};
+    const updateBusiness = { id: editId, ...business };
 
     const init = {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${authManager.user.token}`
+        Authorization: `Bearer ${authManager.user.token}`,
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(updateBusiness)
     };
 
-    fetch(`http://localhost:8080/business/${editId}`, init)
-    .then(resp => {
-      switch (resp.status) {
-        case 204:
-          return null;
-        case 400:
-          return resp.json();
-        case 404:
-          history.push('/not-found', { id: editId });
-          break;
-        case 403:
-          authManager.logout();
-          history.push('/login');
-          break;
-        default:
-          return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
+    fetch(`http://localhost:8080/api/business/${editId}`, init)
+      .then(resp => {
+        switch (resp.status) {
+          case 204:
+            return null;
+          case 400:
+            return resp.json();
+          case 404:
+            history.push('/not-found', { id: editId });
+            break;
+          case 403:
+            authManager.logout();
+            history.push('/login');
+            break;
+          default:
+            return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
 
-      }
-    })
-    .then(body => {
-      if (!body) {
-        history.push(`/businesspage/${business.businessId}`)
-      } else if (body) {
-        setErrors(body);
-      }
-    })
-    .catch(err => history.push('/error', {errorMessage: err}));
+        }
+      })
+      .then(body => {
+        if (!body) {
+          history.push(`/businesspage/${business.businessId}`)
+        } else if (body) {
+          setErrors(body);
+        }
+      })
+      .catch(err => history.push('/error', { errorMessage: err }));
 
   }
 
