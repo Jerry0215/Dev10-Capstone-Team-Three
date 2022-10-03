@@ -58,10 +58,6 @@ function PersonPage(){
         </>
         )
 
-
-    
-   
-    
 }
 
 export default PersonPage;

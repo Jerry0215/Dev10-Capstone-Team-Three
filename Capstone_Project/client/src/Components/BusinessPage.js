@@ -13,16 +13,15 @@ function BusinessPage() {
 
   const authManager = useContext(UserContext);
 
-  useEffect(() => {
-
-    const init = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${authManager.user.token}`
-      }
-    };
-
     useEffect(() => {
+
+      const init = {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${authManager.user.token}`
+        }
+      };
+  
         fetch(`http://localhost:8080/api/business/${businessId}`,init)
         .then(resp => {
           if (resp.status === 200) {
@@ -41,7 +40,6 @@ function BusinessPage() {
       },[])
 
       
-      
       return (
         <>
         <h2>{business.name}</h2>
@@ -51,9 +49,7 @@ function BusinessPage() {
         <Events businessId={businessId}></Events>
         <Locations businessId={businessId}></Locations>
         </>
-      )
-
-
+      );
 
 }
 
