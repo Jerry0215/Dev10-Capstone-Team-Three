@@ -1,4 +1,5 @@
 function Error({ errors }) {
+
     return (<div className="alert alert-danger" role="alert">
              <ul>
                {errors.map(error => <li key={error}>{error}</li>)}
@@ -9,3 +10,4 @@ function Error({ errors }) {
    }
    
    export default Error;
+
