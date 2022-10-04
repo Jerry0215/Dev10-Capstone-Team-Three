@@ -71,9 +71,9 @@ function ReviewForm(){
             return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
           })
           .then(body => {
-            if (body.reviewId) {
+            if (body) {
               
-             // history.push(`/businessPage/${businessId}`)
+             history.push(`/businessPage/${businessId}`)
             } else if (body) {
               setErrors(body);
             }
@@ -114,7 +114,7 @@ function ReviewForm(){
           })
           .then(body => {
             if (!body) {
-              //history.push(`/businesspage/${businessId}`)
+              history.push(`/businesspage/${businessId}`)
             } else if (body) {
               setErrors(body);
             }
