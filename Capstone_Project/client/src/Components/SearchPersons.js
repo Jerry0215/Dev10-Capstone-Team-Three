@@ -56,11 +56,9 @@ function SearchPersons() {
                 <button className="btn btn-outline-success my-2 my-sm-0 btn btn-light" type="submit">Search</button>
             </form>
 
-            <table className="table table-striped">
-                <tbody>
-                    {persons.map(person => <Person key={person.personId} person={person} />)}
-                </tbody>
-            </table>
+        <div className="row">  
+            {persons.map(person => <Person key={person.personId} person={person} />)}
+        </div>
 
 
         </>
