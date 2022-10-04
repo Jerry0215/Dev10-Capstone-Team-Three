@@ -32,6 +32,10 @@ public class ReviewController {
         return service.findById(businessId);
     }
 
+    @GetMapping("/byReview/{reviewId}")
+    public Review findByReviewId(@PathVariable int reviewId){
+        return service.findByReviewId(reviewId);
+    }
     @PostMapping
     public ResponseEntity<Object> add(@RequestBody Review review){
         Result<Review> result = service.add(review);

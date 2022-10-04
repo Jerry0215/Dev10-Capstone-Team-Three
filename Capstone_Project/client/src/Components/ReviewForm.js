@@ -3,21 +3,21 @@ import { useContext, useEffect, useState } from 'react';
 import Error from './Error';
 import UserContext from '../UserContext';
 
+const DEFAULT_REVIEW = {content:'', timeDate:'', rating:'', personId:1,businessId:1}
+function ReviewForm(){
+    
 
-
-
-
-function EventForm(){
-    const {businessId, editId} = useParams(); 
-    const DEFAULT_EVENT = { name: '', description: '', timeDate: '', businessId: businessId};
-  
-    const [event, setEvent] = useState(DEFAULT_EVENT); 
-    const authManager = useContext(UserContext); 
+    const [review, setReview] = useState(DEFAULT_REVIEW);
+    const authManager = useContext(UserContext);
+   
+    const editId = 1; 
+    console.log("here");
+    console.log(authManager); 
     const history = useHistory();
-    const [errors, setErrors] = useState([]); 
+    const [errors,setErrors] = useState([]); 
+    
 
     useEffect(() => {
-
         const init = {
           method: 'GET',
           headers: {
@@ -26,10 +26,10 @@ function EventForm(){
         };
     
         if (editId) {
-          fetch(`http://localhost:8080/api/event/${editId}`, init)
+          fetch(`http://localhost:8080/api/review/byReview/${editId}`, init)
             .then(resp => {
               switch (resp.status) {
-                case 200:
+                case 204:
                   return resp.json();
                 case 404:
                   history.push('/not-found', { id: editId })
@@ -40,19 +40,15 @@ function EventForm(){
             })
             .then(body => {
               if (body) {
-                setEvent(body);
+                setReview(body);
               }
             })
             .catch(err => history.push('/error', { errorMessage: err }));
         }
     
-      }, [])
+      }, []);
     
-    
-    
-
-    
-      const saveEvent = () => {
+      const saveReview = () => {
     
         const init = {
           method: 'POST',
@@ -60,11 +56,11 @@ function EventForm(){
             Authorization: `Bearer ${authManager.user.token}`,
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ ...event })
+          body: JSON.stringify({ ...review })
         };
-        console.log(JSON.stringify({ ...event }))
+        console.log(JSON.stringify({ ...review}))
     
-        fetch('http://localhost:8080/api/event', init)
+        fetch('http://localhost:8080/api/review', init)
           .then(resp => {
     
             if (resp.status === 201 || resp.status === 400) {
@@ -73,18 +69,18 @@ function EventForm(){
             return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
           })
           .then(body => {
-            if (body.eventId) {
+            if (body.reviewId) {
               
-              history.push(`/businessPage/${businessId}`)
+             // history.push(`/businessPage/${businessId}`)
             } else if (body) {
               setErrors(body);
             }
           })
           .catch(err => history.push('/error', { errorMessage: err }));
       }
-    
-      const updateEvent = () => {
-        const updateEvent = { id: editId, ...event };
+
+      const updateReview = () => {
+        const updateReview = { id: editId, ...review };
     
         const init = {
           method: 'PUT',
@@ -92,10 +88,10 @@ function EventForm(){
             Authorization: `Bearer ${authManager.user.token}`,
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(updateEvent)
+          body: JSON.stringify(updateReview)
         };
     
-        fetch(`http://localhost:8080/api/event/${editId}`, init)
+        fetch(`http://localhost:8080/api/review/${editId}`, init)
         .then(resp => {
           switch (resp.status) {
             case 204:
@@ -116,7 +112,7 @@ function EventForm(){
           })
           .then(body => {
             if (!body) {
-              history.push(`/businesspage/${businessId}`)
+              //history.push(`/businesspage/${businessId}`)
             } else if (body) {
               setErrors(body);
             }
@@ -124,60 +120,51 @@ function EventForm(){
           .catch(err => history.push('/error', { errorMessage: err }));
     
       }
+      const handleChangeReview= (evt) => {
 
-        const handleChangeEvent= (evt) => {
-
-            const property = evt.target.name;
-            const valueType = evt.target.type === 'checkbox' ? 'checked' : 'value';
-            const value = evt.target[valueType];
-        
-            const newEvent = { ...event };
-        
-            newEvent[property] = value;
-            console.log(newEvent);
-            setEvent(newEvent);
-          }
+        const property = evt.target.name;
+        const valueType = evt.target.type === 'checkbox' ? 'checked' : 'value';
+        const value = evt.target[valueType];
     
+        const newReview = { ...review};
+    
+        newReview[property] = value;
+        console.log(newReview);
+        setReview(newReview);
+      }
 
-          const onSubmit = (evt) => {
-            event.timeDate = event.timeDate + ":00.000+00:00"
-            evt.preventDefault();
-            
-            const fetchFunction = editId > 0 ? updateEvent : saveEvent;
+      const onSubmit = (evt) => {
+        //event.timeDate = event.timeDate + ":00.000+00:00"
+        evt.preventDefault();
         
-            fetchFunction();
-            
+        const fetchFunction = editId > 0 ? updateReview : saveReview;
+    
+        fetchFunction();
         
-          }
-          const [date, onDateChange] = useState(new Date());
+        
+      }
 
-          return(
-            <>
-            <h2>{editId ? 'Update' : 'Add'} Event</h2>
+      return(
+        <>
+            <h2>{editId ? 'Update' : 'Add'} Review</h2>
             {errors.length > 0 ? <Error errors={errors} /> : null}
             <form onSubmit={onSubmit}>
             <div className="form-group">
-              <label htmlFor="name">Name:</label>
-              <input name="name" type="text" className="form-control" id="name" value={event.name} onChange={handleChangeEvent} />
+              <label htmlFor="content">Content:</label>
+              <input name="content" type="text" className="form-control" id="content" value={review.content} onChange={handleChangeReview} />
             </div>
             <div className="form-group">
-              <label htmlFor="description">Description:</label>
-              <input name="description" type="text" className="form-control" id="description" value={event.description} onChange={handleChangeEvent} />
+              <label htmlFor="rating">Content:</label>
+              <input name="rating" type="number" className="form-control" id="rating" value={review.rating} onChange={handleChangeReview} />
             </div>
-            <div className="form-group">
-            <label htmlFor="timeDate">Date/Time:</label>
-              <input name="timeDate" type="datetime-local" className="form-control" id="timeDate" value={event.timeDate} onChange={handleChangeEvent} />
-              
-            </div>
-            
-
             <div className="form-group">
                 <button type="submit" className="btn btn-success mr-3">Submit</button>
             </div>
             </form>
             </>
-          );
+
+      );
 
 }
 
-export default EventForm; 
+export default ReviewForm;
