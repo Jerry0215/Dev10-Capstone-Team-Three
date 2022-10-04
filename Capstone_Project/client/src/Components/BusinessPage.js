@@ -48,7 +48,6 @@ function BusinessPage() {
   const enterEditMode = () => setEditMode(!editMode);
 
   const addReviewClick = () => history.push(`/reviewform/add/${business.businessId}`);
-  console.log(editMode); 
 
 
 
