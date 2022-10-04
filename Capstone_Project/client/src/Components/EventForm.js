@@ -3,10 +3,6 @@ import { useContext, useEffect, useState } from 'react';
 import Error from './Error';
 import UserContext from '../UserContext';
 
-
-
-
-
 function EventForm(){
     const {businessId, editId} = useParams(); 
     const DEFAULT_EVENT = { name: '', description: '', timeDate: '', businessId: businessId};

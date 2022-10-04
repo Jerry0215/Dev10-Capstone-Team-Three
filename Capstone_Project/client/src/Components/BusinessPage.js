@@ -46,8 +46,12 @@ function BusinessPage() {
   const [editMode, setEditMode] = useState(false); 
   const addEventClick = () => history.push(`/eventform/add/${business.businessId}`); 
   const enterEditMode = () => setEditMode(!editMode);
+
   const addReviewClick = () => history.push(`/reviewform/add/${business.businessId}`);
   console.log(editMode); 
+
+
+
   return (
     <>
       <h2>{business.name}</h2>

@@ -24,9 +24,13 @@ public class BusinessMapper implements RowMapper<Business> {
         Blob blob = resultSet.getBlob("photo");
         business.setPhotoName(resultSet.getString("photoName"));
         business.setPhotoDir("pictures\\" + resultSet.getString("photoName"));
-        byte[] data = blob.getBytes(1, (int) blob.length());
-        String test = new String(data);
-        business.setPhoto(test);
+        if(blob != null) {
+            byte[] data = blob.getBytes(1, (int) blob.length());
+            String test = new String(data);
+            business.setPhoto(test);
+        } else {
+            business.setPhoto("");
+        }
         business.setRating(resultSet.getDouble("rating"));
         business.setLocationId(resultSet.getInt("locationId"));
         business.setPersonId(resultSet.getInt("personId"));

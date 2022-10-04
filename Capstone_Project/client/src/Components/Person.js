@@ -1,13 +1,16 @@
-
+import { useHistory } from "react-router-dom";
 
 
 function Person ({ person }) {
 
+  const onClick = () => history.push(`/personPage/${person.personId}`);
+  const history = useHistory();
   const path = person.photo;
+
     return (
       
       <div className="col-sm-4">
-      <div className="cards">
+      <div className="card">
       <div className="card-group">
 
 
@@ -16,15 +19,14 @@ function Person ({ person }) {
         <div className="menu"></div>
         
         <div className="card-body">
-          <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" className="btn btn-primary">Go somewhere</a>
+          <p className="card-text">{person.firstName} {person.middleName} {person.lastName} {person.suffix} {person.locationId}</p>
+          <button type="button" onClick={onClick}>View Page</button>
         </div>
 
       </div>
       </div>
       </div>
-
-    );
+);
 
 }
 

@@ -45,7 +45,10 @@ function Login({ onSubmit }) {
           return Promise.reject('Something terrible has happend');
       }
     })
-    .then(body => authManager.login(body.jwt_token))
+    .then(body => {
+      authManager.login(body.jwt_token)
+      
+    })
     //.catch(err => history.push('/error', {errorMessage: err}));
     
   }

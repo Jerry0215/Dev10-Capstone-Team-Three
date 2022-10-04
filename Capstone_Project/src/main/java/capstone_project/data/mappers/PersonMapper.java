@@ -25,13 +25,19 @@ public class PersonMapper implements RowMapper<Person> {
         person.setMiddleName(resultSet.getString("middleName"));
         person.setLastName(resultSet.getString("lastName"));
         person.setSuffix(resultSet.getString("suffix"));
+
         Blob blob = resultSet.getBlob("photo");
 
         person.setPhotoName(resultSet.getString("photoName"));
         person.setPhotoDir("pictures\\" + resultSet.getString("photoName"));
-        byte[] data = blob.getBytes(1, (int) blob.length());
-        String test = new String(data);
-        person.setPhoto(test);
+        if(blob != null) {
+            byte[] data = blob.getBytes(1, (int) blob.length());
+            String test = new String(data);
+            person.setPhoto(test);
+        }else {
+            person.setPhoto("");
+        }
+
         person.setPhone(resultSet.getString("phone"));
         person.setLocationId(resultSet.getInt("locationId"));
         person.setUserId(resultSet.getInt("appUserId"));
