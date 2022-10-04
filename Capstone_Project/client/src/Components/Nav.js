@@ -27,7 +27,13 @@ function Nav() {
               </li>
             </>) : null
           }
-
+          {authManager.user ?
+            (<>
+              <li className="nav-item active">
+                <Link to={"/businessProfileRedirect"} className='nav-link'>Business Profile</Link>
+              </li>
+            </>) : null
+          }
           {authManager.user ? (<>
             <li className="nav-item active">
               <Link className="nav-link" to="/searchpeople">Search People</Link>

@@ -44,6 +44,10 @@ public class BusinessService {
     public Business findById(int businessId) throws SQLException, IOException {
         return repository.findById(businessId);
     }
+
+    public Business findByPerson(int personId) throws SQLException, IOException{
+        return repository.findByPerson(personId);
+    }
     public boolean deleteById(int businessId){
         return repository.deleteById(businessId);
     }

@@ -9,12 +9,12 @@ import LocationFormBusiness from './LocationFormBusiness';
 const DEFAULT_LOCATION = { address: '', city: '', state: '', zipCode: '', addressType: 'Business' }
 
 
-function BusinessForm(  ) {
+function BusinessForm() {
 
   const authManager = useContext(UserContext);
 
   const DEFAULT_BUSINESS = { name: '', description: '', photoDir: '', photo: '', photoName: '', rating: 0, photoName: '', locationId: 1, personId: authManager.user.personId }
-  const DEFAULT_REVIEW = { content: '', timeDate: '', rating: 0, personId: 1, businessId: 1 }
+  const DEFAULT_REVIEW = { content: '', timeDate: '', rating: 0, personId: authManager.user.personId, businessId: 1 }
 
 
   const [business, setBusiness] = useState(DEFAULT_BUSINESS);

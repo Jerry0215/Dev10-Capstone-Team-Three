@@ -35,6 +35,10 @@ public class BusinessController {
         return service.findById(businessId);
     }
 
+    @GetMapping("/byPerson/{personId}")
+    public Business findByPerson(@PathVariable int personId) throws SQLException, IOException{
+        return service.findByPerson(personId);
+    }
     @PostMapping
     public ResponseEntity<Object> add(@RequestBody Business business){
         Result<Business> result = service.add(business);
