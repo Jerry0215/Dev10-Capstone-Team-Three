@@ -78,7 +78,7 @@ function Register() {
       console.log(resp.status);
       switch (resp.status) {    
         case 201:
-
+        history.push("/login");
         case 400:
           return resp.json();
         case 403:

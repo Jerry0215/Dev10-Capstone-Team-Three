@@ -19,7 +19,6 @@ function Event ({ event, editMode }) {
         <td>{event.name}</td>
         <td>{event.description}</td>
         <td>{event.timeDate}</td>
-        <td>{event.locationId}</td>
         <td>{event.businessId}</td>
         {editMode ? <button type="button" onClick={handleEditClick}>Edit</button>: null} 
       </tr>
