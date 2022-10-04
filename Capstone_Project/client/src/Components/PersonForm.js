@@ -2,6 +2,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import Error from './Error';
 import UserContext from '../UserContext';
+import LocationFormPerson from './LocationFormPerson';
 
 
 const DEFAULT_PERSON = { firstName: '', middleName: '', lastName: '', suffix: '', photo: '', photoName: '', phone: '', locationId: 1, userId: 1 }
@@ -11,8 +12,8 @@ function PersonForm() {
 
   const [person, setPerson] = useState(DEFAULT_PERSON);
   const [location, setLocation] = useState(DEFAULT_LOCATION);
+  const [buttonPopup, setButtonPopup] = useState(false);
   const { editId } = useParams();
-  const [blob, setBlob] = useState([]);
   const history = useHistory();
   const [errors, setErrors] = useState([]);
   const locationID = 0;
@@ -228,6 +229,10 @@ function PersonForm() {
                 </div>
               </form>
 
+      
+              <button type="button" className="btn btn-warning " onClick={() => {setButtonPopup(true)}} >Edit Location</button>
+          <LocationFormPerson trigger={buttonPopup} setTrigger={setButtonPopup} person={person} key={person.personId} onCLick={LocationFormPerson}></LocationFormPerson>            
+       
             </>
           )
 

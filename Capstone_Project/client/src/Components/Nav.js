@@ -19,38 +19,42 @@ function Nav() {
           <li className="nav-item active">
             <Link className="nav-link" to="/">Home<span className="sr-only">(current)</span></Link>
           </li>
-       
+
           {authManager.user ?
-              (<>
-                <li className="nav-item active">
-                  <Link to={"/personpage/" +authManager.user.personId} className='nav-link'>Profile</Link>
-                </li>
-              </>) : null
-            }
+            (<>
+              <li className="nav-item active">
+                <Link to={"/personpage/" + authManager.user.personId} className='nav-link'>Profile</Link>
+              </li>
+            </>) : null
+          }
 
-          <li className="nav-item active">
-            <Link className="nav-link" to="/searchpeople">Search People</Link>
-          </li>
+          {authManager.user ? (<>
+            <li className="nav-item active">
+              <Link className="nav-link" to="/searchpeople">Search People</Link>
+            </li>
 
-          <li className="nav-item active">
-            <Link className="nav-link" to="/searchbusinesses">Search Businesses</Link>
-          </li>
+            <li className="nav-item active">
+              <Link className="nav-link" to="/searchbusinesses">Search Businesses</Link>
+            </li>
+          </>) : ""
+          }
+
 
         </ul>
 
         <ul className="navbar-nav mt-2 mt-lg-0">
-        <div className="right-aligned-links">
+          <div className="right-aligned-links">
             {!authManager.user ? (<>
               <li className="nav-item active">
                 <Link to="/login" className='nav-link'>Sign In</Link>
               </li>
             </>) :
-              <button type="button" className="btn btn-secondary" onClick={authManager.logout}>Sign Out</button>}
+              <Link to={"/"} button type="button" className="btn btn-secondary" onClick={authManager.logout}>Sign Out</Link>}
           </div>
 
         </ul>
 
-        
+
       </div>
     </nav>
 
