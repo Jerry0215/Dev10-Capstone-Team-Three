@@ -17,6 +17,7 @@ import jwt_decode from 'jwt-decode';
 import BusinessPage from "./Components/BusinessPage";
 import AllEvents from "./Components/AllEvents";
 import Error from "./Components/Error";
+import ServerError from "./Components/ServerError"
 import Register from "./Components/Register";
 import PersonPage from "./Components/PersonPage";
 import SearchPersons from "./Components/SearchPersons";
@@ -97,8 +98,8 @@ function App() {
           <SearchBusinesses/>
         </Route>
         <Route exact path="/error">
-          <Error>
-          </Error>
+          <ServerError>
+          </ServerError>
         </Route>
         <Route exact path ="/register">
           <Register/>
