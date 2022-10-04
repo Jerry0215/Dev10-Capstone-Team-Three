@@ -117,8 +117,7 @@ constraint fk_review_business_id
 
 insert into appUser
     values
-    (1,'admin@admin.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0),
-    (2,'user@user.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0);
+    (1,'admin@admin.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0);
     
 insert into appRole
 	values
@@ -127,8 +126,7 @@ insert into appRole
 
 insert into appUserRole
     values
-    (1, 2),
-    (2, 1);
+    (1, 2);
     
 insert into location 
 	values
@@ -157,6 +155,7 @@ insert into `event` (`name`,`description`,timeDate, businessId)
 
 select  sum(rating)/count(*) from review where businessId = 1;
 
+select * from appUser;
 select * from person;
 select * from business;
 select * from location;

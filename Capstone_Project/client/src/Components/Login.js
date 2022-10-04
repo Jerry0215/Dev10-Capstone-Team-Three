@@ -34,8 +34,8 @@ function Login({ onSubmit }) {
     .then(resp => {
         console.log(resp.status); 
       switch (resp.status) {
-        
         case 200:
+          history.push("/");
           return resp.json();
         case 403:
           setErrors(['The login information is incorrect']);
