@@ -35,6 +35,7 @@ function Persons() {
   return (
     <>
       <h2>Persons</h2>
+     
       <div className="row">
         {persons.map(person => <Person key={person.personId} person={person} />)}
       </div>

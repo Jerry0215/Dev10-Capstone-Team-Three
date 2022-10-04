@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 
-function Event ({ event }) {
-
+function Event ({ event, editMode }) {
+     
     const history = useHistory();
    // const authManager = useContext(UserContext);
   
@@ -10,9 +10,9 @@ function Event ({ event }) {
       history.push(`/event/delete/${event.eventId}`);
     }
   
-    const handleEdit = () => {
-      history.push(`/event/edit/${event.eventId}`);
-    }
+    const handleEditClick = () => {
+      history.push(`/eventform/edit/${event.businessId}/${event.eventId}`);
+    };
   
     return (
       <tr>
@@ -21,6 +21,7 @@ function Event ({ event }) {
         <td>{event.timeDate}</td>
         <td>{event.locationId}</td>
         <td>{event.businessId}</td>
+        {editMode ? <button type="button" onClick={handleEditClick}>Edit</button>: null} 
       </tr>
     );
 

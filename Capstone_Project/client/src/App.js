@@ -23,8 +23,13 @@ import SearchPersons from "./Components/SearchPersons";
 import SearchBusinesses from "./Components/SearchBusinesses";
 import PersonForm from "./Components/PersonForm";
 import BusinessForm from "./Components/BusinessForm";
+
 import LocationFormPerson from "./Components/LocationFormPerson";
 import LocationFormBusiness from "./Components/LocationFormBusiness";
+
+import { isCompositeComponent } from "react-dom/test-utils";
+import EventForm from "./Components/EventForm";
+
 
 const LOCALSTORAGE_KEY = 'NyelpAppToken';
 
@@ -32,14 +37,15 @@ function App() {
   const [user, setUser] = useState(null);
 
   const login = (token) => {
-    const decodedToken = jwt_decode(token);
-
+    const decodedToken = jwt_decode(token); 
     localStorage.setItem(LOCALSTORAGE_KEY, token);
-
+    console.log(decodedToken)
+    console.log("test"); 
     const roles = decodedToken.authorities.split(',');
 
     const user = {
       username: decodedToken.sub,
+      personId: decodedToken.appUserId,
       roles,
       token,
       hasRole: function(role) {
@@ -62,11 +68,14 @@ function App() {
   }
 
   useState(() => {
+    
     const previouslySavedToken = localStorage.getItem(LOCALSTORAGE_KEY);
+    
     if (previouslySavedToken) {
       login(previouslySavedToken);
     }
   }, [])
+  console.log(authManager); 
 
   return (
     
@@ -119,6 +128,9 @@ function App() {
         </Route>
         <Route path={['/personform/add', '/personform/edit/:editId']}>
           <PersonForm></PersonForm>
+        </Route>
+        <Route path = {['/eventform/add/:businessId','/eventform/edit/:businessId/:editId']}>
+          <EventForm/>
         </Route>
         <Route path={['/businessform/add', '/businessform/edit/:editId']}>
           <BusinessForm></BusinessForm>
