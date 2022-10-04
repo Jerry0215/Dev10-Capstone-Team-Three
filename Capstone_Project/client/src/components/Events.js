@@ -45,7 +45,6 @@ function Events({ businessId , editMode}) {
             <th scope="col">Name</th>
             <th scope="col">Description</th>
             <th scope="col">Date & Time</th>
-            <th scope="col">Location</th>
             <th scope="col">Business</th>
             <th></th>
           </tr>

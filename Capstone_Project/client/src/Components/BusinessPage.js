@@ -48,7 +48,6 @@ function BusinessPage() {
   const enterEditMode = () => setEditMode(!editMode);
 
   const addReviewClick = () => history.push(`/reviewform/add/${business.businessId}`);
-  console.log(editMode); 
 
 
 
@@ -61,7 +60,7 @@ function BusinessPage() {
       {(editMode && business.personId == authManager.user.personId) ? <button type="button">Edit Business</button>:null}
       <Reviews businessId={businessId}></Reviews>
       {business.personId != authManager.user.personId ? <button type="button" onClick={addReviewClick}>Add Review</button>:null}
-      <Events businessId={businessId}></Events>
+      <Events businessId={businessId} editMode={editMode}></Events>
       {(editMode && business.personId == authManager.user.personId) ? <button type="button" onClick={addEventClick}>Add Event</button>:null}
       <Locations businessId={businessId}></Locations>
     </>
