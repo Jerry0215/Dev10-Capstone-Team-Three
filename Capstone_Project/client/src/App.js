@@ -23,9 +23,13 @@ import SearchPersons from "./Components/SearchPersons";
 import SearchBusinesses from "./Components/SearchBusinesses";
 import PersonForm from "./Components/PersonForm";
 import BusinessForm from "./Components/BusinessForm";
-import LocationForm from "./Components/LocationForm";
+
+import LocationFormPerson from "./Components/LocationFormPerson";
+import LocationFormBusiness from "./Components/LocationFormBusiness";
+
 import { isCompositeComponent } from "react-dom/test-utils";
 import EventForm from "./Components/EventForm";
+
 
 const LOCALSTORAGE_KEY = 'NyelpAppToken';
 
@@ -131,8 +135,11 @@ function App() {
         <Route path={['/businessform/add', '/businessform/edit/:editId']}>
           <BusinessForm></BusinessForm>
         </Route>
-        <Route path={['/locationform/add', '/locationform/edit/:editId']}>
-          <LocationForm></LocationForm>
+        <Route path={['/locationform/business/add/:editId', '/locationform/business/edit/:editId']}>
+          <LocationFormBusiness></LocationFormBusiness>
+        </Route>
+        <Route path={['/locationform/person/add/:editId', '/locationform/person/edit/:editId']}>
+          <LocationFormPerson></LocationFormPerson>
         </Route>
         </div>
       </Router>

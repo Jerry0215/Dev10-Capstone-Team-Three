@@ -1,8 +1,31 @@
 @url = http://localhost:8080
 ###
 
+POST {{url}}/create_account
+Content-Type: application/json
+
+{ 
+  "username": "mfuser@mfuser.com",
+  "password": "P@ssw0rd"
+}
+
+###
+
+POST {{url}}/authenticate
+Content-Type: application/json
+
+{ 
+  "username": "mfuser@mfuser.com",
+  "password": "P@ssw0rd"
+}
+
+// eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmYWtlLXllbHAtYXBwIiwic3ViIjoibWZ1c2VyQG1mdXNlci5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfVVNFUiIsImFwcFVzZXJJZCI6MywiZXhwIjoxNjY0ODk0MTc5fQ.grzcr7of4hTIv-9X4f0dHjJH7fSwwLg5dRsQAb_jbkE
+
+###
+
 POST {{url}}/api/location HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmYWtlLXllbHAtYXBwIiwic3ViIjoibWZ1c2VyQG1mdXNlci5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfVVNFUiIsImFwcFVzZXJJZCI6MywiZXhwIjoxNjY0ODk0MTc5fQ.grzcr7of4hTIv-9X4f0dHjJH7fSwwLg5dRsQAb_jbkE
 
 {
   "address": "7 N 8th St",
@@ -16,6 +39,7 @@ Content-Type: application/json
 
 PUT {{url}}/api/location/2 HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmYWtlLXllbHAtYXBwIiwic3ViIjoibWZ1c2VyQG1mdXNlci5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfVVNFUiIsImFwcFVzZXJJZCI6MywiZXhwIjoxNjY0ODk0MTc5fQ.grzcr7of4hTIv-9X4f0dHjJH7fSwwLg5dRsQAb_jbkE
 
 {
   "locationId": 2,
@@ -29,18 +53,22 @@ Content-Type: application/json
 ###
 
 GET {{url}}/api/location/2 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmYWtlLXllbHAtYXBwIiwic3ViIjoibWZ1c2VyQG1mdXNlci5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfVVNFUiIsImFwcFVzZXJJZCI6MywiZXhwIjoxNjY0ODk0MTc5fQ.grzcr7of4hTIv-9X4f0dHjJH7fSwwLg5dRsQAb_jbkE
 
 ###
 
 DELETE {{url}}/api/location/5 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmYWtlLXllbHAtYXBwIiwic3ViIjoibWZ1c2VyQG1mdXNlci5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfVVNFUiIsImFwcFVzZXJJZCI6MywiZXhwIjoxNjY0ODk0MTc5fQ.grzcr7of4hTIv-9X4f0dHjJH7fSwwLg5dRsQAb_jbkE
 
 ###
 
 GET {{url}}/api/event/business/1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmYWtlLXllbHAtYXBwIiwic3ViIjoibWZ1c2VyQG1mdXNlci5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfVVNFUiIsImFwcFVzZXJJZCI6MywiZXhwIjoxNjY0ODk0MTc5fQ.grzcr7of4hTIv-9X4f0dHjJH7fSwwLg5dRsQAb_jbkE
 
 ###
 
-GET {{url}}/api/event/2 HTTP/1.1
+GET {{url}}/api/event/1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmYWtlLXllbHAtYXBwIiwic3ViIjoibWZ1c2VyQG1mdXNlci5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfVVNFUiIsImFwcFVzZXJJZCI6MywiZXhwIjoxNjY0ODk0MTc5fQ.grzcr7of4hTIv-9X4f0dHjJH7fSwwLg5dRsQAb_jbkE
 
 ###
 

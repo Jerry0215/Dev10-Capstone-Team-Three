@@ -1,30 +1,38 @@
 import { useHistory, useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import Error from './Error';
-
-
-
+import UserContext from '../UserContext';
 
 const DEFAULT_LOCATION = { address: '', city: '', state: '', zipCode: '', addressType: 'Home'}
 
-function LocationForm(){
+function LocationFormBusiness( {trigger, setTrigger, business} ){
 
-    
     const [location, setLocation] = useState(DEFAULT_LOCATION);
-    const { editId } = useParams();
+
+    // const { editId } = useParams();
     const [blob, setBlob] = useState([]);
     const history = useHistory();
     const [errors, setErrors] = useState([]);
 
+    const authManager = useContext(UserContext);
+
     useEffect(() => {
-        if (editId) {
-            fetch(`http://localhost:8080/api/location/${editId}`)
+      console.log(business.locationId);
+      const init = {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${authManager.user.token}`
+        }
+      };
+
+        if (business.locationId) {
+            fetch(`http://localhost:8080/api/location/${business.locationId}`, init)
             .then(resp => {
               switch(resp.status) {
                 case 200:
                   return resp.json();
                 case 404:
-                  history.push('/not-found', { id: editId })
+                  history.push('/not-found', { id: business.locationId })
                   break;
                 default:
                   return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
@@ -32,6 +40,7 @@ function LocationForm(){
             })
             .then(body => {
               if (body) {
+                body.locationId = 0;
                 setLocation(body);
               }
             })
@@ -40,55 +49,50 @@ function LocationForm(){
     
       }, [])
 
-
-
-
-      const updateLocation = () => {
-        const updateLocation = {id: editId, ...location};
+      // const updateLocation = () => {
+      //   const updateLocation = {id: editId, ...location};
     
-        const init = {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(updateLocation)
-        };
+      //   const init = {
+      //     method: 'PUT',
+      //     headers: {
+      //       Authorization: `Bearer ${authManager.user.token}`,
+      //       'Content-Type': 'application/json'
+      //     },
+      //     body: JSON.stringify(updateLocation)
+      //   };
     
-        fetch(`http://localhost:8080/api/location/${editId}`, init)
-        .then(resp => {
-          console.log(resp.status);
-          switch (resp.status) {
-            case 204:
-              return null;
-            case 400:
-              return resp.json();
-            case 404:
-              history.push('/not-found', { id: editId });
-              break;
-            default:
-              return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
+      //   fetch(`http://localhost:8080/api/location/${editId}`, init)
+      //   .then(resp => {
+      //     console.log(resp.status);
+      //     switch (resp.status) {
+      //       case 204:
+      //         return null;
+      //       case 400:
+      //         return resp.json();
+      //       case 404:
+      //         history.push('/not-found', { id: editId });
+      //         break;
+      //       default:
+      //         return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
     
-          }
-        })
-        .then(body => {
-          if (!body) {
-            history.push('/person')
-          } else if (body) {
-            setErrors(body);
-          }
-        })
-        .catch(err => history.push('/error', {errorMessage: err}));
-      }
-
-
-
-
+      //     }
+      //   })
+      //   .then(body => {
+      //     if (!body) {
+      //       history.push('/person')
+      //     } else if (body) {
+      //       setErrors(body);
+      //     }
+      //   })
+      //   .catch(err => history.push('/error', {errorMessage: err}));
+      // }
 
     const saveLocation = () => {
     
         const init = {
             method: 'POST',
             headers: {
+            Authorization: `Bearer ${authManager.user.token}`,
             'Content-Type': 'application/json'
             },
             body: JSON.stringify({...location})
@@ -102,16 +106,16 @@ function LocationForm(){
             }
             return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
         })
-        .then(body => {
-            
-            if (body.locationId) {
-            
-            history.push('/person')
+        .then(body => {         
+            if (body.locationId) {  
+              console.log(body.locationId);        
+              business.locationId = body.locationId;
+              setTrigger(false);
             } else if (body) {
             setErrors(body);
             }
         })
-        //.catch(err => history.push('/error', {errorMessage: err}));
+        .catch(err => history.push('/error', {errorMessage: err}));
         }
 
         const handleChangeLocation = (evt) => {
@@ -127,22 +131,24 @@ function LocationForm(){
             setLocation(newLocation);
           }
     
-
-          const onSubmit = (evt) => {
-        
+          const onSubmit1 = (evt) => {       
             evt.preventDefault();
             
-            const fetchFunction = editId > 0 ? updateLocation : saveLocation;
-        
-            fetchFunction();
-        
+            // const fetchFunction = editId > 0 ? updateLocation : saveLocation;
+            console.log("Inside onsubmit")
+            saveLocation();
+            
+            
+
+            // fetchFunction(); 
           }
     
-    return(
+    return (trigger) ? (
         <>
-        <h2>{editId ? 'Update' : 'Add'} Location</h2>
+        
+        <h2>Business Location</h2>
         {errors.length > 0 ? <Error errors={errors} /> : null}
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit1}>
         <div className="form-group">
           <label htmlFor="address">Address:</label>
           <input name="address" type="text" className="form-control" id="address" value={location.address} onChange={handleChangeLocation} />
@@ -212,17 +218,14 @@ function LocationForm(){
           <input name="zipCode" type="text" className="form-control" id="zipCode" value={location.zipCode} onChange={handleChangeLocation} />
         </div>
 
-        <div className="form-group">
-                
-                <button type="submit" className="btn btn-success mr-3">Submit</button>
+        <div className="form-group">               
+                <button type="submit" className="btn btn-success mr-3">Submit Location</button>
             </div>
         </form>
-
-        
-          
+  
         </>
-    )
+    ) : "";
 }
 
 
-export default LocationForm;
+export default LocationFormBusiness;
