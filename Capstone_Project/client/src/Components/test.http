@@ -3,5 +3,22 @@ GET https://www.mapquestapi.com/staticmap/v5/map?key={{KEY}}&center=15-Capri-Cou
 
 
 
+
 ###
-https://www.mapquestapi.com/staticmap/v5/map?locations=15-Capri-Court,New-York&size=@2x&key={{KEY}}
+POST http://localhost:8080/authenticate HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"admin@admin.com",
+    "password":"P@ssw0rd!"
+}
+
+###
+GET http://localhost:8080/api/event/1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmYWtlLXllbHAtYXBwIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwiYXBwVXNlcklkIjoxLCJleHAiOjE2NjQ4OTQyMzJ9.AW0en5jM4_-6u2ByHrat5DCqZcX09i5kOH-uJA7w80c
+###
+POST http://localhost:8080/api/event HTTP/1.1
+Content-Type: application/json 
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmYWtlLXllbHAtYXBwIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwiYXBwVXNlcklkIjoxLCJleHAiOjE2NjQ4OTQyMzJ9.AW0en5jM4_-6u2ByHrat5DCqZcX09i5kOH-uJA7w80c
+
+{"name":"test","description":"test","timeDate":"2020-01-01T05:01:00.000+00:00","businessId":1}
