@@ -3,7 +3,8 @@ import { useHistory } from 'react-router-dom';
 import Event from './Event';
 import UserContext from '../UserContext';
 
-function Events({ businessId }) {
+function Events({ businessId , editMode}) {
+  
   const [events, setEvents] = useState([]);
 
   const authManager = useContext(UserContext);
@@ -50,7 +51,7 @@ function Events({ businessId }) {
           </tr>
         </thead>
         <tbody>
-          {events.map(event => <Event key={event.eventId} event={event} />)}
+          {events.map(event => <Event key={event.eventId} event={event} editMode={editMode}/>)}
         </tbody>
       </table>
     </>

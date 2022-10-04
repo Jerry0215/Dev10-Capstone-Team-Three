@@ -11,6 +11,7 @@ function BusinessPage() {
   const [business, setBusiness] = useState([])
   const [path, setPath] = useState([])
   let { businessId } = useParams();
+  const history = useHistory(); 
 
   const authManager = useContext(UserContext);
 
@@ -43,7 +44,7 @@ function BusinessPage() {
   }, [])
 
   const [editMode, setEditMode] = useState(false); 
-  
+  const addEventClick = () => history.push(`/eventform/add/${business.businessId}`); 
   const enterEditMode = () => setEditMode(!editMode);
   console.log(editMode); 
   return (
@@ -55,8 +56,8 @@ function BusinessPage() {
       {(editMode && business.personId == authManager.user.personId) ? <button type="button">Edit Business</button>:null}
       <Reviews businessId={businessId}></Reviews>
       {business.personId != authManager.user.personId ? <button type="button">Add Review</button>:null}
-      <Events businessId={businessId}></Events>
-      {(editMode && business.personId == authManager.user.personId) ? <button type="button">Add Event</button>:null}
+      <Events businessId={businessId} editMode={editMode}></Events>
+      {(editMode && business.personId == authManager.user.personId) ? <button type="button" onClick={addEventClick}>Add Event</button>:null}
       <Locations businessId={businessId}></Locations>
     </>
   )
