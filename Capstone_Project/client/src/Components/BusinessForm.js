@@ -2,16 +2,19 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import UserContext from '../UserContext';
 import Error from './Error';
+import Confirmation from "./Confirmation";
+import LocationFormBusiness from './LocationFormBusiness';
 
 const DEFAULT_BUSINESS = { name: '', description: '', photoDir: '', photo: '', photoName: '', rating: 0, photoName: '', locationId: 1, personId: 1 }
 const DEFAULT_LOCATION = { address: '', city: '', state: '', zipCode: '', addressType: 'Business' }
 const DEFAULT_REVIEW = { content: '', timeDate: '', rating: 0, personId: 1, businessId: 1 }
 
-function BusinessForm() {
+function BusinessForm(  ) {
 
   const [business, setBusiness] = useState(DEFAULT_BUSINESS);
   const [location, setLocation] = useState(DEFAULT_LOCATION);
   const [review, setReview] = useState(DEFAULT_REVIEW);
+  const [buttonPopup, setButtonPopup] = useState(false);
 
   const { editId } = useParams();
   const [blob, setBlob] = useState([]);
@@ -106,9 +109,8 @@ function BusinessForm() {
         return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
       })
       .then(body => {
-        if (body.businessId) {
-          
-          history.push(`/businessPage/${body.businessId}`)
+        if (body.businessId) {      
+         history.push(`/businessPage/${body.businessId}`)
         } else if (body) {
           setErrors(body);
         }
@@ -148,8 +150,9 @@ function BusinessForm() {
         }
       })
       .then(body => {
+        console.log(updateBusiness)
         if (!body) {
-          history.push(`/businesspage/${business.businessId}`)
+         history.push(`/businesspage/${business.businessId}`)
         } else if (body) {
           setErrors(body);
         }
@@ -164,6 +167,7 @@ function BusinessForm() {
 
     const fetchFunction = editId > 0 ? updateBusiness : saveBusiness;
 
+    businessToLocationForm();
     fetchFunction();
 
   }
@@ -198,8 +202,10 @@ function BusinessForm() {
 
   const handleTwoFunction = (evt) => {
     convertToBase64();
+  }
 
-
+  const businessToLocationForm = () => {
+    setBusiness(business);
   }
 
   return (
@@ -216,74 +222,6 @@ function BusinessForm() {
           <input name="description" type="text" className="form-control" id="description" value={business.description} onChange={handleChangeBusiness} />
         </div>
         <div className="form-group">
-          <label htmlFor="address">Address:</label>
-          <input name="address" type="text" className="form-control" id="address" value={location.address} onChange={handleChangeLocation} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="city">City:</label>
-          <input name="city" type="text" className="form-control" id="city" value={location.city} onChange={handleChangeLocation} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="state">State:</label>
-          <select name="state" className="form-control" id="state" value={location.state} onChange={handleChangeLocation} >
-            <option value="AL">Alabama</option>
-            <option value="AK">Alaska</option>
-            <option value="AZ">Arizona</option>
-            <option value="AR">Arkansas</option>
-            <option value="CA">California</option>
-            <option value="CO">Colorado</option>
-            <option value="CT">Connecticut</option>
-            <option value="DE">Delaware</option>
-            <option value="DC">District Of Columbia</option>
-            <option value="FL">Florida</option>
-            <option value="GA">Georgia</option>
-            <option value="HI">Hawaii</option>
-            <option value="ID">Idaho</option>
-            <option value="IL">Illinois</option>
-            <option value="IN">Indiana</option>
-            <option value="IA">Iowa</option>
-            <option value="KS">Kansas</option>
-            <option value="KY">Kentucky</option>
-            <option value="LA">Louisiana</option>
-            <option value="ME">Maine</option>
-            <option value="MD">Maryland</option>
-            <option value="MA">Massachusetts</option>
-            <option value="MI">Michigan</option>
-            <option value="MN">Minnesota</option>
-            <option value="MS">Mississippi</option>
-            <option value="MO">Missouri</option>
-            <option value="MT">Montana</option>
-            <option value="NE">Nebraska</option>
-            <option value="NV">Nevada</option>
-            <option value="NH">New Hampshire</option>
-            <option value="NJ">New Jersey</option>
-            <option value="NM">New Mexico</option>
-            <option value="NY">New York</option>
-            <option value="NC">North Carolina</option>
-            <option value="ND">North Dakota</option>
-            <option value="OH">Ohio</option>
-            <option value="OK">Oklahoma</option>
-            <option value="OR">Oregon</option>
-            <option value="PA">Pennsylvania</option>
-            <option value="RI">Rhode Island</option>
-            <option value="SC">South Carolina</option>
-            <option value="SD">South Dakota</option>
-            <option value="TN">Tennessee</option>
-            <option value="TX">Texas</option>
-            <option value="UT">Utah</option>
-            <option value="VT">Vermont</option>
-            <option value="VA">Virginia</option>
-            <option value="WA">Washington</option>
-            <option value="WV">West Virginia</option>
-            <option value="WI">Wisconsin</option>
-            <option value="WY">Wyoming</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label htmlFor="zipCode">Zip Code:</label>
-          <input name="zipCode" type="text" className="form-control" id="zipCode" value={location.zipCode} onChange={handleChangeLocation} />
-        </div>
-        <div className="form-group">
           <label htmlFor="photoName">Photo Name:</label>
           <input name="photoName" type="text" className="form-control" id="photoName" value={business.photoName} onChange={handleChangeBusiness} />
         </div>
@@ -292,12 +230,14 @@ function BusinessForm() {
           <input name="profilePicture" type="file" id="img" onChange={handleTwoFunction}></input>
         </div>
         <div className="form-group">
-          <button type="submit" className="btn btn-success mr-3">Submit</button>
+          <button type="submit" className="btn btn-success mr-3">Submit</button>              
         </div>
+        
       </form>
-
-
-
+      
+        <button type="button" className="btn btn-warning " onClick={() => {setButtonPopup(true)}} >Edit Location</button>
+          <LocationFormBusiness trigger={buttonPopup} setTrigger={setButtonPopup} business={business} key={business.businessId} onCLick={LocationFormBusiness}></LocationFormBusiness>            
+       
     </>
   )
 }
