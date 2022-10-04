@@ -3,14 +3,14 @@ import { useContext, useEffect, useState } from 'react';
 import Error from './Error';
 import UserContext from '../UserContext';
 
+
 const DEFAULT_REVIEW = {content:'', timeDate:'', rating:'', personId:1,businessId:1}
 function ReviewForm(){
-    
+ 
 
+    const {editId} = useParams(); 
     const [review, setReview] = useState(DEFAULT_REVIEW);
     const authManager = useContext(UserContext);
-   
-    const editId = 1; 
     console.log("here");
     console.log(authManager); 
     const history = useHistory();
@@ -28,8 +28,9 @@ function ReviewForm(){
         if (editId) {
           fetch(`http://localhost:8080/api/review/byReview/${editId}`, init)
             .then(resp => {
+              console.log(resp.status); 
               switch (resp.status) {
-                case 204:
+                case 200:
                   return resp.json();
                 case 404:
                   history.push('/not-found', { id: editId })
@@ -136,7 +137,17 @@ function ReviewForm(){
       const onSubmit = (evt) => {
         //event.timeDate = event.timeDate + ":00.000+00:00"
         evt.preventDefault();
-        
+        const d = new Date();
+
+        const month = d.getMonth() + 1;
+        const day = d.getDate();
+        const year = d.getFullYear();
+        const hours = d.getHours() + 1; 
+        const minutes = "0" + d.getMinutes();
+        const seconds = "0" + d.getSeconds();
+      
+        const dateTime = year + '-' + ("0" + month).slice(-2) + '-' +  ("0" + day).slice(-2) + 'T' + ("0" + hours).slice(-2) + ':' + minutes.substr(-2) + ':' + seconds.substr(-2)+".000+00:00"
+        review.timeDate=dateTime; 
         const fetchFunction = editId > 0 ? updateReview : saveReview;
     
         fetchFunction();
@@ -154,7 +165,7 @@ function ReviewForm(){
               <input name="content" type="text" className="form-control" id="content" value={review.content} onChange={handleChangeReview} />
             </div>
             <div className="form-group">
-              <label htmlFor="rating">Content:</label>
+              <label htmlFor="rating">Rating:</label>
               <input name="rating" type="number" className="form-control" id="rating" value={review.rating} onChange={handleChangeReview} />
             </div>
             <div className="form-group">

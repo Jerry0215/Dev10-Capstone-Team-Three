@@ -14,3 +14,6 @@ Content-Type: application/json
 }
 
 ###
+GET http://localhost:8080/api/reivew/byReview/1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmYWtlLXllbHAtYXBwIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwiYXBwVXNlcklkIjoxLCJleHAiOjE2NjQ5MDM5MDF9.UOudJo1aTTwKvNR7k_Th9-Jv5FaH6NK1UD0jozjGJXs
+###
