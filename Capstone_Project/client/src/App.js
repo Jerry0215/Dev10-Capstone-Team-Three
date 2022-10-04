@@ -75,7 +75,7 @@ function App() {
       login(previouslySavedToken);
     }
   }, [])
-  console.log(authManager); 
+
 
   return (
     

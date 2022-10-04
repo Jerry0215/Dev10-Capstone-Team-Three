@@ -67,16 +67,20 @@ public class PersonJdbcTemplateRepository implements PersonRepository {
             ps.setString(4, person.getSuffix() == null ? null : person.getSuffix());
 
             //String[] components = person.getPhoto().split(",");
-            byte[] name = Base64.getEncoder().encode(person.getPhoto().getBytes());
-            try {
-                byte[] decodedString = Base64.getDecoder().decode(new String(name).getBytes("UTF-8"));
+            if(person.getPhoto().isBlank() || person.getPhoto().isEmpty()) {
+                byte[] name = Base64.getEncoder().encode(person.getPhoto().getBytes());
+                try {
+                    byte[] decodedString = Base64.getDecoder().decode(new String(name).getBytes("UTF-8"));
+                    Blob blob = connection.createBlob();
+                    blob.setBytes(1, decodedString);
+                    ps.setBlob(5, blob);
+                } catch (UnsupportedEncodingException e) {
+                    throw new RuntimeException(e);
+                }
+            }else{
                 Blob blob = connection.createBlob();
-                blob.setBytes(1, decodedString);
-                ps.setBlob(5, blob);
-            } catch (UnsupportedEncodingException e) {
-                throw new RuntimeException(e);
+                ps.setBlob(5,blob);
             }
-
             ps.setString(6, person.getPhotoName());
             ps.setString(7, person.getPhone());
             ps.setInt(8, person.getLocationId());

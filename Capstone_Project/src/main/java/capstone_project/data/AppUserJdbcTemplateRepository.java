@@ -1,13 +1,18 @@
 package capstone_project.data;
 
 import capstone_project.models.AppUser;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.Base64;
 import java.util.List;
 
 
@@ -69,7 +74,49 @@ public class AppUserJdbcTemplateRepository implements AppUserRepository {
             return null;
         }
 
+
         user.setAppUserId(holder.getKey().intValue());
+
+        final String sql1 = "insert into person (firstName, middleName, lastName, suffix, photo, photoName, phone, locationId, appUserId) "
+                + " values (?,?,?,?,?,?,?,?,?);";
+
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+
+      //  File f = new File("pictures/defaultPhoto.png");
+
+//        int rowsAffected = template.update(connection -> {
+//            PreparedStatement ps = connection.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
+//            ps.setString(1, "First Name");
+//            ps.setString(2, " ");
+//            ps.setString(3, "Last Name");
+//            ps.setString(4, " ");
+//
+//            //String[] components = person.getPhoto().split(",");
+//
+//
+//            byte[] name = Base64.getEncoder().encode(person.getPhoto().getBytes());
+//            try {
+//                byte[] decodedString = Base64.getDecoder().decode(new String(name).getBytes("UTF-8"));
+//                Blob blob = connection.createBlob();
+//                blob.setBytes(1, decodedString);
+//                ps.setBlob(5, blob);
+//            } catch (UnsupportedEncodingException e) {
+//                throw new RuntimeException(e);
+//            }
+//
+//            ps.setString(6, person.getPhotoName());
+//            ps.setString(7, person.getPhone());
+//            ps.setInt(8, person.getLocationId());
+//            ps.setInt(9, person.getUserId());
+//            return ps;
+//        }, keyHolder);
+//
+//        if (rowsAffected <= 0) {
+//            return null;
+//        }
+//
+//        person.setPersonId(keyHolder.getKey().intValue());
 
         updateRoles(user.getAppUserId(), AppUser.convertAuthoritiesToRoles(user.getAuthorities()));
 

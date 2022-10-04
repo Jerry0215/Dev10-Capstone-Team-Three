@@ -79,13 +79,9 @@ function BusinessForm(  ) {
 
     const newBusiness = { ...business };
 
-
-
     newBusiness["photo"] = dataURL;
-    console.log(newBusiness);
+
     setBusiness(newBusiness);
-
-
 
   }
 
