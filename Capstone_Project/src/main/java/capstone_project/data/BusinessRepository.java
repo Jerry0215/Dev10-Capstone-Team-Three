@@ -12,5 +12,8 @@ public interface BusinessRepository {
     boolean deleteById(int businessId);
     boolean update(Business business) throws IOException, SQLException;
     List<Business> findAll() throws SQLException, IOException;
+
+    Business findByPerson(int personId) throws SQLException, IOException;
+
 }
 
