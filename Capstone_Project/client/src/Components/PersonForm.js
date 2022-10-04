@@ -11,8 +11,8 @@ function PersonForm() {
 
   const [person, setPerson] = useState(DEFAULT_PERSON);
   const [location, setLocation] = useState(DEFAULT_LOCATION);
+  const [buttonPopup, setButtonPopup] = useState(false);
   const { editId } = useParams();
-  const [blob, setBlob] = useState([]);
   const history = useHistory();
   const [errors, setErrors] = useState([]);
   const locationID = 0;
@@ -228,6 +228,10 @@ function PersonForm() {
                 </div>
               </form>
 
+      
+              <button type="button" className="btn btn-warning " onClick={() => {setButtonPopup(true)}} >Edit Location</button>
+          {/* <LocationFormBusiness trigger={buttonPopup} setTrigger={setButtonPopup} business={business} key={business.businessId} onCLick={LocationFormBusiness}></LocationFormBusiness>            
+        */}
             </>
           )
 

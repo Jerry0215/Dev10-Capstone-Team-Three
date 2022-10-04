@@ -9,7 +9,6 @@ function LocationFormBusiness( {trigger, setTrigger, business} ){
 
     const [location, setLocation] = useState(DEFAULT_LOCATION);
 
-    // const { editId } = useParams();
     const [blob, setBlob] = useState([]);
     const history = useHistory();
     const [errors, setErrors] = useState([]);
@@ -48,44 +47,6 @@ function LocationFormBusiness( {trigger, setTrigger, business} ){
         }
     
       }, [])
-
-      // const updateLocation = () => {
-      //   const updateLocation = {id: editId, ...location};
-    
-      //   const init = {
-      //     method: 'PUT',
-      //     headers: {
-      //       Authorization: `Bearer ${authManager.user.token}`,
-      //       'Content-Type': 'application/json'
-      //     },
-      //     body: JSON.stringify(updateLocation)
-      //   };
-    
-      //   fetch(`http://localhost:8080/api/location/${editId}`, init)
-      //   .then(resp => {
-      //     console.log(resp.status);
-      //     switch (resp.status) {
-      //       case 204:
-      //         return null;
-      //       case 400:
-      //         return resp.json();
-      //       case 404:
-      //         history.push('/not-found', { id: editId });
-      //         break;
-      //       default:
-      //         return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
-    
-      //     }
-      //   })
-      //   .then(body => {
-      //     if (!body) {
-      //       history.push('/person')
-      //     } else if (body) {
-      //       setErrors(body);
-      //     }
-      //   })
-      //   .catch(err => history.push('/error', {errorMessage: err}));
-      // }
 
     const saveLocation = () => {
     
@@ -134,13 +95,9 @@ function LocationFormBusiness( {trigger, setTrigger, business} ){
           const onSubmit1 = (evt) => {       
             evt.preventDefault();
             
-            // const fetchFunction = editId > 0 ? updateLocation : saveLocation;
             console.log("Inside onsubmit")
             saveLocation();
             
-            
-
-            // fetchFunction(); 
           }
     
     return (trigger) ? (

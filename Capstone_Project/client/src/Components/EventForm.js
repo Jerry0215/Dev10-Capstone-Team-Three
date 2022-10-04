@@ -2,10 +2,6 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import Error from './Error';
 import UserContext from '../UserContext';
-import DateTimePicker from 'react-datetime-picker';
-
-
-
 
 function EventForm(){
     const {businessId, editId} = useParams(); 
