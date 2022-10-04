@@ -2,10 +2,10 @@ import { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../UserContext';
 
-function Reviews({ businessId }) {
-
+function Reviews({ businessId}) {
+  
   const [reviews, setReviews] = useState([]);
-
+  const history = useHistory(); 
   const authManager = useContext(UserContext);
 
 
@@ -30,8 +30,11 @@ function Reviews({ businessId }) {
       })
     // .catch(err => history.push('/error', {errorMessage: err}));
   }, []);
-
-
+  // history.push(`/reviewform/edit/${review.businessId}/${review.reviewId}`)
+  
+  function handleClick(review) {
+    history.push(`/reviewform/edit/${review.businessId}/${review.reviewId}`)
+  }
   return (
     <>
       <h2>Business Reviews</h2>
@@ -44,6 +47,7 @@ function Reviews({ businessId }) {
             <th scope="col">rating</th>
             <th scope="col">personId</th>
             <th scope="col">businessId</th>
+            <th></th> 
           </tr>
         </thead>
         <tbody>
@@ -55,6 +59,8 @@ function Reviews({ businessId }) {
               <td>{review.rating}</td>
               <td>{review.personId}</td>
               <td>{review.businessId}</td>
+              <td>{review.personId == authManager.user.personId ? <button type="button" onClick={ () => handleClick(review)}>Edit Review</button>:null}</td>
+             
             </tr>
           ))}
         </tbody>

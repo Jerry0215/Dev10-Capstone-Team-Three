@@ -135,7 +135,7 @@ function App() {
         <Route path={['/locationform/add', '/locationform/edit/:editId']}>
           <LocationForm></LocationForm>
         </Route>
-        <Route path={['/reviewform/add','/reviewform/edit/:editId']}>
+        <Route path={['/reviewform/add/:businessId','/reviewform/edit/:businessId/:editId']}>
           <ReviewForm/>
         </Route>
         </div>

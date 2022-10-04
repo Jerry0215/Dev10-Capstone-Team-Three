@@ -4,13 +4,14 @@ import Error from './Error';
 import UserContext from '../UserContext';
 
 
-const DEFAULT_REVIEW = {content:'', timeDate:'', rating:'', personId:1,businessId:1}
+
 function ReviewForm(){
  
-
-    const {editId} = useParams(); 
-    const [review, setReview] = useState(DEFAULT_REVIEW);
     const authManager = useContext(UserContext);
+    const {businessId, editId} = useParams(); 
+    const DEFAULT_REVIEW = {content:'', timeDate:'', rating:'', personId:authManager.user.personId,businessId:businessId}
+    const [review, setReview] = useState(DEFAULT_REVIEW);
+    
     console.log("here");
     console.log(authManager); 
     const history = useHistory();
