@@ -29,6 +29,7 @@ import LocationFormBusiness from "./Components/LocationFormBusiness";
 
 import { isCompositeComponent } from "react-dom/test-utils";
 import EventForm from "./Components/EventForm";
+import ReviewForm from "./Components/ReviewForm";
 
 
 const LOCALSTORAGE_KEY = 'NyelpAppToken';
@@ -140,6 +141,9 @@ function App() {
         </Route>
         <Route path={['/locationform/person/add/:editId', '/locationform/person/edit/:editId']}>
           <LocationFormPerson></LocationFormPerson>
+        </Route>
+        <Route path={['/reviewform/add/:businessId','/reviewform/edit/:businessId/:editId']}>
+          <ReviewForm/>
         </Route>
         </div>
       </Router>
