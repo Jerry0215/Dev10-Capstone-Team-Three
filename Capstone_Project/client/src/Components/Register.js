@@ -78,6 +78,7 @@ function Register() {
       console.log(resp.status);
       switch (resp.status) {    
         case 201:
+        savePerson();
         history.push("/login");
         case 400:
           return resp.json();
@@ -88,10 +89,8 @@ function Register() {
       }
     })
     .then(body => {
-      
       if (body) {
-        console.log(body)
-        savePerson();
+
       } else {
         setErrors(body);
       }
