@@ -17,6 +17,7 @@ import jwt_decode from 'jwt-decode';
 import BusinessPage from "./Components/BusinessPage";
 import AllEvents from "./Components/AllEvents";
 import Error from "./Components/Error";
+import ServerError from "./Components/ServerError"
 import Register from "./Components/Register";
 import PersonPage from "./Components/PersonPage";
 import SearchPersons from "./Components/SearchPersons";
@@ -29,6 +30,8 @@ import LocationFormBusiness from "./Components/LocationFormBusiness";
 
 import { isCompositeComponent } from "react-dom/test-utils";
 import EventForm from "./Components/EventForm";
+import ReviewForm from "./Components/ReviewForm";
+import BusinessProfileRedirect from "./Components/BusinessProfileRedirect";
 
 
 const LOCALSTORAGE_KEY = 'NyelpAppToken';
@@ -75,7 +78,7 @@ function App() {
       login(previouslySavedToken);
     }
   }, [])
-  console.log(authManager); 
+
 
   return (
     
@@ -96,8 +99,8 @@ function App() {
           <SearchBusinesses/>
         </Route>
         <Route exact path="/error">
-          <Error>
-          </Error>
+          <ServerError>
+          </ServerError>
         </Route>
         <Route exact path ="/register">
           <Register/>
@@ -140,6 +143,12 @@ function App() {
         </Route>
         <Route path={['/locationform/person/add/:editId', '/locationform/person/edit/:editId']}>
           <LocationFormPerson></LocationFormPerson>
+        </Route>
+        <Route path={['/reviewform/add/:businessId','/reviewform/edit/:businessId/:editId']}>
+          <ReviewForm/>
+        </Route>
+        <Route path={'/businessProfileRedirect'}>
+          <BusinessProfileRedirect/>
         </Route>
         </div>
       </Router>

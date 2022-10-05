@@ -20,6 +20,10 @@ public class ReviewService {
     public List<Review> findById(int businessId){
         return repository.findById(businessId);
     }
+
+    public Review findByReviewId(int reviewId){
+        return repository.findByReviewId(reviewId);
+    }
     public boolean delete(int reviewId){
         return repository.deleteById(reviewId);
     }

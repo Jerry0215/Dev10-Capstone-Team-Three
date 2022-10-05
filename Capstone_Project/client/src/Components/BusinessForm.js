@@ -5,11 +5,17 @@ import Error from './Error';
 import Confirmation from "./Confirmation";
 import LocationFormBusiness from './LocationFormBusiness';
 
-const DEFAULT_BUSINESS = { name: '', description: '', photoDir: '', photo: '', photoName: '', rating: 0, photoName: '', locationId: 1, personId: 1 }
-const DEFAULT_LOCATION = { address: '', city: '', state: '', zipCode: '', addressType: 'Business' }
-const DEFAULT_REVIEW = { content: '', timeDate: '', rating: 0, personId: 1, businessId: 1 }
 
-function BusinessForm(  ) {
+const DEFAULT_LOCATION = { address: '', city: '', state: '', zipCode: '', addressType: 'Business' }
+
+
+function BusinessForm() {
+
+  const authManager = useContext(UserContext);
+
+  const DEFAULT_BUSINESS = { name: '', description: '', photoDir: '', photo: '', photoName: '', rating: 0, photoName: '', locationId: 1, personId: authManager.user.personId }
+  const DEFAULT_REVIEW = { content: '', timeDate: '', rating: 0, personId: authManager.user.personId, businessId: 1 }
+
 
   const [business, setBusiness] = useState(DEFAULT_BUSINESS);
   const [location, setLocation] = useState(DEFAULT_LOCATION);
@@ -20,7 +26,8 @@ function BusinessForm(  ) {
   const [blob, setBlob] = useState([]);
   const history = useHistory();
   const [errors, setErrors] = useState([]);
-  const authManager = useContext(UserContext);
+
+
 
   useEffect(() => {
 
@@ -79,13 +86,9 @@ function BusinessForm(  ) {
 
     const newBusiness = { ...business };
 
-
-
     newBusiness["photo"] = dataURL;
-    console.log(newBusiness);
+
     setBusiness(newBusiness);
-
-
 
   }
 

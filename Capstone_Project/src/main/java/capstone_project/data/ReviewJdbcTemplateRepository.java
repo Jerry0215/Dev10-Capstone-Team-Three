@@ -27,6 +27,15 @@ public class ReviewJdbcTemplateRepository implements ReviewRepository{
                 +"where businessId = ?;";
         return jdbcTemplate.query(sql,new ReviewMapper(), businessId);
     }
+
+    @Override
+    public Review findByReviewId(int reviewId){
+        final String sql = "select * "
+                +"from review "
+                +"where reviewId = ?;";
+        return jdbcTemplate.query(sql,new ReviewMapper(),reviewId).stream().findFirst().orElse(null);
+
+    }
     @Override
     public List<Review> findAll(){
         return jdbcTemplate.query("select * from review;", new ReviewMapper());

@@ -10,7 +10,7 @@ function Person ({ person }) {
     return (
       <>
       <div className="col-sm-4">
-      <div className="cards">
+      <div className="card">
       <div className="card-group">
 
 
@@ -26,9 +26,8 @@ function Person ({ person }) {
       </div>
       </div>
       </div>
-    </>
+);
 
-  )
 }
 
 export default Person;

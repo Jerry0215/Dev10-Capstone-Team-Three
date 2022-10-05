@@ -14,11 +14,6 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8080/api/event/1 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmYWtlLXllbHAtYXBwIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwiYXBwVXNlcklkIjoxLCJleHAiOjE2NjQ4OTQyMzJ9.AW0en5jM4_-6u2ByHrat5DCqZcX09i5kOH-uJA7w80c
+GET http://localhost:8080/api/reivew/byReview/1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmYWtlLXllbHAtYXBwIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwiYXBwVXNlcklkIjoxLCJleHAiOjE2NjQ5MDM5MDF9.UOudJo1aTTwKvNR7k_Th9-Jv5FaH6NK1UD0jozjGJXs
 ###
-POST http://localhost:8080/api/event HTTP/1.1
-Content-Type: application/json 
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmYWtlLXllbHAtYXBwIiwic3ViIjoiYWRtaW5AYWRtaW4uY29tIiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwiYXBwVXNlcklkIjoxLCJleHAiOjE2NjQ4OTQyMzJ9.AW0en5jM4_-6u2ByHrat5DCqZcX09i5kOH-uJA7w80c
-
-{"name":"test","description":"test","timeDate":"2020-01-01T05:01:00.000+00:00","businessId":1}

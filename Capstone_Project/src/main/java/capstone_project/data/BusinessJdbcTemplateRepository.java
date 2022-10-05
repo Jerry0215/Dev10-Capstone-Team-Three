@@ -42,6 +42,23 @@ public class BusinessJdbcTemplateRepository implements BusinessRepository{
 
         return business;
     }
+
+    @Override
+    public Business findByPerson(int personId) throws SQLException, IOException{
+        final String sql = "select * "
+                +"from business "
+                +"where personId = ?;";
+        Business business = jdbcTemplate.query(sql,new BusinessMapper(), personId).stream()
+                .findFirst()
+                .orElse(null);
+
+        updateRating(business);
+
+        return business;
+    }
+
+
+
     @Override
     public List<Business> findAll() throws SQLException, IOException {
         final String sql = "select * "
