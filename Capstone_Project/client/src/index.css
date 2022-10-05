@@ -331,6 +331,10 @@ form.search button:hover {
   background: #029c4f;
 }
 
+.btn-outline-info:hover {
+  background: #2891b1 !important;
+}
+
 /* Clear floats */
 form.search::after {
   content: "";
