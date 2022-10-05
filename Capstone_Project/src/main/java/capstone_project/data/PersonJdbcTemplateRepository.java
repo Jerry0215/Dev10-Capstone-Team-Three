@@ -67,6 +67,7 @@ public class PersonJdbcTemplateRepository implements PersonRepository {
             ps.setString(4, person.getSuffix() == null ? null : person.getSuffix());
 
             //String[] components = person.getPhoto().split(",");
+            
             byte[] name = Base64.getEncoder().encode(person.getPhoto().getBytes());
             try {
                 byte[] decodedString = Base64.getDecoder().decode(new String(name).getBytes("UTF-8"));
