@@ -190,6 +190,8 @@ function PersonForm() {
 
           const onCancelClick = () => history.push(`/personpage/${person.personId}`);
 
+          const[isDisabled, setIsDisabled] = useState(true);
+
           return (
             <>
               <h2>{editId ? 'Update' : 'Add'} Profile</h2>
@@ -225,13 +227,13 @@ function PersonForm() {
                 <input name="profilePicture" type="file" id="img" onChange={handleTwoFunction}></input>
 
                 <div className="form-group">
-                  <button type="submit" className="btn btn-success mr-3">Submit</button>
+                  <button type="submit" className="btn btn-success mr-3" disabled={isDisabled}>Submit</button>
                   <button type="button" className="btn btn-secondary mr-3" onClick={onCancelClick}>Go Back</button>   
                 </div>
               </form>
 
       
-              <button type="button" className="btn btn-warning " onClick={() => {setButtonPopup(true)}} >Edit Location</button>
+              <button type="button" className="btn btn-warning " onClick={() => {setButtonPopup(true); setIsDisabled(false)}} >Edit Location</button>
           <LocationFormPerson trigger={buttonPopup} setTrigger={setButtonPopup} person={person} key={person.personId} onCLick={LocationFormPerson}></LocationFormPerson>            
        
             </>
