@@ -51,6 +51,36 @@ function BusinessPage() {
 
   const onEditBusinessClick = () => history.push(`/businessform/edit/${businessId}`);
 
+  const handleDeleteClick = () => {
+    const init = {
+      method: 'DELETE',
+      headers:
+      {
+        Authorization: `Bearer ${authManager.user.token}`
+      }
+    };
+
+    fetch(`http://localhost:8080/api/business/${businessId}`, init)
+      .then( resp => {
+        switch(resp.status) {
+          case 204:
+            return null;
+          case 404:
+            //history.push('/not-found')
+            break;
+          default:
+            return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
+        }
+      })
+      .then(resp => {
+          if (!resp) {
+            history.push("/"); 
+          } else {
+            console.log(resp); 
+          }
+        })
+        .catch(err => history.push('/error', {errorMessage: err}));
+      }
   
 
   return (
@@ -60,6 +90,7 @@ function BusinessPage() {
       <img src={path} alt="Everything is on fire" />
       {((business.personId == authManager.user.personId) || authManager.user.roles[0] === 'ROLE_ADMIN') ? <button type="button" onClick={enterEditMode}>Change Edit Mode</button>:null}
       {(editMode && business.personId == authManager.user.personId) || (authManager.user.roles[0] === 'ROLE_ADMIN' && editMode) ? <button type="button" onClick={onEditBusinessClick}>Edit Business</button>:null}
+      {(editMode && business.personId == authManager.user.personId) || (authManager.user.roles[0] === 'ROLE_ADMIN' && editMode) ? <button type="button" onClick={handleDeleteClick}>Delete Business</button>:null}
       <Reviews businessId={businessId}></Reviews>
       {(business.personId != authManager.user.personId) || authManager.user.roles[0] === 'ROLE_ADMIN' ? <button type="button" onClick={addReviewClick}>Add Review</button>:null}
       <Events businessId={businessId} editMode={editMode}></Events>
