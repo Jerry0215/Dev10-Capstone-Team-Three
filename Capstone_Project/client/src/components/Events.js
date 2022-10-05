@@ -35,7 +35,10 @@ function Events({ businessId , editMode}) {
   }, [])
 
   const handleAddEvent = () => history.push('/event/add')
-
+  const handleDelete = (eventId) => {
+    const filteredEvents = events.filter(event => event.eventId!== eventId)
+    setEvents(filteredEvents); 
+  }
   return (
     <>
       <h2>Events</h2>
@@ -50,7 +53,7 @@ function Events({ businessId , editMode}) {
           </tr>
         </thead>
         <tbody>
-          {events.map(event => <Event key={event.eventId} event={event} editMode={editMode}/>)}
+          {events.map(event => <Event key={event.eventId} event={event} editMode={editMode} handleDelete={handleDelete}/>)}
         </tbody>
       </table>
     </>
