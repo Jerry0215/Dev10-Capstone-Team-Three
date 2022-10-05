@@ -79,7 +79,6 @@ function Register() {
       switch (resp.status) {    
         case 201:
         savePerson();
-
         case 400:
           return resp.json();
         case 403:
@@ -89,9 +88,7 @@ function Register() {
       }
     })
     .then(body => {
-      
       if (body) {
-        savePerson();
       } else {
         setErrors(body);
       }
