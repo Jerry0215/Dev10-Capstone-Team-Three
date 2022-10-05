@@ -8,7 +8,7 @@ function Person ({ person }) {
   const path = person.photo;
 
     return (
-      <>
+      
       <div className="col-sm-4">
       <div className="card">
       <div className="card-group">
