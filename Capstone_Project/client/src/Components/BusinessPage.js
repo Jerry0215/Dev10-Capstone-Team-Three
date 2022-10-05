@@ -51,22 +51,19 @@ function BusinessPage() {
 
   const onEditBusinessClick = () => history.push(`/businessform/edit/${businessId}`);
 
-  console.log(editMode); 
-
-
-
+  
 
   return (
     <>
       <h2>{business.name}</h2>
       <p>{business.description}</p>
       <img src={path} alt="Everything is on fire" />
-      {business.personId == authManager.user.personId ? <button type="button" onClick={enterEditMode}>Change Edit Mode</button>:null}
-      {(editMode && business.personId == authManager.user.personId) ? <button type="button" onClick={onEditBusinessClick}>Edit Business</button>:null}
+      {((business.personId == authManager.user.personId) || authManager.user.roles[0] === 'ROLE_ADMIN') ? <button type="button" onClick={enterEditMode}>Change Edit Mode</button>:null}
+      {(editMode && business.personId == authManager.user.personId) || (authManager.user.roles[0] === 'ROLE_ADMIN' && editMode) ? <button type="button" onClick={onEditBusinessClick}>Edit Business</button>:null}
       <Reviews businessId={businessId}></Reviews>
-      {business.personId != authManager.user.personId ? <button type="button" onClick={addReviewClick}>Add Review</button>:null}
+      {(business.personId != authManager.user.personId) || authManager.user.roles[0] === 'ROLE_ADMIN' ? <button type="button" onClick={addReviewClick}>Add Review</button>:null}
       <Events businessId={businessId} editMode={editMode}></Events>
-      {(editMode && business.personId == authManager.user.personId) ? <button type="button" onClick={addEventClick}>Add Event</button>:null}
+      {(editMode && business.personId == authManager.user.personId) || (authManager.user.roles[0] === 'ROLE_ADMIN' && editMode) ? <button type="button" onClick={addEventClick}>Add Event</button>:null}
       <Locations businessId={businessId}></Locations>
     </>
   )

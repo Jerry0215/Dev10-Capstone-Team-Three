@@ -44,7 +44,7 @@ function PersonPage(){
         return (
         <>
         <h2>{person.firstName} {person.middleName} {person.lastName} {person.suffix}</h2>
-        {personId == authManager.user.personId ? <button type="button" onClick={onEditClick}>Edit Profile</button>:null}
+        {personId == authManager.user.personId || authManager.user.roles[0] === 'ROLE_ADMIN' ? <button type="button" onClick={onEditClick}>Edit Profile</button>:null}
 
         <table className="table table-striped">
             <thead>

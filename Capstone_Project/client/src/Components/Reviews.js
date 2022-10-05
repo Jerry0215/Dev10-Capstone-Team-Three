@@ -95,8 +95,8 @@ function Reviews({ businessId}) {
               <td>{review.rating}</td>
               <td>{review.personId}</td>
               <td>{review.businessId}</td>
-              <td>{review.personId == authManager.user.personId ? <button type="button" onClick={ () => handleClick(review)}>Edit Review</button>:null}</td>
-              <td>{review.personId == authManager.user.personId ? <button type="button" onClick={ () => handleDeleteClick(review.reviewId)}>Delete Review</button>:null}</td>
+              <td>{review.personId == authManager.user.personId || authManager.user.roles[0] === 'ROLE_ADMIN' ? <button type="button" onClick={ () => handleClick(review)}>Edit Review</button>:null}</td>
+              <td>{review.personId == authManager.user.personId || authManager.user.roles[0] === 'ROLE_ADMIN' ? <button type="button" onClick={ () => handleDeleteClick(review.reviewId)}>Delete Review</button>:null}</td>
               
              
             </tr>
