@@ -78,7 +78,7 @@ function Register() {
       console.log(resp.status);
       switch (resp.status) {    
         case 201:
-        history.push("/login");
+        savePerson();
         case 400:
           return resp.json();
         case 403:
@@ -88,10 +88,7 @@ function Register() {
       }
     })
     .then(body => {
-      
       if (body) {
-        console.log(body)
-        savePerson();
       } else {
         setErrors(body);
       }
@@ -115,6 +112,7 @@ function Register() {
       .then(resp => {
 
         if (resp.status === 201 || resp.status === 400) {
+          history.push("/login");
           return resp.json();
         }
         return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
