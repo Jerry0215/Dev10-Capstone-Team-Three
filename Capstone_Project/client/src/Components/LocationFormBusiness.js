@@ -9,12 +9,11 @@ const DEFAULT_LOCATION = { address: '', city: '', state: '', zipCode: '', addres
 function LocationFormBusiness( {trigger, setTrigger, business} ){
 
     const [location, setLocation] = useState(DEFAULT_LOCATION);
+    
 
     const [blob, setBlob] = useState([]);
     const history = useHistory();
     const [errors, setErrors] = useState([]);
-
-    const submittedLocation = false;
 
     const authManager = useContext(UserContext);
 
@@ -98,14 +97,11 @@ function LocationFormBusiness( {trigger, setTrigger, business} ){
           const onSubmit1 = (evt) => {       
             evt.preventDefault();
             
-            saveLocation();
-            
+            saveLocation();       
           }
 
-          const setSubmittedLocation = () => {
-            submittedLocation = true;
-            return true;
-          }
+
+
 
     return (trigger) ? (
         <>
@@ -183,7 +179,7 @@ function LocationFormBusiness( {trigger, setTrigger, business} ){
         </div>
 
         <div className="form-group">               
-                <button type="submit" className="btn btn-success mr-3" onSubmitLocation={setSubmittedLocation}>Submit Location</button>
+                <button type="submit" className="btn btn-success mr-3" >Submit Location</button>
             </div>
         </form>
   
