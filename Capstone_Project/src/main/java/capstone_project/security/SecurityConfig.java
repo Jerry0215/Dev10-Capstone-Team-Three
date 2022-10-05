@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(HttpMethod.PUT, "/api/review/*","/api/event/**","/api/person/*","/api/business/*").hasAnyRole("ADMIN", "USER")
 
-                .antMatchers(HttpMethod.DELETE, "/api/event/**", "/api/person/*","api/business/*").hasAnyRole("ADMIN","USER")
+                .antMatchers(HttpMethod.DELETE, "/api/review/*","/api/event/**", "/api/person/*","api/business/**").hasAnyRole("ADMIN","USER")
 
                 .antMatchers("/**").denyAll()
 
