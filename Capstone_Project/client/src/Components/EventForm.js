@@ -171,7 +171,7 @@ function EventForm(){
                 <button type="submit" className="btn btn-success mr-3">Submit</button>
             </div>
             <div className="form-group">
-              <button type="button" className="btn btn-fail mr-3" onClick={onCancelClick}>Cancel Request</button>
+              <button type="button" className="btn btn-secondary mr-3" onClick={onCancelClick}>Cancel Request</button>
             </div>
             </form>
             </>

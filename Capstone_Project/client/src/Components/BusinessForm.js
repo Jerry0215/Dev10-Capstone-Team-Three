@@ -2,7 +2,6 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import UserContext from '../UserContext';
 import Error from './Error';
-import Confirmation from "./Confirmation";
 import LocationFormBusiness from './LocationFormBusiness';
 
 
@@ -16,7 +15,6 @@ function BusinessForm() {
   const DEFAULT_BUSINESS = { name: '', description: '', photoDir: '', photo: '', photoName: '', rating: 0, photoName: '', locationId: 1, personId: authManager.user.personId }
   const DEFAULT_REVIEW = { content: '', timeDate: '', rating: 0, personId: authManager.user.personId, businessId: 1 }
 
-
   const [business, setBusiness] = useState(DEFAULT_BUSINESS);
   const [location, setLocation] = useState(DEFAULT_LOCATION);
   const [review, setReview] = useState(DEFAULT_REVIEW);
@@ -26,8 +24,6 @@ function BusinessForm() {
   const [blob, setBlob] = useState([]);
   const history = useHistory();
   const [errors, setErrors] = useState([]);
-
-
 
   useEffect(() => {
 
@@ -68,7 +64,7 @@ function BusinessForm() {
     reader.onload = callback;
     reader.onerror = console.log;
     reader.readAsDataURL(data);
-    console.log(reader);
+
   }
 
   function convertToBase64() {
@@ -184,7 +180,7 @@ function BusinessForm() {
     const newBusiness = { ...business };
 
     newBusiness[property] = value;
-    console.log(newBusiness);
+
     setBusiness(newBusiness);
   }
 
@@ -211,6 +207,8 @@ function BusinessForm() {
     setBusiness(business);
   }
 
+  const onCancelClick = () => history.push(`/businesspage/${business.businessId}`);
+
   return (
     <>
       <h2>{editId ? 'Update' : 'Add'} Business</h2>
@@ -233,7 +231,8 @@ function BusinessForm() {
           <input name="profilePicture" type="file" id="img" onChange={handleTwoFunction}></input>
         </div>
         <div className="form-group">
-          <button type="submit" className="btn btn-success mr-3">Submit</button>              
+          <button type="submit" className="btn btn-success mr-3">Submit</button>         
+          <button type="button" className="btn btn-secondary mr-3" onClick={onCancelClick}>Go Back</button>     
         </div>
         
       </form>

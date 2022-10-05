@@ -1,58 +1,58 @@
-import { useHistory } from "react-router-dom";
-import Confirmation from "./Confirmation";
-import {useState} from "react";
+// import { useHistory } from "react-router-dom";
+// import Confirmation from "./Confirmation";
+// import {useState} from "react";
 
-function Agent({ agent, handleDelete }){
+// function Agent({ agent, handleDelete }){
    
-    const [buttonPopup, setButtonPopup] = useState(false);
+//     const [buttonPopup, setButtonPopup] = useState(false);
 
-    const history = useHistory();
+//     const history = useHistory();
     
-    const deleteAgent = (agentId) => {
+//     const deleteAgent = (agentId) => {
         
-        handleDelete(agentId);
-      }
+//         handleDelete(agentId);
+//       }
 
-      const handleEditClick = () => {
-        // use history and push to the correct url
-        history.push(`/agents/edit/${agent.agentId}`);
-      }
+//       const handleEditClick = () => {
+//         // use history and push to the correct url
+//         history.push(`/agents/edit/${agent.agentId}`);
+//       }
 
-    return (
+//     return (
         
-        <tr className="lightGold">
-            <td> <button className="collapsible" type="button" data-bs-toggle="collapse" data-bs-target={"#collapseExample"+agent.agentId} aria-expanded="false" aria-controls={"collapseExample"+agent.agentId}>
-            <b>{agent.firstName + ' ' + agent.middleName + ' ' + agent.lastName}</b>
-        </button>
-        <div className="collapse" id={"collapseExample"+agent.agentId}>
-        <table className="table table-bordered border-dark mb-0">
-        <thead className="darkPurple">
-                <tr>
-                    <th scope="col">Date of Birth</th>
-                    <th scope="col">Height in Inches</th>
+//         <tr className="lightGold">
+//             <td> <button className="collapsible" type="button" data-bs-toggle="collapse" data-bs-target={"#collapseExample"+agent.agentId} aria-expanded="false" aria-controls={"collapseExample"+agent.agentId}>
+//             <b>{agent.firstName + ' ' + agent.middleName + ' ' + agent.lastName}</b>
+//         </button>
+//         <div className="collapse" id={"collapseExample"+agent.agentId}>
+//         <table className="table table-bordered border-dark mb-0">
+//         <thead className="darkPurple">
+//                 <tr>
+//                     <th scope="col">Date of Birth</th>
+//                     <th scope="col">Height in Inches</th>
                     
-                    <th></th>
-                </tr>
-            </thead>
-                <tbody className="lightPurple">
-                    <tr>
-                        <td>{agent.dob}</td>
-                        <td>{agent.heightInInches}</td>
+//                     <th></th>
+//                 </tr>
+//             </thead>
+//                 <tbody className="lightPurple">
+//                     <tr>
+//                         <td>{agent.dob}</td>
+//                         <td>{agent.heightInInches}</td>
                         
-                        <td>
-                        <button type="button" className="btn primaryPurple mr-3" onClick={handleEditClick} >Edit {agent.agentId}</button>
-                         <button type="button" className="btn btn-danger " onClick={() => {setButtonPopup(true)}} >Delete {agent.agentId} </button>
-                         <Confirmation trigger={buttonPopup} setTrigger={setButtonPopup} agent={agent} key={agent.agentId} handleDelete={deleteAgent}></Confirmation>
-                        </td>
-                    </tr>
-                </tbody>
-        </table>
+//                         <td>
+//                         <button type="button" className="btn primaryPurple mr-3" onClick={handleEditClick} >Edit {agent.agentId}</button>
+//                          <button type="button" className="btn btn-danger " onClick={() => {setButtonPopup(true)}} >Delete {agent.agentId} </button>
+//                          <Confirmation trigger={buttonPopup} setTrigger={setButtonPopup} agent={agent} key={agent.agentId} handleDelete={deleteAgent}></Confirmation>
+//                         </td>
+//                     </tr>
+//                 </tbody>
+//         </table>
         
-        </div>  
-        </td>
+//         </div>  
+//         </td>
           
-        </tr>
+//         </tr>
       
-      );
-}
-export default Agent;
+//       );
+// }
+// export default Agent;

@@ -188,6 +188,7 @@ function PersonForm() {
             setPerson(newPerson);
           }
 
+          const onCancelClick = () => history.push(`/personpage/${person.personId}`);
 
           return (
             <>
@@ -224,8 +225,8 @@ function PersonForm() {
                 <input name="profilePicture" type="file" id="img" onChange={handleTwoFunction}></input>
 
                 <div className="form-group">
-
                   <button type="submit" className="btn btn-success mr-3">Submit</button>
+                  <button type="button" className="btn btn-secondary mr-3" onClick={onCancelClick}>Go Back</button>   
                 </div>
               </form>
 
