@@ -131,26 +131,10 @@ insert into appUserRole
 insert into location 
 	values
     (1,'7 N 8th St','Richmond','VA','23219','Home');
-
     
-insert into person (firstName, middleName, lastName, suffix, photoName, phone, locationId, appUserId)
+insert into person (personId, firstName, middleName, lastName, suffix, photoName, phone, locationId, appUserId)
 	values
-	('Test First Name','Test Middle Name','Test Last Name', 'Sr.', 'Test Picture.jpg', 'Test Phone', 1, 1);
-
-insert into business (`name`, `description`, rating, locationId, personId)
-	values
-    ('Test Business Name','Test Business Description',5,1,1);
-     
-insert into `event` (`name`,`description`,timeDate, businessId)
-	 values
-     ('Test Event Name', 'Test Event Description', '2020-01-01 00:01:00', 1); 
-
- insert into review (content, timeDate, rating, personId, businessId)
-	values
-    ('Test Content','2020-01-01 00:01:00',8,1,1),
-    ('Test Content','2020-01-01 00:01:00',5,1,1),
-    ('Test Content','2020-01-01 00:01:00',7,1,1);
-
+	(1, 'Adam','','Minister', 'Sr.', 'Test Picture.jpg', '202-207-7133', 1, 1);
 
 
 select  sum(rating)/count(*) from review where businessId = 1;
@@ -159,4 +143,5 @@ select * from appUser;
 select * from person;
 select * from business;
 select * from location;
+select * from event;
 
