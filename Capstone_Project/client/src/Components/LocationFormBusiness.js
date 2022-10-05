@@ -2,6 +2,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import Error from './Error';
 import UserContext from '../UserContext';
+import { ReactDOM } from 'react';
 
 const DEFAULT_LOCATION = { address: '', city: '', state: '', zipCode: '', addressType: 'Home'}
 
@@ -13,10 +14,12 @@ function LocationFormBusiness( {trigger, setTrigger, business} ){
     const history = useHistory();
     const [errors, setErrors] = useState([]);
 
+    const submittedLocation = false;
+
     const authManager = useContext(UserContext);
 
     useEffect(() => {
-      console.log(business.locationId);
+
       const init = {
         method: 'GET',
         headers: {
@@ -69,7 +72,7 @@ function LocationFormBusiness( {trigger, setTrigger, business} ){
         })
         .then(body => {         
             if (body.locationId) {  
-              console.log(body.locationId);        
+
               business.locationId = body.locationId;
               setTrigger(false);
             } else if (body) {
@@ -95,11 +98,15 @@ function LocationFormBusiness( {trigger, setTrigger, business} ){
           const onSubmit1 = (evt) => {       
             evt.preventDefault();
             
-            console.log("Inside onsubmit")
             saveLocation();
             
           }
-    
+
+          const setSubmittedLocation = () => {
+            submittedLocation = true;
+            return true;
+          }
+
     return (trigger) ? (
         <>
         
@@ -176,7 +183,7 @@ function LocationFormBusiness( {trigger, setTrigger, business} ){
         </div>
 
         <div className="form-group">               
-                <button type="submit" className="btn btn-success mr-3">Submit Location</button>
+                <button type="submit" className="btn btn-success mr-3" onSubmitLocation={setSubmittedLocation}>Submit Location</button>
             </div>
         </form>
   
