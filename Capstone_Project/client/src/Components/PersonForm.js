@@ -79,7 +79,7 @@ function PersonForm() {
     const newPerson = { ...person };
 
     newPerson["photo"] = dataURL;
-    console.log(newPerson);
+   
     setPerson(newPerson);
 
   }
@@ -134,7 +134,7 @@ function PersonForm() {
 
       fetch(`http://localhost:8080/api/person/${editId}`, init)
       .then(resp => {
-        console.log(resp.status);
+      
         switch (resp.status) {
           case 200:
             return null;
@@ -184,7 +184,7 @@ function PersonForm() {
             const newPerson = { ...person };
 
             newPerson[property] = value;
-            console.log(newPerson);
+          
             setPerson(newPerson);
           }
 

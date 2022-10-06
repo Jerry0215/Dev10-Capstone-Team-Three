@@ -27,7 +27,7 @@ function Event ({ event, editMode, handleDelete, index }) {
             case 204:
               return null;
             case 404:
-              //history.push('/not-found')
+              history.push('/not-found')
               break;
             default:
               return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');

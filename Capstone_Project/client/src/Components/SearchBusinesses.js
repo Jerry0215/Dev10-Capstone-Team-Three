@@ -30,7 +30,7 @@ function SearchBusinesses() {
 
         fetch(`http://localhost:8080/api/business/search/${prefix}`, init)
             .then(resp => {
-                console.log(resp.status);
+                
                 if (resp.status === 200) {
                     return resp.json();
                 }
@@ -39,8 +39,7 @@ function SearchBusinesses() {
             .then(data => {
                 setBusinesses(data);
             })
-            .catch(console.log);
-        //.catch(err => history.push('/error', {errorMessage: err}));
+            .catch(err => history.push('/error', {errorMessage: err}));
 
     }
 

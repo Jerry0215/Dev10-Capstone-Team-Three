@@ -8,7 +8,7 @@ function Locations({ businessId }) {
   const [locations, setLocations] = useState([]);
 
   const authManager = useContext(UserContext);
-
+  const history = useHistory(); 
   useEffect(() => {
 
     const init = {
@@ -28,7 +28,7 @@ function Locations({ businessId }) {
       .then(data => {
         setLocations(data);
       })
-    // .catch(err => history.push('/error', {errorMessage: err}));
+     .catch(err => history.push('/error', {errorMessage: err}));
   }, [])
 
   let location = locations[locations.length-1]; 
