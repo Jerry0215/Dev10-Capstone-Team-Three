@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import UserContext from '../UserContext';
 import Error from './Error';
 
-const DEFAULT_PERSON = { firstName: 'New', middleName: 'New', lastName: 'New', suffix: 'New', photo: '', photoName: 'New', phone: 'New', locationId: 1, userId: 1 }
+const DEFAULT_PERSON = { firstName: 'New', middleName: '', lastName: 'User', suffix: '', photo: '', photoName: 'New', phone: '.', locationId: 1, userId: 1 }
 
 const DEFAULT_REGISTER = {
   username: '',
