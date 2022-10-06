@@ -70,9 +70,9 @@ function ReviewForm(){
             return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
           })
           .then(body => {
-            if (!body) {
+            if (body) {
               
-             history.push(`/businessPage/${businessId}`)
+             history.push(`/businessPage/${businessId}`);
             } else if (body) {
               setErrors(body);
             }

@@ -35,6 +35,7 @@ function Event ({ event, editMode, handleDelete, index }) {
         })
         .then(resp => {
             if (!resp) {
+              // history.push(`/businesspage/${event.businessId}`)
               handleDelete(event.eventId);
             } else {
               console.log(resp); 

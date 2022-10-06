@@ -7,6 +7,8 @@ import UserContext from '../UserContext';
 
 
 function BusinessPage() {
+
+  
   
   const [business, setBusiness] = useState([])
   const [path, setPath] = useState([])

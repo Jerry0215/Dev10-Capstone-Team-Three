@@ -35,10 +35,13 @@ function Events({ businessId , editMode}) {
   }, [])
 
   const handleAddEvent = () => history.push('/event/add')
+
   const handleDelete = (eventId) => {
-    const filteredEvents = events.filter(event => event.eventId!== eventId)
-    setEvents(filteredEvents); 
+    // const filteredEvents = events.filter(event => event.eventId!== eventId)
+    // setEvents(filteredEvents); 
+    window.location.reload(false);
   }
+
   return (
     <>
     <h2 className='section-header'>Upcoming Events</h2>

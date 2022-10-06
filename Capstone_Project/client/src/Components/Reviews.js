@@ -36,14 +36,16 @@ function Reviews({ businessId}) {
   
 
     const handleDelete = (reviewId) =>{
-        const filteredReviews = reviews.filter(review => review.reviewId!==reviewId);
-        setReviews(filteredReviews); 
+        // const filteredReviews = reviews.filter(review => review.reviewId!==reviewId);
+        // setReviews(filteredReviews); 
+        window.location.reload(false);
       }
   
  
 
-  return (
+  return (  
     <>
+    {reviews.length != 0 ?     <>
       <h2 className='section-header'>Business Reviews</h2>
       <div className='testimonial-view'>
           
@@ -70,19 +72,11 @@ function Reviews({ businessId}) {
           
       </div>
       
-
-
-
-
-          
-
-
       
+    </> : null }
     </>
   )
-
-
-
+  
 
 }
 export default Reviews; 

@@ -67,6 +67,7 @@ function Review({index, review, handleDelete}){
         .then(resp => {
             if (!resp) {
               handleDelete(reviewId);
+              
             } else {
               console.log(resp); 
             }
