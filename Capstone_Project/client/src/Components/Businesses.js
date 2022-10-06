@@ -7,7 +7,7 @@ function Businesses() {
   const [businesses, setBusinesses] = useState([]);
 
   const authManager = useContext(UserContext);
-
+  const history = useHistory(); 
   useEffect(() => {
 
     const init = {
@@ -27,7 +27,7 @@ function Businesses() {
       .then(data => {
         setBusinesses(data);
       })
-    //.catch(err => history.push('/error', {errorMessage: err}));
+    .catch(err => history.push('/error', {errorMessage: err}));
   }, [])
 
   return (

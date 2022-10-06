@@ -12,8 +12,7 @@ function ReviewForm(){
     const DEFAULT_REVIEW = {content:'', timeDate:'', rating:'', personId:authManager.user.personId,businessId:businessId}
     const [review, setReview] = useState(DEFAULT_REVIEW);
     
-    console.log("here");
-    console.log(authManager); 
+  
     const history = useHistory();
     const [errors,setErrors] = useState([]); 
     
@@ -29,7 +28,7 @@ function ReviewForm(){
         if (editId) {
           fetch(`http://localhost:8080/api/review/byReview/${editId}`, init)
             .then(resp => {
-              console.log(resp.status); 
+             
               switch (resp.status) {
                 case 200:
                   return resp.json();
@@ -60,7 +59,7 @@ function ReviewForm(){
           },
           body: JSON.stringify({ ...review })
         };
-        console.log(JSON.stringify({ ...review}))
+     
     
         fetch('http://localhost:8080/api/review', init)
           .then(resp => {
@@ -131,7 +130,7 @@ function ReviewForm(){
         const newReview = { ...review};
     
         newReview[property] = value;
-        console.log(newReview);
+      
         setReview(newReview);
       }
 

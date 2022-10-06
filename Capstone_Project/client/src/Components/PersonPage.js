@@ -26,7 +26,7 @@ function PersonPage(){
         }
       };
 
-      console.log(authManager);
+
         fetch(`http://localhost:8080/api/person/${personId}`,init)
         .then(resp => {
             if (resp.status === 200) {
@@ -38,7 +38,7 @@ function PersonPage(){
             setPerson(data);
             locationSetter(data);
         })
-        //.catch(err => history.push('/error', {errorMessage: err}));
+        .catch(err => history.push('/error', {errorMessage: err}));
         },[])
       
       const locationSetter = (data1) => {
@@ -49,7 +49,7 @@ function PersonPage(){
           }
         };
   
-        console.log(authManager);
+      
           fetch(`http://localhost:8080/api/location/${data1.locationId}`,init)
           .then(resp => {
               if (resp.status === 200) {
@@ -61,12 +61,12 @@ function PersonPage(){
               setLocation(data);
               
           })
-          //.catch(err => history.push('/error', {errorMessage: err}));
+          .catch(err => history.push('/error', {errorMessage: err}));
 
       }
     
           
-        console.log(location);
+     
         
         const onEditClick = () => history.push(`/personform/edit/${personId}`)
         return (

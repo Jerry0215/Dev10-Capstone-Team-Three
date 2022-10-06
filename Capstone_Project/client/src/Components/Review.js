@@ -23,7 +23,7 @@ function Review({index, review, handleDelete}){
           }
         };
   
-        console.log(authManager);
+        
           fetch(`http://localhost:8080/api/person/${review.personId}`,init)
           .then(resp => {
               if (resp.status === 200) {
@@ -35,7 +35,7 @@ function Review({index, review, handleDelete}){
               setPerson(data);
               
           })
-          //.catch(err => history.push('/error', {errorMessage: err}));
+          .catch(err => history.push('/error', {errorMessage: err}));
           },[])
 
     function handleClick(review) {
@@ -74,7 +74,7 @@ function Review({index, review, handleDelete}){
           .catch(err => history.push('/error', {errorMessage: err}));
         }
     
-      console.log(person)
+  
 
     return(
         

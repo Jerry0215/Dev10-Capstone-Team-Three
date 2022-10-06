@@ -56,7 +56,7 @@ function Register() {
 
     fetch('http://localhost:8080/create_account', init)
     .then(resp => {
-      console.log(resp.status);
+      
       switch (resp.status) {    
         case 201:
         savePerson();
@@ -74,11 +74,11 @@ function Register() {
         setErrors(body);
       }
     })
-    //.catch(err => history.push('/error', {errorMessage: err}));
+    .catch(err => history.push('/error', {errorMessage: err}));
   }
 
   const savePerson = () => {
-    console.log(person)
+  
 
     const init = {
       method: 'POST',

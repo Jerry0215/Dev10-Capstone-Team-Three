@@ -30,7 +30,7 @@ function SearchPersons() {
 
         fetch(`http://localhost:8080/api/person/search/${prefix}`, init)
             .then(resp => {
-                console.log(resp.status);
+                
                 if (resp.status === 200) {
                     return resp.json();
                 }
@@ -39,8 +39,8 @@ function SearchPersons() {
             .then(data => {
                 setPersons(data);
             })
-            .catch(console.log);
-        //.catch(err => history.push('/error', {errorMessage: err}));
+            .catch(err => history.push('/error', {errorMessage: err}));
+        //.catch();
 
     }
 
