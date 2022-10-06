@@ -61,7 +61,8 @@
   position: absolute;
   max-width: 80%;
   top: 50%;
-  left: 38%;
+  left: 41%;
+  text-align: center;
 }
 
 .backdrop {
@@ -474,11 +475,11 @@ form.search::after {
 
 .body-contact{
   display: inline-block;
-  width: 35%;
+  width: 45%;
   background-color: #2c3e50b3;
   justify-content: center;
   object-fit: cover;
-
+  margin-right: 5rem;
 
 }
 
@@ -487,10 +488,9 @@ form.search::after {
 .map-img{
   
   height: 40vH;
-  width: 30vH;
- 
- 
-  
+  width: 49vH;
+  margin-right: 5rem;
+
 }
 
 

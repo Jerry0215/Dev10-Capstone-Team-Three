@@ -144,7 +144,7 @@ public class BusinessJdbcTemplateRepository implements BusinessRepository{
         System.out.println(avg);
 
 
-        business.setRating(avg == null ? 10 : avg);
+        business.setRating(avg == null ? 0 : avg);
 
         update(business);
 
