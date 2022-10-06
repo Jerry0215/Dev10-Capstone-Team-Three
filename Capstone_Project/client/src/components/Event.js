@@ -2,11 +2,16 @@ import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../UserContext";
 
-function Event ({ event, editMode, handleDelete }) {
+function Event ({ event, editMode, handleDelete, index }) {
      
     const history = useHistory();
     const authManager = useContext(UserContext);
-  
+    let active;
+    if(index == 0){
+        active = "carousel-item active";
+    }else{
+        active = "carousel-item";
+    }
     const handleDeleteClick = () => {
       const init = {
         method: 'DELETE',
@@ -43,16 +48,34 @@ function Event ({ event, editMode, handleDelete }) {
     };
   
     return (
-      <tr>
-        <td>{event.name}</td>
-        <td>{event.description}</td>
-        <td>{event.timeDate}</td>
-        <td>{event.businessId}</td>
-        {editMode ? <button type="button" onClick={handleEditClick}>Edit</button>: null} 
-        {editMode ? <button type="button" onClick={handleDeleteClick}>Delete</button>:null}
-      </tr>
+      <> 
+      <div className= {active}>
+                      <div className='block'>
+                          <div className='row'>
+      <div className='col-md-5'>
+          <div className='user'>
+                
+                <div className='info'>
+                    <h2 className='user-name'>{event.name}</h2>
+                    <h4>{event.timeDate}</h4>
+                </div>
+            </div>
+        </div>
+        <div className='col-md-6'>
+            <div className='content'>{event.description}</div>
+        </div>
+        </div>
+        </div>
+        </div>
+      </> 
     );
     
 }
 
 export default Event;
+
+
+/*
+{editMode ? <button type="button" onClick={handleEditClick}>Edit</button>: null} 
+        {editMode ? <button type="button" onClick={handleDeleteClick}>Delete</button>:null}
+*/

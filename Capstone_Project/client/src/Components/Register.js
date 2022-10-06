@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../UserContext';
 import Error from './Error';
-import defaultPhoto from '../../src/pictures/defaultPhoto.png'
 
 const DEFAULT_PERSON = { firstName: 'New', middleName: 'New', lastName: 'New', suffix: 'New', photo: '', photoName: 'New', phone: 'New', locationId: 1, userId: 1 }
 
@@ -30,26 +29,8 @@ function Register() {
     console.log(reader);
   }
 
-  function convertToBase64() {
 
-    const img = defaultPhoto;
-    console.log(img)
-    read('../../src/pictures/defaultPhoto.png', convertToBlob);
 
-    img.value = null;
-
-  }
-
-  function convertToBlob(evt) {
-    const dataURL = evt.target.result;
-
-    const newPerson = { ...person };
-
-    newPerson["photo"] = dataURL;
-    console.log(newPerson);
-    setPerson(newPerson);
-
-  }
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
