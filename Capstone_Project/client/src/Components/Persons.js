@@ -6,7 +6,7 @@ import Person from './Person';
 
 function Persons() {
   const [persons, setPersons] = useState([]);
-
+  const history = useHistory(); 
   const authManager = useContext(UserContext);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function Persons() {
       .then(data => {
         setPersons(data);
       })
-    // .catch(err => history.push('/error', {errorMessage: err}));
+    .catch(err => history.push('/error', {errorMessage: err}));
   }, [])
 
 

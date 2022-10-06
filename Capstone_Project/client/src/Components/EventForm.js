@@ -58,7 +58,7 @@ function EventForm(){
           },
           body: JSON.stringify({ ...event })
         };
-        console.log(JSON.stringify({ ...event }))
+        
     
         fetch('http://localhost:8080/api/event', init)
           .then(resp => {
@@ -130,7 +130,7 @@ function EventForm(){
             const newEvent = { ...event };
         
             newEvent[property] = value;
-            console.log(newEvent);
+           
             setEvent(newEvent);
           }
     

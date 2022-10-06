@@ -90,7 +90,7 @@ function LocationFormBusiness( {trigger, setTrigger, business} ){
             const newLocation = { ...location };
         
             newLocation[property] = value;
-            console.log(newLocation);
+           
             setLocation(newLocation);
           }
     

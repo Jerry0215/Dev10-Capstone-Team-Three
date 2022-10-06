@@ -38,7 +38,7 @@ function PersonPage() {
         setPerson(data);
         locationSetter(data);
       })
-    //.catch(err => history.push('/error', {errorMessage: err}));
+    .catch(err => history.push('/error', {errorMessage: err}));
   }, [])
 
   const locationSetter = (data1) => {
@@ -61,7 +61,7 @@ function PersonPage() {
         setLocation(data);
 
       })
-    //.catch(err => history.push('/error', {errorMessage: err}));
+    .catch(err => history.push('/error', {errorMessage: err}));
 
   }
 

@@ -16,7 +16,7 @@ function LocationFormPerson( {trigger, setTrigger, person} ){
     const authManager = useContext(UserContext);
 
     useEffect(() => {
-      console.log(person.locationId);
+     
       const init = {
         method: 'GET',
         headers: {
@@ -69,7 +69,7 @@ function LocationFormPerson( {trigger, setTrigger, person} ){
         })
         .then(body => {         
             if (body.locationId) {  
-              console.log(body.locationId);        
+                  
               person.locationId = body.locationId;
               setTrigger(false);
             } else if (body) {
@@ -88,14 +88,14 @@ function LocationFormPerson( {trigger, setTrigger, person} ){
             const newLocation = { ...location };
         
             newLocation[property] = value;
-            console.log(newLocation);
+       
             setLocation(newLocation);
           }
     
           const onSubmit1 = (evt) => {       
             evt.preventDefault();
             
-            console.log("Inside onsubmit")
+           
             saveLocation();
             
           }

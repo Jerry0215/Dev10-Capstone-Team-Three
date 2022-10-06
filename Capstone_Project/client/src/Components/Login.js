@@ -32,7 +32,7 @@ function Login({ onSubmit }) {
 
     fetch('http://localhost:8080/authenticate', init)
     .then(resp => {
-        console.log(resp.status); 
+ 
       switch (resp.status) {
         case 200:
           history.push("/");
@@ -49,7 +49,7 @@ function Login({ onSubmit }) {
       authManager.login(body.jwt_token)
       
     })
-    //.catch(err => history.push('/error', {errorMessage: err}));
+    .catch(err => history.push('/error', {errorMessage: err}));
     
   }
 
@@ -75,7 +75,7 @@ function Login({ onSubmit }) {
 
   let fields2 = document.querySelector(".show-password");
   function checkSlash(){
-    console.log(fields2.classList[2]);
+
     if(fields2.classList[2] == "fa-eye-slash"){
       fields2.classList.remove("fa-eye-slash");
       fields2.classList.add("fa-eye");

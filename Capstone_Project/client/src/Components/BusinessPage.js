@@ -24,7 +24,7 @@ function BusinessPage() {
       }
     };
 
-    console.log(authManager);
+   
 
     fetch(`http://localhost:8080/api/business/${businessId}`, init)
       .then(resp => {
@@ -37,10 +37,10 @@ function BusinessPage() {
 
         setBusiness(data);
 
-        console.log(data.photo)
+      
         setPath(data.photo);
       })
-    //.catch(err => history.push('/error', {errorMessage: err}));
+      .catch(err => history.push('/error', {errorMessage: err}));
   }, [])
 
   const [editMode, setEditMode] = useState(false); 

@@ -149,7 +149,7 @@ function BusinessForm() {
         }
       })
       .then(body => {
-        console.log(updateBusiness)
+        
         if (!body) {
          history.push(`/businesspage/${business.businessId}`)
         } else if (body) {
@@ -161,7 +161,7 @@ function BusinessForm() {
   }
 
   const onSubmit = (evt) => {
-    console.log(DEFAULT_BUSINESS)
+   
     evt.preventDefault();
 
     const fetchFunction = editId > 0 ? updateBusiness : saveBusiness;
@@ -194,7 +194,7 @@ function BusinessForm() {
     const newLocation = { ...location };
 
     newLocation[property] = value;
-    console.log(newLocation);
+    
     setLocation(newLocation);
   }
 
