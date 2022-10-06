@@ -33,22 +33,9 @@ function Businesses() {
   return (
     <>
       <h2>Businesses</h2>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">businessId</th>
-            <th scope="col">name</th>
-            <th scope="col">description</th>
-            <th scope="col">rating</th>
-            <th scope="col">locationId</th>
-            <th scope="col">personId</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {businesses.map(business => <Business key={business.businessId} business={business} />)}
-        </tbody>
-      </table>
+     
+      {businesses.map(business => <Business key={business.businessId} business={business} />)}
+      
     </>
   );
 }
