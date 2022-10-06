@@ -99,6 +99,7 @@ public class BusinessService {
         if (business.getPersonId()<0){
             result.addMessage("businesses must have an owner", ResultType.INVALID);
         }
+
         return result;
     }
 }

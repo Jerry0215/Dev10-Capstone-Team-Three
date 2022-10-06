@@ -79,6 +79,10 @@ public class ReviewService {
         if (review.getBusinessId()<0){
             result.addMessage("event must be held at a business",ResultType.INVALID);
         }
+
+        if(review.getRating() < 0 || review.getRating() > 10){
+            result.addMessage("rating must be between 0-10", ResultType.INVALID);
+        }
         return result;
     }
 
