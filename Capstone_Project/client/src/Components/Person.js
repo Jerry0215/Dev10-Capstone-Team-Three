@@ -13,14 +13,14 @@ function Person ({ person }) {
       <div className="card">
       <div className="card-group">
 
-
-        <img className="card-img-top" src={path} alt=""></img>
-        <div className="cover"></div>
+      <div className="card-img-top">
+        <div className="cover" alt="" style={{"background-image": `linear-gradient(#7F000000, #000000), url(${path})`, "background-size": "cover"}}>&nbsp;</div>
+        </div>
         <div className="menu"></div>
         
         <div className="card-body">
-          <p className="card-text">{person.firstName} {person.middleName} {person.lastName} {person.suffix} {person.locationId}</p>
-          <button type="button" onClick={onClick}>View Page</button>
+          <h3 className="card-text">{person.firstName} {person.lastName}</h3>
+          <button className="btn viewButton" type="button" onClick={onClick}>View Page</button>
         </div>
 
       </div>

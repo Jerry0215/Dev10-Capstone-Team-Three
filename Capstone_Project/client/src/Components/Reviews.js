@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../UserContext';
+import Review from './Review';
 
 function Reviews({ businessId}) {
   
@@ -32,79 +33,51 @@ function Reviews({ businessId}) {
   }, []);
   
   
-  function handleClick(review) {
-    history.push(`/reviewform/edit/${review.businessId}/${review.reviewId}`)
-  }
-  const handleDelete = (reviewId) =>{
-    const filteredReviews = reviews.filter(review => review.reviewId!==reviewId);
-    setReviews(filteredReviews); 
-  }
-  const handleDeleteClick = (reviewId) => {
+  
 
-    const init = {
-      method: 'DELETE',
-      headers:
-      {
-        Authorization: `Bearer ${authManager.user.token}`
+    const handleDelete = (reviewId) =>{
+        const filteredReviews = reviews.filter(review => review.reviewId!==reviewId);
+        setReviews(filteredReviews); 
       }
-    };
-
-    fetch(`http://localhost:8080/api/review/${reviewId}`, init)
-    .then( resp => {
-      switch(resp.status) {
-        case 204:
-          return null;
-        case 404:
-          history.push('/not-found')
-          break;
-        default:
-          return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
-      }
-    })
-    .then(resp => {
-        if (!resp) {
-          handleDelete(reviewId);
-        } else {
-          console.log(resp); 
-        }
-      })
-      .catch(err => history.push('/error', {errorMessage: err}));
-    }
+  
+ 
 
   return (
     <>
-      <h2>Business Reviews</h2>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">reviewId</th>
-            <th scope="col">content</th>
-            <th scope="col">timeDate</th>
-            <th scope="col">rating</th>
-            <th scope="col">personId</th>
-            <th scope="col">businessId</th>
-            <th></th> 
-          </tr>
-        </thead>
-        <tbody>
-          {reviews.map((review, index) => (
-            <tr key={index}>
-              <td>{review.reviewId}</td>
-              <td>{review.content}</td>
-              <td>{review.timeDate}</td>
-              <td>{review.rating}</td>
-              <td>{review.personId}</td>
-              <td>{review.businessId}</td>
-              <td>{review.personId == authManager.user.personId || authManager.user.roles[0] === 'ROLE_ADMIN' ? <button type="button" onClick={ () => handleClick(review)}>Edit Review</button>:null}</td>
-              <td>{review.personId == authManager.user.personId || authManager.user.roles[0] === 'ROLE_ADMIN' ? <button type="button" onClick={ () => handleDeleteClick(review.reviewId)}>Delete Review</button>:null}</td>
+      <h2 className='section-header'>Business Reviews</h2>
+      <div className='testimonial-view'>
+          
+             <div className='carousel slide' id='testimonialCarousel' data-ride="carousel">
+                <div className='carousel-inner'>
+                    
+                                  
+                                          
+                         {reviews.map((review, index) => <Review index={index} review={review} handleDelete={handleDelete} />)}
+                                          
+                                  
+                              </div>
+                                <a className='carousel-control-prev' href='#testimonialCarousel' role="button" data-slide="prev">
+                                  <span className='carousel-control-prev-icon' aria-hidden="true"></span>
+                                  <span className='sr-only'>Previous</span>
+                                </a>
+                                <a className='carousel-control-next' href='#testimonialCarousel' role="button" data-slide="next">
+                                  <span className='carousel-control-next-icon' aria-hidden="true"></span>
+                                  <span className='sr-only'>Next</span>
+                                </a>
+                         
+              </div>     
               
-             
-            </tr>
-          ))}
-        </tbody>
+          
+      </div>
+      
 
 
-      </table>
+
+
+          
+
+
+      
     </>
   )
 

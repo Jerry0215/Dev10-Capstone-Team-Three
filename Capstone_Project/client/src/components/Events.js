@@ -41,24 +41,44 @@ function Events({ businessId , editMode}) {
   }
   return (
     <>
-      <h2>Events</h2>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Date & Time</th>
-            <th scope="col">Business</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {events.map(event => <Event key={event.eventId} event={event} editMode={editMode} handleDelete={handleDelete}/>)}
-        </tbody>
-      </table>
-    </>
+    <h2 className='section-header'>Upcoming Events</h2>
+    <div className='testimonial-view'>
+        
+           <div className='carousel slide' id='testimonialCarousel' data-ride="carousel">
+              <div className='carousel-inner'>
+                  
+                                
+                                        
+              {events.map((event, index) => <Event key={event.eventId} event={event} editMode={editMode} handleDelete={handleDelete} index={index}/>)}
+                                        
+                                
+                            </div>
+                              <a className='carousel-control-prev' href='#testimonialCarousel' role="button" data-slide="prev">
+                                <span className='carousel-control-prev-icon' aria-hidden="true"></span>
+                                <span className='sr-only'>Previous</span>
+                              </a>
+                              <a className='carousel-control-next' href='#testimonialCarousel' role="button" data-slide="next">
+                                <span className='carousel-control-next-icon' aria-hidden="true"></span>
+                                <span className='sr-only'>Next</span>
+                              </a>
+                       
+            </div>     
+            
+        
+    </div>
+    
+
+
+
+
+        
+
+
+    
+  </>
   )
 
 }
 
 export default Events;
+

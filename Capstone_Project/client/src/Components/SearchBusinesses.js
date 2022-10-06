@@ -54,11 +54,9 @@ function SearchBusinesses() {
                 <button className="btn btn-outline-success my-2 my-sm-0 btn btn-light" type="submit">Search</button>
             </form>
 
-            <table className="table table-striped">
-                <tbody>
-                    {businesses.map(business => <Business key={business.businessId} business={business} />)}
-                </tbody>
-            </table>
+            <div className="row"> 
+                {businesses.map(business => <Business key={business.businessId} business={business} />)}
+            </div>
 
 
         </>
