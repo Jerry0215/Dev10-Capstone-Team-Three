@@ -79,7 +79,7 @@ function PersonPage(){
             {personId == authManager.user.personId || authManager.user.roles[0] === 'ROLE_ADMIN' ? <button className="btn viewButton2" type="button" onClick={onEditClick}>Edit Profile</button>:null}
           </div>
           </div>
-          <div className="body-contact">
+          <div className="body-contact" >
             <div className="address-info">
              <h4>Address:</h4> 
             <p>{location.address}, {location.city}, {location.state}, {location.zipCode} </p>

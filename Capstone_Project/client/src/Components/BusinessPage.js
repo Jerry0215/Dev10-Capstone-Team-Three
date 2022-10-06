@@ -85,10 +85,14 @@ function BusinessPage() {
 
   return (
     <>
+      <div className="contact">
       <h2>{business.name}</h2>
       <p>{business.description}</p>
+      </div>
+    
 
       <div className= "header-img1" alt="" style={{"background-image": `url(${path})`}}>&nbsp;</div>
+
       {((business.personId == authManager.user.personId) || authManager.user.roles[0] === 'ROLE_ADMIN') ? <button button className="btn btn-primary mr-3" type="button" onClick={enterEditMode}>Change Edit Mode</button>:null}
       {(editMode && business.personId == authManager.user.personId) || (authManager.user.roles[0] === 'ROLE_ADMIN' && editMode) ? <button button className="btn btn-warning mr-3" type="button" onClick={onEditBusinessClick}>Edit Business</button>:null}
       {(editMode && business.personId == authManager.user.personId) || (authManager.user.roles[0] === 'ROLE_ADMIN' && editMode) ? <button button className="btn btn-danger mr-3" type="button" onClick={handleDeleteClick}>Delete Business</button>:null}
