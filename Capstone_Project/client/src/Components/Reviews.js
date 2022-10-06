@@ -47,7 +47,7 @@ function Reviews({ businessId}) {
       <h2 className='section-header'>Business Reviews</h2>
       <div className='testimonial-view'>
           
-             <div className='carousel slide' id='testimonialCarousel' data-ride="carousel">
+             <div className='carousel slide' id='testimonialCarouselReview' data-ride="carousel">
                 <div className='carousel-inner'>
                     
                                   
@@ -56,11 +56,11 @@ function Reviews({ businessId}) {
                                           
                                   
                               </div>
-                                <a className='carousel-control-prev' href='#testimonialCarousel' role="button" data-slide="prev">
+                                <a className='carousel-control-prev' href='#testimonialCarouselReview' role="button" data-slide="prev">
                                   <span className='carousel-control-prev-icon' aria-hidden="true"></span>
                                   <span className='sr-only'>Previous</span>
                                 </a>
-                                <a className='carousel-control-next' href='#testimonialCarousel' role="button" data-slide="next">
+                                <a className='carousel-control-next' href='#testimonialCarouselReview' role="button" data-slide="next">
                                   <span className='carousel-control-next-icon' aria-hidden="true"></span>
                                   <span className='sr-only'>Next</span>
                                 </a>
