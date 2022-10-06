@@ -32,6 +32,7 @@ import { isCompositeComponent } from "react-dom/test-utils";
 import EventForm from "./Components/EventForm";
 import ReviewForm from "./Components/ReviewForm";
 import BusinessProfileRedirect from "./Components/BusinessProfileRedirect";
+import NotFound from "./Components/NotFound";
 
 
 const LOCALSTORAGE_KEY = 'NyelpAppToken';
@@ -129,28 +130,32 @@ function App() {
         <Route exact path="/personpage/:personId" component={PersonPage} >
           
         </Route>
-        <Route path={['/personform/add', '/personform/edit/:editId']}>
+        <Route exact path={['/personform/add', '/personform/edit/:editId']}>
           <PersonForm></PersonForm>
         </Route>
-        <Route path = {['/eventform/add/:businessId','/eventform/edit/:businessId/:editId']}>
+        <Route exact path = {['/eventform/add/:businessId','/eventform/edit/:businessId/:editId']}>
           <EventForm/>
         </Route>
-        <Route path={['/businessform/add', '/businessform/edit/:editId']}>
+        <Route exact path={['/businessform/add', '/businessform/edit/:editId']}>
           <BusinessForm></BusinessForm>
         </Route>
-        <Route path={['/locationform/business/add/:editId', '/locationform/business/edit/:editId']}>
+        <Route exact path={['/locationform/business/add/:editId', '/locationform/business/edit/:editId']}>
           <LocationFormBusiness></LocationFormBusiness>
         </Route>
         <Route path={['/locationform/person/add/:editId', '/locationform/person/edit/:editId']}>
           <LocationFormPerson></LocationFormPerson>
         </Route>
-        <Route path={['/reviewform/add/:businessId','/reviewform/edit/:businessId/:editId']}>
+        <Route exact path={['/reviewform/add/:businessId','/reviewform/edit/:businessId/:editId']}>
           <ReviewForm/>
         </Route>
-        <Route path={'/businessProfileRedirect'}>
+        <Route exact path={'/businessProfileRedirect'}>
           <BusinessProfileRedirect/>
         </Route>
+        <Route path='*'>
+          <NotFound/>
+        </Route>
         </div>
+       
       </Router>
       </UserContext.Provider> 
     </div>

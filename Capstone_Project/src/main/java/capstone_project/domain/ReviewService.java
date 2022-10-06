@@ -50,6 +50,7 @@ public class ReviewService {
             result.addMessage("reviewId must be set for update operation",ResultType.INVALID);
             return result;
         }
+
         if (!repository.update(review)){
             result.addMessage("review not found",ResultType.NOT_FOUND);
         }
