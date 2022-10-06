@@ -100,8 +100,10 @@ function BusinessPage() {
       <Reviews businessId={businessId}></Reviews>
       {(business.personId != authManager.user.personId) || authManager.user.roles[0] === 'ROLE_ADMIN' ? <button className="btn btn-primary" type="button" onClick={addReviewClick}>Add Review</button>:null}
       <Events businessId={businessId} editMode={editMode}></Events>
-      {(editMode && business.personId == authManager.user.personId) || (authManager.user.roles[0] === 'ROLE_ADMIN' && editMode) ? <button className="btn btn-primary" type="button" onClick={addEventClick}>Add Event</button>:null}
+      {(editMode && business.personId == authManager.user.personId) || (authManager.user.roles[0] === 'ROLE_ADMIN' && editMode) ? <button className="btn btn-primary mb-3" type="button" onClick={addEventClick}>Add Event</button>:null}
+      <div>
       <Locations businessId={businessId}></Locations>
+      </div>
     </>
   )
 
