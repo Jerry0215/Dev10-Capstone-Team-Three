@@ -65,6 +65,8 @@ function Event ({ event, editMode, handleDelete, index }) {
             <div className='content'>{event.description}</div>
         </div>
         </div>
+        {editMode ? <button className='btn btn-warning' type="button" onClick={handleEditClick}>Edit</button>: null} 
+        {editMode ? <button className='btn btn-danager m-3' type="button" onClick={handleDeleteClick}>Delete</button>:null}
         </div>
         </div>
       </> 
