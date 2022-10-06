@@ -85,13 +85,16 @@ function BusinessPage() {
 
   return (
     <>
+      <div className="contact">
       <h2>{business.name}</h2>
       <p>{business.description}</p>
+      </div>
+    
 
       <div className= "header-img1" alt="" style={{"background-image": `url(${path})`}}>&nbsp;</div>
-      {((business.personId == authManager.user.personId) || authManager.user.roles[0] === 'ROLE_ADMIN') ? <button type="button" onClick={enterEditMode}>Change Edit Mode</button>:null}
-      {(editMode && business.personId == authManager.user.personId) || (authManager.user.roles[0] === 'ROLE_ADMIN' && editMode) ? <button type="button" onClick={onEditBusinessClick}>Edit Business</button>:null}
-      {(editMode && business.personId == authManager.user.personId) || (authManager.user.roles[0] === 'ROLE_ADMIN' && editMode) ? <button type="button" onClick={handleDeleteClick}>Delete Business</button>:null}
+      {((business.personId == authManager.user.personId) || authManager.user.roles[0] === 'ROLE_ADMIN') ? <button className="btn btn-primary" type="button" onClick={enterEditMode}>Change Edit Mode</button>:null}
+      {(editMode && business.personId == authManager.user.personId) || (authManager.user.roles[0] === 'ROLE_ADMIN' && editMode) ? <button className="btn btn-primary" type="button" onClick={onEditBusinessClick}>Edit Business</button>:null}
+      {(editMode && business.personId == authManager.user.personId) || (authManager.user.roles[0] === 'ROLE_ADMIN' && editMode) ? <button className="btn btn-primary" type="button" onClick={handleDeleteClick}>Delete Business</button>:null}
 
       <Reviews businessId={businessId}></Reviews>
       {(business.personId != authManager.user.personId) || authManager.user.roles[0] === 'ROLE_ADMIN' ? <button className="btn btn-primary" type="button" onClick={addReviewClick}>Add Review</button>:null}

@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../UserContext';
-import Review from '../Components/Review'
+import Review from './Review'; 
 
 function Reviews({ businessId}) {
   
