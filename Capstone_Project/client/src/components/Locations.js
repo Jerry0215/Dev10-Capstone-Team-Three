@@ -31,27 +31,21 @@ function Locations({ businessId }) {
     // .catch(err => history.push('/error', {errorMessage: err}));
   }, [])
 
-
+  let location = locations[locations.length-1]; 
   return (
     <>
-      <h2>Locations</h2>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Address</th>
-            <th scope="col">City</th>
-            <th scope="col">State</th>
-            <th scope="col">Zip Code</th>
-            <th scope="col">Address Type</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {locations.map(location => <Location key={location.locationId} location={location} />)}
-        </tbody>
-      </table>
-
-    </>
+    {location !=null ? <div className="body-contact">
+    <div className="address-info" >
+     <h4>Address:</h4> 
+    <p>{location.address}, {location.city}, {location.state}, {location.zipCode} </p>
+    
+    </div>
+    <div className="map-img" >
+      {location.length != 0 ? <Map address={location.address} state={location.state} city={location.city} /> : null} 
+    </div> 
+  </div>: null}
+  </>
+    
   )
 
 

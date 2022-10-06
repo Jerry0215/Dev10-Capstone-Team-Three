@@ -96,7 +96,7 @@ function Review({index, review, handleDelete}){
             </div>
             <div className='col-md-6'>
                 <div className='content'>{review.content}</div>
-                
+                <div className='content'>Rating: {review.rating}</div>
             </div>
             </div>
             {review.personId == authManager.user.personId || authManager.user.roles[0] === 'ROLE_ADMIN' ? <button className='btn btn-warning' type="button" onClick={ () => handleClick(review)}>Edit Review</button>:null}

@@ -376,6 +376,7 @@ form.search::after {
 .cover{
   height: 25vH;
   top: 0;
+  object-fit:cover; 
   
 }
 
@@ -468,6 +469,7 @@ form.search::after {
   padding: 20px;
   background-color: #2c3e50b3;
   display: inline-block;
+  object-fit: cover
 }
 
 .body-contact{
@@ -475,15 +477,17 @@ form.search::after {
   width: 35%;
   background-color: #2c3e50b3;
   justify-content: center;
- 
+  object-fit: cover;
+
+
 }
 
 
 
 .map-img{
   
-  height: 50vH;
-  width: 50vH;
+  height: 40vH;
+  width: 30vH;
  
  
   
@@ -505,6 +509,7 @@ form.search::after {
   
  text-align: center;
   padding: 1rem;
+  object-fit:cover; 
  
  
 
@@ -513,10 +518,12 @@ form.search::after {
   color: #330646;
   font-weight: 20vH;
   font-family: fantasy;
+  object-fit:cover; 
 }
 
 .address-info p{
   font-weight: 300;
+  object-fit:cover; 
 }
 
 .section-header{
