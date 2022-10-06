@@ -1,7 +1,7 @@
 function Home() {
     return (<div className="home">
-    <h2 className="home-heading">Welcome to the Nyelp!</h2>
-    <p className="home-description">Where your </p>
+    <h2 className="home-heading">Nyelp!</h2>
+    <h2 className="home-description">Small businesses, done big</h2>
     </div>)
   }
   
