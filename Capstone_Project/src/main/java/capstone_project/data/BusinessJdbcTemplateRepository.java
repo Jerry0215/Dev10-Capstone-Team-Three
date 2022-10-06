@@ -152,7 +152,8 @@ public class BusinessJdbcTemplateRepository implements BusinessRepository{
     }
     @Override
     public boolean deleteById(int businessId){
-        return jdbcTemplate.update(
-                "delete from business where businessId = ?;", businessId)>0;
+        jdbcTemplate.update("delete from event where businessId = ?;",businessId);
+        jdbcTemplate.update("delete from review where businessId = ?;",businessId);
+        return jdbcTemplate.update("delete from business where businessId = ?;", businessId)>0;
     }
 }
