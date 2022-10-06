@@ -90,6 +90,7 @@ function App() {
       <Router>
       <Nav></Nav>
         <div className='container'>
+        <Switch>
         <Route exact path="/">
           <Home />
         </Route>
@@ -154,6 +155,8 @@ function App() {
         <Route path='*'>
           <NotFound/>
         </Route>
+
+        </Switch>
         </div>
        
       </Router>
