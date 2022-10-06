@@ -49,7 +49,7 @@ function Login({ onSubmit }) {
       authManager.login(body.jwt_token)
       
     })
-    .catch(err => history.push('/error', {errorMessage: err}));
+    //.catch(err => history.push('/error', {errorMessage: err}));
     
   }
 
