@@ -64,13 +64,17 @@ function ReviewForm(){
         fetch('http://localhost:8080/api/review', init)
           .then(resp => {
     
-            if (resp.status === 201 || resp.status === 400) {
-              return resp.json();
+            if (resp.status === 201) {
+              history.push(`/businessPage/${businessId}`);
+              return resp.json();     
+            }
+            else if (resp.status === 400) {
+              return resp.json();              
             }
             return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
           })
           .then(body => {
-            if (!body) {
+            if (body.reviewId) {
               
              history.push(`/businessPage/${businessId}`);
             } else if (body) {
